@@ -1,10 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useCart } from './CartContext';
 import { useLanguage } from './LanguageContext';
-import { publicUrl } from '@/lib/config';
 
 export default function Header() {
   const { totalItems } = useCart();
@@ -12,21 +10,6 @@ export default function Header() {
 
   return (
     <header className="site-header">
-      <div className="header-banner" aria-hidden="true">
-        <Image
-          src={publicUrl('/images/oliver-banner.webp')}
-          alt=""
-          fill
-          className="object-cover"
-          priority
-          unoptimized /* static export — no Next.js image optimisation server */
-        />
-        <div className="header-banner-overlay-light" />
-        <div className="header-banner-overlay-sides" />
-        <div className="header-banner-overlay-bottom" />
-      </div>
-
-      <div className="site-header-nav">
       <div className="site-header-inner">
         <Link href="/" className="site-logo">
           Oliver&apos;s Konst
@@ -65,7 +48,6 @@ export default function Header() {
         <Link href="/exhibitions" prefetch={false} className="mobile-nav-link">{t.nav.exhibitions}</Link>
         <Link href="/about" prefetch={false} className="mobile-nav-link">{t.nav.about}</Link>
         <Link href="/contact" prefetch={false} className="mobile-nav-link">{t.nav.contact}</Link>
-      </div>
       </div>
     </header>
   );
