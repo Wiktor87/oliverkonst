@@ -5,15 +5,16 @@ import { Message } from '@/types';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   try {
+    const { id } = await params;
     const body = await request.json();
     const messages = readData<Message[]>('messages.json');
-    const index = messages.findIndex((m) => m.id === params.id);
+    const index = messages.findIndex((m) => m.id === id);
     if (index === -1) {
       return NextResponse.json({ error: 'Message not found' }, { status: 404 });
     }

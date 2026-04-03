@@ -4,7 +4,7 @@ import { requireAuth } from '@/lib/auth';
 import { Message } from '@/types';
 
 export async function GET() {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   try {

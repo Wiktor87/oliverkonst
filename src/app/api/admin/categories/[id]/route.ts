@@ -5,15 +5,16 @@ import { Category } from '@/types';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   try {
+    const { id } = await params;
     const body = await request.json();
     const categories = readData<Category[]>('categories.json');
-    const index = categories.findIndex((c) => c.id === params.id);
+    const index = categories.findIndex((c) => c.id === id);
     if (index === -1) {
       return NextResponse.json({ error: 'Category not found' }, { status: 404 });
     }
@@ -27,14 +28,15 @@ export async function PUT(
 
 export async function DELETE(
   _request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   try {
+    const { id } = await params;
     const categories = readData<Category[]>('categories.json');
-    const filtered = categories.filter((c) => c.id !== params.id);
+    const filtered = categories.filter((c) => c.id !== id);
     if (filtered.length === categories.length) {
       return NextResponse.json({ error: 'Category not found' }, { status: 404 });
     }

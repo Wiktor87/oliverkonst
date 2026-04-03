@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { readData } from '@/lib/data';
 import { Product, Category, Message, Order } from '@/types';
 
-export default function AdminDashboard() {
-  const cookieStore = cookies();
+export default async function AdminDashboard() {
+  const cookieStore = await cookies();
   const session = cookieStore.get('admin_session');
   if (session?.value !== 'authenticated') redirect('/admin/login');
 

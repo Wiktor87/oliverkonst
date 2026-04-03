@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const cookieStore = cookies();
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies();
   const session = cookieStore.get('admin_session');
   const isAuthenticated = session?.value === 'authenticated';
 

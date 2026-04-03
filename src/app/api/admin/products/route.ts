@@ -5,7 +5,7 @@ import { Product } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
 
 export async function GET() {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   try {
@@ -17,7 +17,7 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   try {

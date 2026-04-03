@@ -5,15 +5,16 @@ import { Product } from '@/types';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   try {
+    const { id } = await params;
     const body = await request.json();
     const products = readData<Product[]>('products.json');
-    const index = products.findIndex((p) => p.id === params.id);
+    const index = products.findIndex((p) => p.id === id);
     if (index === -1) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
@@ -27,14 +28,15 @@ export async function PUT(
 
 export async function DELETE(
   _request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   try {
+    const { id } = await params;
     const products = readData<Product[]>('products.json');
-    const filtered = products.filter((p) => p.id !== params.id);
+    const filtered = products.filter((p) => p.id !== id);
     if (filtered.length === products.length) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
