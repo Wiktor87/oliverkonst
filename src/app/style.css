@@ -7,19 +7,19 @@
    DESIGN TOKENS (CSS Custom Properties)
    ============================================================ */
 :root {
-  /* --- Color Palette --- */
-  --primary:           #8a3800;   /* Terracotta — CTAs, highlights */
-  --primary-container: #af4b06;   /* Clay — gradient endpoint */
-  --secondary:         #77574d;   /* Dusty Cocoa — secondary text/actions */
-  --surface:           #fff8ef;   /* Cream — base background */
-  --surface-low:       #fbf3e4;   /* Large sections, subtle recess */
-  --surface-high:      #e9e2d3;   /* Cards, elevated content */
-  --on-surface:        #1e1b13;   /* Body text — never pure black */
-  --on-primary:        #ffffff;   /* Text on primary buttons */
-  --outline:           #8a7267;   /* Ghost borders */
+  /* --- Color Palette — Warm Scandinavian Taupe --- */
+  --primary:           #2c2420;   /* Deep brown — CTAs, highlights */
+  --primary-container: #3d3530;   /* Warm charcoal — gradient endpoint */
+  --secondary:         #6b5f55;   /* Muted taupe — secondary text/actions */
+  --surface:           #d4c5b3;   /* Warm taupe — base background */
+  --surface-low:       #c9baa6;   /* Large sections, subtle recess */
+  --surface-high:      #ded1c2;   /* Cards, elevated content */
+  --on-surface:        #2c2420;   /* Body text — deep brown */
+  --on-primary:        #d4c5b3;   /* Text on primary buttons */
+  --outline:           #8a7d72;   /* Ghost borders */
 
   /* --- Typography --- */
-  --font-display: Noto Serif, Georgia, Times New Roman, serif;
+  --font-display: Cormorant Garamond, Georgia, Times New Roman, serif;
   --font-body:    Manrope, system-ui, -apple-system, sans-serif;
 
   /* --- Font Sizes --- */
@@ -176,24 +176,26 @@ a {
    ============================================================ */
 .btn-primary {
   display: inline-block;
-  background: linear-gradient(135deg, var(--primary), var(--primary-container));
-  color: var(--on-primary);
+  background: transparent;
+  color: var(--on-surface);
   padding: 0.8125rem 2rem;
   border-radius: var(--radius-btn);
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.9375rem;
-  border: none;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--on-surface);
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  transition: opacity 0.2s ease, transform 0.1s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   line-height: 1.4;
 }
 
 .btn-primary:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
+  background-color: var(--on-surface);
+  color: var(--surface);
 }
 
 .btn-primary:active {
@@ -201,28 +203,32 @@ a {
 }
 
 .btn-primary.btn-success {
-  background: linear-gradient(135deg, #256225, #357535);
+  border-color: #256225;
+  color: #256225;
 }
 
 .btn-secondary {
   display: inline-block;
   background: transparent;
-  color: var(--primary);
+  color: var(--secondary);
   padding: 0.8125rem 2rem;
   border-radius: var(--radius-btn);
-  border: 1px solid rgba(138, 56, 0, 0.3);
+  border: 1px solid var(--secondary);
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.9375rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   line-height: 1.4;
 }
 
 .btn-secondary:hover {
-  background-color: rgba(138, 56, 0, 0.05);
+  background-color: var(--secondary);
+  color: var(--surface);
 }
 
 .btn-tertiary {
@@ -269,26 +275,28 @@ a {
 .filter-btn {
   padding: 0.5rem 1.25rem;
   border-radius: var(--radius-btn);
-  border: 1px solid rgba(138, 114, 103, 0.2);
-  background: var(--surface-high);
+  border: 1px solid rgba(44, 36, 32, 0.2);
+  background: transparent;
   color: var(--secondary);
   font-family: var(--font-body);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .filter-btn:hover {
-  background: var(--surface-low);
-  border-color: rgba(138, 56, 0, 0.3);
-  color: var(--primary);
+  background: transparent;
+  border-color: var(--on-surface);
+  color: var(--on-surface);
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, var(--primary), var(--primary-container));
-  color: var(--on-primary);
-  border-color: transparent;
+  background: var(--on-surface);
+  color: var(--surface);
+  border-color: var(--on-surface);
 }
 
 .sort-label {
@@ -323,7 +331,7 @@ a {
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(138, 114, 103, 0.2);
+  border-bottom: 1px solid rgba(44, 36, 32, 0.2);
   padding: 0.625rem 0;
   font-family: var(--font-body);
   font-size: 1rem;
@@ -343,7 +351,7 @@ a {
   background-color: var(--surface-low);
   padding: 0.875rem 1rem;
   margin-bottom: 1.5rem;
-  border-left: 3px solid rgba(138, 56, 0, 0.3);
+  border-left: 3px solid rgba(44, 36, 32, 0.3);
   line-height: 1.5;
 }
 
@@ -354,7 +362,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: rgba(255, 248, 239, 0.7);
+  background-color: rgba(212, 197, 179, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--shadow-float);
@@ -415,7 +423,7 @@ a {
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--secondary);
-  border: 1px solid rgba(138, 114, 103, 0.2);
+  border: 1px solid rgba(44, 36, 32, 0.3);
   border-radius: 2px;
   padding: 0.25rem 0.5rem;
   background: transparent;
@@ -426,7 +434,7 @@ a {
 
 .lang-toggle:hover {
   color: var(--primary);
-  border-color: rgba(138, 56, 0, 0.3);
+  border-color: rgba(44, 36, 32, 0.6);
 }
 
 .cart-btn {
@@ -450,8 +458,8 @@ a {
   position: absolute;
   top: -0.5rem;
   right: -0.5rem;
-  background: linear-gradient(135deg, var(--primary), var(--primary-container));
-  color: var(--on-primary);
+  background: var(--on-surface);
+  color: var(--surface);
   font-size: 0.625rem;
   border-radius: 50%;
   width: 1.25rem;
@@ -468,7 +476,7 @@ a {
   justify-content: center;
   gap: 1.5rem;
   padding: 0.625rem 1rem;
-  background-color: rgba(255, 248, 239, 0.9);
+  background-color: rgba(212, 197, 179, 0.9);
   flex-wrap: wrap;
 }
 
@@ -519,7 +527,7 @@ a {
 .hero-overlay-light {
   position: absolute;
   inset: 0;
-  background: rgba(255, 248, 239, 0.35);
+  background: rgba(212, 197, 179, 0.35);
   pointer-events: none;
   z-index: 1;
 }
@@ -549,7 +557,7 @@ a {
   margin: 0 0 1.5rem;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  text-shadow: 0 1px 6px rgba(255, 248, 239, 0.6);
+  text-shadow: 0 1px 6px rgba(212, 197, 179, 0.6);
 }
 
 .hero-subtitle {
@@ -629,7 +637,7 @@ a {
 }
 
 .status-reserved {
-  background-color: rgba(138, 56, 0, 0.1);
+  background-color: rgba(44, 36, 32, 0.1);
   color: var(--primary);
 }
 
@@ -674,20 +682,23 @@ a {
 
 .product-card-add {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.6875rem;
   font-weight: 600;
-  background: linear-gradient(135deg, var(--primary), var(--primary-container));
-  color: var(--on-primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--on-surface);
   padding: 0.375rem 0.875rem;
   border-radius: var(--radius-btn);
-  border: none;
+  border: 1px solid var(--on-surface);
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background-color 0.2s, color 0.2s;
   white-space: nowrap;
 }
 
 .product-card-add:hover {
-  opacity: 0.88;
+  background-color: var(--on-surface);
+  color: var(--surface);
 }
 
 /* Skeleton loading */
@@ -897,7 +908,7 @@ a {
   gap: 0.75rem;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(138, 114, 103, 0.12);
+  border-bottom: 1px solid rgba(44, 36, 32, 0.12);
 }
 
 .product-detail-meta-row {
@@ -1177,7 +1188,7 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 1px solid rgba(138, 114, 103, 0.2);
+  border: 1px solid rgba(44, 36, 32, 0.2);
   padding: 0.5rem 0.75rem;
   background-color: var(--surface-low);
   opacity: 0.4;
@@ -1415,7 +1426,7 @@ a {
   margin-top: 1rem;
   overflow: hidden;
   border-radius: 4px;
-  border: 1px solid rgba(138, 114, 103, 0.15);
+  border: 1px solid rgba(44, 36, 32, 0.15);
 }
 
 .exhibition-map {
@@ -1445,7 +1456,7 @@ a {
 
 .footer-bottom {
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(138, 114, 103, 0.15);
+  border-top: 1px solid rgba(44, 36, 32, 0.15);
   text-align: center;
   font-family: var(--font-body);
   font-size: 0.8125rem;
