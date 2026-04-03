@@ -46,12 +46,12 @@ export default function ProductDetailClient() {
 
   if (loading) {
     return (
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div className="bg-stone-100 aspect-square rounded-lg animate-pulse" />
-          <div className="space-y-4">
-            <div className="h-8 bg-stone-100 rounded animate-pulse" />
-            <div className="h-4 bg-stone-100 rounded w-2/3 animate-pulse" />
+      <div className="product-detail-layout">
+        <div className="product-detail-grid">
+          <div className="skeleton skeleton-square" />
+          <div>
+            <div className="skeleton skeleton-line" />
+            <div className="skeleton skeleton-line-sm" />
           </div>
         </div>
       </div>
@@ -60,10 +60,10 @@ export default function ProductDetailClient() {
 
   if (!product) return null;
 
-  const statusColors = {
-    available: 'bg-green-100 text-green-800',
-    sold: 'bg-red-100 text-red-800',
-    reserved: 'bg-amber-100 text-amber-800',
+  const statusClass = {
+    available: 'status-available',
+    sold: 'status-sold',
+    reserved: 'status-reserved',
   };
 
   const statusLabel = {
@@ -73,52 +73,52 @@ export default function ProductDetailClient() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12">
-      <Link href="/shop" className="inline-flex items-center text-amber-700 hover:text-amber-900 mb-8 text-sm font-medium">
+    <div className="product-detail-layout">
+      <Link href="/shop" className="back-link">
         ← {t.product.backToShop}
       </Link>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
-        <div className="relative aspect-square rounded-lg overflow-hidden shadow-md bg-stone-50">
-          <Image
-            src={product.imageUrl.startsWith('http') ? product.imageUrl : publicUrl(product.imageUrl)}
-            alt={product.title[lang]}
-            fill
-            className="object-cover"
-            priority
-            unoptimized
-          />
+      <div className="product-detail-grid">
+        <div className="product-detail-mat">
+          <div className="product-detail-image-wrap">
+            <Image
+              src={product.imageUrl.startsWith('http') ? product.imageUrl : publicUrl(product.imageUrl)}
+              alt={product.title[lang]}
+              fill
+              className="object-cover"
+              priority
+              unoptimized
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col justify-center">
-          <span className={`inline-block self-start text-xs font-medium px-2 py-1 rounded-full mb-4 ${statusColors[product.status]}`}>
+        <div className="product-detail-info">
+          <span className={`product-detail-status ${statusClass[product.status]}`}>
             {statusLabel[product.status]}
           </span>
 
-          <h1 className="font-serif text-4xl text-stone-900 mb-4">{product.title[lang]}</h1>
-          <p className="text-stone-600 leading-relaxed mb-6">{product.description[lang]}</p>
+          <h1 className="product-detail-title">{product.title[lang]}</h1>
+          <p className="product-detail-description">{product.description[lang]}</p>
 
-          <dl className="space-y-3 mb-8">
-            <div className="flex">
-              <dt className="w-32 text-sm font-medium text-stone-500">{t.product.dimensions}</dt>
-              <dd className="text-sm text-stone-700">{product.dimensions}</dd>
+          <dl className="product-detail-meta">
+            <div className="product-detail-meta-row">
+              <dt className="product-detail-meta-label">{t.product.dimensions}</dt>
+              <dd className="product-detail-meta-value">{product.dimensions}</dd>
             </div>
-            <div className="flex">
-              <dt className="w-32 text-sm font-medium text-stone-500">{t.product.technique}</dt>
-              <dd className="text-sm text-stone-700">{product.technique[lang]}</dd>
-            </div>
-            <div className="flex">
-              <dt className="w-32 text-sm font-medium text-stone-500">{t.product.price}</dt>
-              <dd className="text-lg font-semibold text-amber-800">
-                {product.price.toLocaleString('sv-SE')} {t.common.currency}
-              </dd>
+            <div className="product-detail-meta-row">
+              <dt className="product-detail-meta-label">{t.product.technique}</dt>
+              <dd className="product-detail-meta-value">{product.technique[lang]}</dd>
             </div>
           </dl>
+
+          <p className="product-detail-price">
+            {product.price.toLocaleString('sv-SE')} {t.common.currency}
+          </p>
 
           {product.status === 'available' && (
             <button
               onClick={handleAddToCart}
-              className={`btn-primary text-center transition-all ${added ? 'bg-green-600 hover:bg-green-700' : ''}`}
+              className={`btn-primary${added ? ' btn-success' : ''}`}
             >
               {added ? '✓ ' + t.product.added : t.product.addToCart}
             </button>

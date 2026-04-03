@@ -23,52 +23,45 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto mb-4 text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" className="empty-state-icon" width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
-        <h1 className="font-serif text-3xl text-stone-700 mb-4">{t.cart.title}</h1>
-        <p className="text-stone-500 mb-8">{t.cart.empty}</p>
-        <Link href="/shop" className="btn-primary inline-block">{t.cart.continueShopping}</Link>
+        <h1 className="empty-state-title">{t.cart.title}</h1>
+        <p className="empty-state-text">{t.cart.empty}</p>
+        <Link href="/shop" className="btn-primary">{t.cart.continueShopping}</Link>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      <h1 className="font-serif text-4xl text-stone-800 mb-8">{t.cart.title}</h1>
+    <div className="cart-layout">
+      <h1 className="cart-title">{t.cart.title}</h1>
 
-      <div className="space-y-4 mb-8">
+      <div className="cart-items-list">
         {items.map((item) => (
-          <div key={item.productId} className="flex items-center gap-4 bg-white border border-stone-100 rounded-lg p-4 shadow-sm">
-            <div className="relative w-20 h-20 flex-shrink-0 rounded overflow-hidden bg-stone-50">
-              <Image src={item.imageUrl.startsWith('http') ? item.imageUrl : publicUrl(item.imageUrl)} alt={item.title[lang]} fill className="object-cover" unoptimized />
+          <div key={item.productId} className="cart-item">
+            <div className="cart-item-thumb">
+              <Image
+                src={item.imageUrl.startsWith('http') ? item.imageUrl : publicUrl(item.imageUrl)}
+                alt={item.title[lang]}
+                fill
+                className="object-cover"
+                unoptimized
+              />
             </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-medium text-stone-800 truncate">{item.title[lang]}</h3>
-              <p className="text-sm text-stone-500">{item.price.toLocaleString('sv-SE')} SEK</p>
+            <div className="cart-item-info">
+              <h3 className="cart-item-title">{item.title[lang]}</h3>
+              <p className="cart-item-price">{item.price.toLocaleString('sv-SE')} SEK</p>
             </div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => updateQuantity(item.productId, item.quantity - 1)}
-                className="w-8 h-8 rounded border border-stone-200 flex items-center justify-center hover:bg-stone-50"
-              >
-                −
-              </button>
-              <span className="w-8 text-center">{item.quantity}</span>
-              <button
-                onClick={() => updateQuantity(item.productId, item.quantity + 1)}
-                className="w-8 h-8 rounded border border-stone-200 flex items-center justify-center hover:bg-stone-50"
-              >
-                +
-              </button>
+            <div className="cart-qty">
+              <button className="cart-qty-btn" onClick={() => updateQuantity(item.productId, item.quantity - 1)}>−</button>
+              <span className="cart-qty-value">{item.quantity}</span>
+              <button className="cart-qty-btn" onClick={() => updateQuantity(item.productId, item.quantity + 1)}>+</button>
             </div>
-            <div className="text-right flex-shrink-0">
-              <p className="font-semibold text-amber-800">{(item.price * item.quantity).toLocaleString('sv-SE')} SEK</p>
-              <button
-                onClick={() => removeItem(item.productId)}
-                className="text-xs text-red-500 hover:text-red-700 mt-1"
-              >
+            <div className="cart-item-totals">
+              <span className="cart-item-subtotal">{(item.price * item.quantity).toLocaleString('sv-SE')} SEK</span>
+              <button className="cart-remove-btn" onClick={() => removeItem(item.productId)}>
                 {t.cart.remove}
               </button>
             </div>
@@ -76,52 +69,40 @@ export default function CartPage() {
         ))}
       </div>
 
-      <div className="bg-amber-50 rounded-lg p-6">
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-lg font-medium text-stone-700">{t.cart.total}</span>
-          <span className="text-2xl font-bold text-amber-800">{totalPrice.toLocaleString('sv-SE')} SEK</span>
-        </div>
-        <div className="bg-white rounded p-4 mb-4 text-sm text-stone-600 border border-amber-100">
-          <p className="font-medium text-stone-700 mb-1">{t.cart.checkout}</p>
-          <p>{t.cart.contactMessage}</p>
+      <div className="cart-summary">
+        <div className="cart-total-row">
+          <span className="cart-total-label">{t.cart.total}</span>
+          <span className="cart-total-amount">{totalPrice.toLocaleString('sv-SE')} SEK</span>
         </div>
 
-        {/* Future payment options – coming soon */}
-        <div className="bg-white rounded p-4 mb-4 border border-stone-100">
-          <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-3">
+        <div className="cart-contact-note">
+          <span className="cart-contact-note-title">{t.cart.checkout}</span>
+          {t.cart.contactMessage}
+        </div>
+
+        <div className="payment-soon">
+          <p className="payment-soon-label">
             {lang === 'sv' ? 'Betalning kommer snart' : 'Payment coming soon'}
           </p>
-          <div className="flex gap-3">
-            <button
-              disabled
-              title={lang === 'sv' ? 'Klarna – kommer snart' : 'Klarna – coming soon'}
-              className="flex-1 flex items-center justify-center gap-2 border border-stone-200 rounded py-2 px-3 opacity-40 cursor-not-allowed bg-stone-50"
-            >
-              <span className="font-bold text-[#FFB3C7] tracking-tight text-sm">Klarna</span>
-              <span className="text-xs text-stone-400">
+          <div className="payment-options">
+            <button disabled className="payment-option-btn">
+              <span className="payment-klarna">Klarna</span>
+              <span className="payment-soon-note">
                 {lang === 'sv' ? '(kommer snart)' : '(coming soon)'}
               </span>
             </button>
-            <button
-              disabled
-              title={lang === 'sv' ? 'Stripe – kommer snart' : 'Stripe – coming soon'}
-              className="flex-1 flex items-center justify-center gap-2 border border-stone-200 rounded py-2 px-3 opacity-40 cursor-not-allowed bg-stone-50"
-            >
-              <span className="font-bold text-indigo-500 tracking-tight text-sm">Stripe</span>
-              <span className="text-xs text-stone-400">
+            <button disabled className="payment-option-btn">
+              <span className="payment-stripe">Stripe</span>
+              <span className="payment-soon-note">
                 {lang === 'sv' ? '(kommer snart)' : '(coming soon)'}
               </span>
             </button>
           </div>
         </div>
 
-        <div className="flex gap-3">
-          <button onClick={handleCheckout} className="flex-1 btn-primary text-center">
-            {t.cart.checkout}
-          </button>
-          <Link href="/shop" className="btn-secondary">
-            {t.cart.continueShopping}
-          </Link>
+        <div className="cart-actions">
+          <button onClick={handleCheckout} className="btn-primary">{t.cart.checkout}</button>
+          <Link href="/shop" className="btn-secondary">{t.cart.continueShopping}</Link>
         </div>
       </div>
     </div>

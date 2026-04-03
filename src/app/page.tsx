@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Product } from '@/types';
 import { useLanguage } from '@/components/LanguageContext';
 import ProductCard from '@/components/ProductCard';
+import CuratorsNote from '@/components/CuratorsNote';
 import { siteConfig, publicUrl } from '@/lib/config';
 
 export default function HomePage() {
@@ -22,9 +23,8 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden py-24 px-4 text-center">
-        {/* Background image */}
-        <div className="absolute inset-0 -z-10">
+      <section className="hero-section">
+        <div className="hero-bg-image">
           <Image
             src={publicUrl('/images/oliver-banner.webp')}
             alt="Oliver's Konst banner"
@@ -33,74 +33,76 @@ export default function HomePage() {
             priority
             unoptimized
           />
-          {/* Fade to sides */}
-          <div className="absolute inset-0 bg-gradient-to-r from-amber-50 via-transparent to-amber-50" />
-          {/* Slight dark overlay for text readability */}
-          <div className="absolute inset-0 bg-white/30" />
         </div>
+        <div className="hero-overlay-light" />
+        <div className="hero-overlay-sides" />
+        <div className="hero-overlay-bottom" />
 
-        <div className="max-w-3xl mx-auto relative">
-          <h1 className="font-serif text-5xl md:text-6xl text-amber-900 mb-6 drop-shadow-sm">
-            {t.home.hero.title}
-          </h1>
-          <p className="text-xl text-stone-700 mb-8 leading-relaxed drop-shadow-sm">
-            {t.home.hero.subtitle}
-          </p>
-          <Link
-            href="/shop"
-            className="inline-block bg-amber-700 hover:bg-amber-800 text-white px-8 py-4 rounded text-lg font-medium transition-colors"
-          >
-            {t.home.hero.cta}
-          </Link>
+        <div className="hero-content">
+          <h1 className="hero-title">{t.home.hero.title}</h1>
+          <p className="hero-subtitle">{t.home.hero.subtitle}</p>
+          <Link href="/shop" className="btn-primary">{t.home.hero.cta}</Link>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent" />
       </section>
 
       {/* Featured works */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <div className="text-center mb-10">
-          <h2 className="font-serif text-3xl text-stone-800 mb-3">{t.home.featured.title}</h2>
-          <p className="text-stone-500">{t.home.featured.subtitle}</p>
+      <section className="section">
+        <div className="section-header">
+          <h2 className="section-title">{t.home.featured.title}</h2>
+          <p className="section-subtitle">{t.home.featured.subtitle}</p>
         </div>
+
         {featured.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="product-grid">
             {featured.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="product-grid">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-stone-100 rounded-lg aspect-[4/3] animate-pulse" />
+              <div key={i} className="skeleton skeleton-card" />
             ))}
           </div>
         )}
-        <div className="text-center mt-10">
-          <Link href="/shop" className="inline-block border border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-white px-8 py-3 rounded transition-colors font-medium">
-            {t.home.hero.cta}
-          </Link>
+
+        <div className="featured-cta">
+          <Link href="/shop" className="btn-secondary">{t.home.hero.cta}</Link>
         </div>
       </section>
 
-      {/* Intro about */}
-      <section className="bg-amber-50 py-16 px-4">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
-          <div className="md:w-1/3">
-            <div className="w-48 h-48 mx-auto rounded-full bg-amber-200 flex items-center justify-center overflow-hidden">
+      {/* Artist intro */}
+      <section className="about-intro-section">
+        <div className="about-intro-inner">
+          <div className="about-portrait-wrap">
+            <div className="about-portrait">
               <Image
-                src={publicUrl('/images/placeholder.svg')}
+                src={publicUrl('/images/oliver-profil.webp')}
                 alt="Oliver"
-                width={192}
-                height={192}
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover"
                 unoptimized
               />
             </div>
           </div>
-          <div className="md:w-2/3 text-center md:text-left">
-            <h2 className="font-serif text-3xl text-stone-800 mb-4">{t.home.intro.title}</h2>
-            <p className="text-stone-600 leading-relaxed mb-6">{t.home.intro.text}</p>
-            <Link href="/about" className="inline-block text-amber-700 hover:text-amber-900 font-medium underline underline-offset-4">
+          <div>
+            <p className="about-intro-eyebrow">
+              {lang === 'sv' ? 'Om konstnären' : 'About the artist'}
+            </p>
+            <h2 className="about-intro-title">{t.home.intro.title}</h2>
+            <p className="about-intro-text">{t.home.intro.text}</p>
+
+            <CuratorsNote
+              text={
+                lang === 'sv'
+                  ? '"Varje penselstrag är ett samtal mellan känsla och form – ett försök att fånga det flyktiga ljuset och bevara det för evigt."'
+                  : '"Every brushstroke is a conversation between feeling and form – an attempt to capture fleeting light and preserve it forever."'
+              }
+              attribution="Oliver"
+              label={lang === 'sv' ? 'Konstnärens röst' : "Artist's Voice"}
+            />
+
+            <Link href="/about" className="btn-tertiary">
               {t.home.intro.readMore} →
             </Link>
           </div>
