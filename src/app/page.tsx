@@ -6,13 +6,14 @@ import { useEffect, useState } from 'react';
 import { Product } from '@/types';
 import { useLanguage } from '@/components/LanguageContext';
 import ProductCard from '@/components/ProductCard';
+import { siteConfig } from '@/lib/config';
 
 export default function HomePage() {
   const { lang, t } = useLanguage();
   const [featured, setFeatured] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch('/api/products')
+    fetch(`${siteConfig.basePath}/data/products.json`)
       .then((r) => r.json())
       .then((data: Product[]) => setFeatured(data.slice(0, 3)))
       .catch(() => {});

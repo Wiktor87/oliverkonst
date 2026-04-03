@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAdmin } from '@/components/AdminContext';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [password, setPassword] = useState('');
+  const { login } = useAdmin();
+  const [token, setToken] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -15,20 +17,10 @@ export default function AdminLoginPage() {
     setError('');
 
     try {
-      const res = await fetch('/api/admin/auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
-      });
-
-      if (res.ok) {
-        router.push('/admin');
-        router.refresh();
-      } else {
-        setError('Felaktigt lösenord');
-      }
+      await login(token.trim());
+      router.push('/admin');
     } catch {
-      setError('Något gick fel. Försök igen.');
+      setError('Ogiltig token. Kontrollera att din GitHub PAT är korrekt.');
     } finally {
       setLoading(false);
     }
@@ -42,15 +34,37 @@ export default function AdminLoginPage() {
           <p className="text-stone-500 text-sm">Admin-inloggning</p>
         </div>
         <div className="bg-white rounded-lg shadow-sm border border-stone-100 p-8">
+          <div className="bg-amber-50 border border-amber-200 rounded p-3 mb-6 text-xs text-amber-800 space-y-1">
+            <p className="font-semibold">GitHub Personal Access Token (PAT) krävs</p>
+            <p>
+              Logga in med ett PAT som har <code className="bg-amber-100 px-0.5 rounded">repo</code>-behörighet till{' '}
+              <strong>Wiktor87/oliverkonst</strong>.
+            </p>
+            <p>
+              Skapa en PAT under{' '}
+              <a
+                href="https://github.com/settings/tokens/new?scopes=repo&description=OliverKonst+Admin"
+                target="_blank"
+                rel="noreferrer"
+                className="underline hover:text-amber-900"
+              >
+                GitHub → Settings → Developer settings → Personal access tokens
+              </a>
+              .
+            </p>
+          </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-stone-700 mb-1">Lösenord</label>
+              <label className="block text-sm font-medium text-stone-700 mb-1">
+                GitHub Personal Access Token
+              </label>
               <input
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={token}
+                onChange={(e) => setToken(e.target.value)}
                 required
-                className="input-field"
+                placeholder="ghp_xxxxxxxxxxxx"
+                className="input-field font-mono text-sm"
                 autoFocus
               />
             </div>
@@ -60,7 +74,7 @@ export default function AdminLoginPage() {
               disabled={loading}
               className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Loggar in...' : 'Logga in'}
+              {loading ? 'Verifierar...' : 'Logga in'}
             </button>
           </form>
         </div>

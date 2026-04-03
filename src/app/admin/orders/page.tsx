@@ -3,23 +3,28 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Order } from '@/types';
+import { useAdmin } from '@/components/AdminContext';
+import { readJsonFile } from '@/lib/github';
 
 export default function AdminOrdersPage() {
   const router = useRouter();
+  const { token, isAuthenticated, isLoading } = useAdmin();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/admin/orders')
-      .then((r) => {
-        if (r.status === 401) { router.push('/admin/login'); return null; }
-        return r.json();
-      })
-      .then((data) => { if (data) setOrders(data.reverse()); })
+    if (isLoading) return;
+    if (!isAuthenticated || !token) {
+      router.push('/admin/login');
+      return;
+    }
+    readJsonFile<Order[]>(token, 'data/orders.json')
+      .then(({ data }) => setOrders([...data].reverse()))
+      .catch(() => {})
       .finally(() => setLoading(false));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, isLoading, token, router]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (loading) return <div className="p-8 text-stone-500">Laddar...</div>;
+  if (isLoading || loading) return <div className="p-8 text-stone-500">Laddar...</div>;
 
   const statusColors: Record<Order['status'], string> = {
     pending: 'bg-amber-100 text-amber-800',

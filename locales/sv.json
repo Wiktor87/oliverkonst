@@ -76,7 +76,8 @@
     "error": "Något gick fel. Försök igen.",
     "namePlaceholder": "Ditt namn",
     "emailPlaceholder": "din@epost.se",
-    "messagePlaceholder": "Skriv ditt meddelande här..."
+    "messagePlaceholder": "Skriv ditt meddelande här...",
+    "mailtoNote": "Klicka på \"Skicka\" för att öppna din e-postklient med meddelandet förifyllt."
   },
   "admin": {
     "login": {

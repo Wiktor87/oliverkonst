@@ -3,34 +3,46 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Message } from '@/types';
+import { useAdmin } from '@/components/AdminContext';
+import { readJsonFile, writeJsonFile } from '@/lib/github';
 
 export default function AdminMessagesPage() {
   const router = useRouter();
+  const { token, isAuthenticated, isLoading } = useAdmin();
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
 
-  const fetchData = () => {
-    fetch('/api/admin/messages')
-      .then((r) => {
-        if (r.status === 401) { router.push('/admin/login'); return null; }
-        return r.json();
-      })
-      .then((data) => { if (data) setMessages(data.reverse()); })
-      .finally(() => setLoading(false));
+  const fetchData = async (t: string) => {
+    const { data } = await readJsonFile<Message[]>(t, 'data/messages.json');
+    setMessages([...data].reverse());
   };
 
-  useEffect(() => { fetchData(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (isLoading) return;
+    if (!isAuthenticated || !token) {
+      router.push('/admin/login');
+      return;
+    }
+    fetchData(token).catch(() => {}).finally(() => setLoading(false));
+  }, [isAuthenticated, isLoading, token, router]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const markRead = async (id: string) => {
-    await fetch(`/api/admin/messages/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ read: true }),
-    });
-    fetchData();
+    if (!token) return;
+    setUpdating(true);
+    try {
+      const { data, sha } = await readJsonFile<Message[]>(token, 'data/messages.json');
+      const updated = data.map((m) => (m.id === id ? { ...m, read: true } : m));
+      await writeJsonFile(token, 'data/messages.json', updated, sha, `Admin: markera meddelande ${id} som läst`);
+      setMessages([...updated].reverse());
+    } catch {
+      // ignore
+    } finally {
+      setUpdating(false);
+    }
   };
 
-  if (loading) return <div className="p-8 text-stone-500">Laddar...</div>;
+  if (isLoading || loading) return <div className="p-8 text-stone-500">Laddar...</div>;
 
   return (
     <div className="p-8">
@@ -57,7 +69,8 @@ export default function AdminMessagesPage() {
                   {!m.read && (
                     <button
                       onClick={() => markRead(m.id)}
-                      className="text-xs bg-amber-100 hover:bg-amber-200 text-amber-800 px-2 py-1 rounded transition-colors"
+                      disabled={updating}
+                      className="text-xs bg-amber-100 hover:bg-amber-200 text-amber-800 px-2 py-1 rounded transition-colors disabled:opacity-50"
                     >
                       Markera som läst
                     </button>

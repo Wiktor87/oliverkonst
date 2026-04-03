@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { v4 as uuidv4 } from 'uuid';
 import { Product, Category } from '@/types';
+import { useAdmin } from '@/components/AdminContext';
+import { readJsonFile, writeJsonFile } from '@/lib/github';
 
 type ProductFormData = {
   titleSv: string;
@@ -29,6 +32,7 @@ const emptyForm: ProductFormData = {
 
 export default function AdminProductsPage() {
   const router = useRouter();
+  const { token, isAuthenticated, isLoading } = useAdmin();
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [showForm, setShowForm] = useState(false);
@@ -36,21 +40,27 @@ export default function AdminProductsPage() {
   const [form, setForm] = useState<ProductFormData>(emptyForm);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState('');
 
-  const fetchData = () => {
-    Promise.all([
-      fetch('/api/admin/products').then((r) => r.json()),
-      fetch('/api/categories').then((r) => r.json()),
-    ]).then(([p, c]) => {
-      setProducts(p);
-      setCategories(c);
-    }).catch(() => router.push('/admin/login'))
-      .finally(() => setLoading(false));
+  const fetchData = async (t: string) => {
+    const [p, c] = await Promise.all([
+      readJsonFile<Product[]>(t, 'data/products.json'),
+      readJsonFile<Category[]>(t, 'data/categories.json'),
+    ]);
+    setProducts(p.data);
+    setCategories(c.data);
   };
 
-  useEffect(() => { fetchData(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (isLoading) return;
+    if (!isAuthenticated || !token) {
+      router.push('/admin/login');
+      return;
+    }
+    fetchData(token).catch(() => {}).finally(() => setLoading(false));
+  }, [isAuthenticated, isLoading, token, router]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const openAdd = () => { setForm(emptyForm); setEditingId(null); setShowForm(true); };
+  const openAdd = () => { setForm(emptyForm); setEditingId(null); setShowForm(true); setSaveError(''); };
   const openEdit = (p: Product) => {
     setForm({
       titleSv: p.title.sv, titleEn: p.title.en,
@@ -62,42 +72,88 @@ export default function AdminProductsPage() {
     });
     setEditingId(p.id);
     setShowForm(true);
+    setSaveError('');
   };
 
   const handleDelete = async (id: string) => {
+    if (!token) return;
     if (!confirm('Är du säker på att du vill ta bort denna produkt?')) return;
-    await fetch(`/api/admin/products/${id}`, { method: 'DELETE' });
-    fetchData();
+    setSaving(true);
+    try {
+      const { data, sha } = await readJsonFile<Product[]>(token, 'data/products.json');
+      const updated = data.filter((p) => p.id !== id);
+      await writeJsonFile(token, 'data/products.json', updated, sha, `Admin: ta bort produkt ${id}`);
+      setProducts(updated);
+    } catch (err) {
+      alert('Kunde inte ta bort produkt: ' + String(err));
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!token) return;
     setSaving(true);
-    const body = {
-      title: { sv: form.titleSv, en: form.titleEn },
-      description: { sv: form.descSv, en: form.descEn },
-      price: Number(form.price),
-      currency: form.currency,
-      category: form.category,
-      dimensions: form.dimensions,
-      technique: { sv: form.techniqueSv, en: form.techniqueEn },
-      imageUrl: form.imageUrl,
-      status: form.status,
-      productType: form.productType,
-    };
-    if (editingId) {
-      await fetch(`/api/admin/products/${editingId}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    } else {
-      await fetch('/api/admin/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    setSaveError('');
+
+    const now = new Date().toISOString();
+    try {
+      const { data, sha } = await readJsonFile<Product[]>(token, 'data/products.json');
+      let updated: Product[];
+
+      if (editingId) {
+        updated = data.map((p) =>
+          p.id === editingId
+            ? {
+                ...p,
+                title: { sv: form.titleSv, en: form.titleEn },
+                description: { sv: form.descSv, en: form.descEn },
+                price: Number(form.price),
+                currency: form.currency,
+                category: form.category,
+                dimensions: form.dimensions,
+                technique: { sv: form.techniqueSv, en: form.techniqueEn },
+                imageUrl: form.imageUrl,
+                status: form.status,
+                productType: form.productType,
+                updatedAt: now,
+              }
+            : p,
+        );
+        await writeJsonFile(token, 'data/products.json', updated, sha, `Admin: uppdatera produkt ${editingId}`);
+      } else {
+        const newProduct: Product = {
+          id: uuidv4(),
+          title: { sv: form.titleSv, en: form.titleEn },
+          description: { sv: form.descSv, en: form.descEn },
+          price: Number(form.price),
+          currency: form.currency,
+          category: form.category,
+          dimensions: form.dimensions,
+          technique: { sv: form.techniqueSv, en: form.techniqueEn },
+          imageUrl: form.imageUrl,
+          status: form.status,
+          productType: form.productType,
+          createdAt: now,
+          updatedAt: now,
+        };
+        updated = [...data, newProduct];
+        await writeJsonFile(token, 'data/products.json', updated, sha, `Admin: lägg till produkt ${newProduct.id}`);
+      }
+
+      setProducts(updated);
+      setShowForm(false);
+    } catch (err) {
+      setSaveError('Sparning misslyckades: ' + String(err));
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
-    setShowForm(false);
-    fetchData();
   };
 
   const f = (key: keyof ProductFormData, val: string) => setForm((prev) => ({ ...prev, [key]: val }));
 
-  if (loading) return <div className="p-8 text-stone-500">Laddar...</div>;
+  if (isLoading || loading) return <div className="p-8 text-stone-500">Laddar...</div>;
 
   return (
     <div className="p-8">
@@ -179,9 +235,10 @@ export default function AdminProductsPage() {
                   </select>
                 </div>
               </div>
+              {saveError && <p className="text-sm text-red-600">{saveError}</p>}
               <div className="flex gap-3 pt-2">
                 <button type="submit" disabled={saving} className="btn-primary disabled:opacity-50">
-                  {saving ? 'Sparar...' : 'Spara'}
+                  {saving ? 'Sparar till GitHub...' : 'Spara'}
                 </button>
                 <button type="button" onClick={() => setShowForm(false)} className="btn-secondary">Avbryt</button>
               </div>
@@ -216,7 +273,7 @@ export default function AdminProductsPage() {
                 </td>
                 <td className="px-4 py-3 text-right">
                   <button onClick={() => openEdit(p)} className="text-amber-700 hover:text-amber-900 mr-3">Redigera</button>
-                  <button onClick={() => handleDelete(p.id)} className="text-red-600 hover:text-red-800">Ta bort</button>
+                  <button onClick={() => handleDelete(p.id)} disabled={saving} className="text-red-600 hover:text-red-800 disabled:opacity-50">Ta bort</button>
                 </td>
               </tr>
             ))}

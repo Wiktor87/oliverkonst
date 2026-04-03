@@ -1,18 +1,47 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+'use client';
+
 import Link from 'next/link';
-import { readData } from '@/lib/data';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Product, Category, Message, Order } from '@/types';
+import { useAdmin } from '@/components/AdminContext';
+import { readJsonFile } from '@/lib/github';
 
-export default async function AdminDashboard() {
-  const cookieStore = await cookies();
-  const session = cookieStore.get('admin_session');
-  if (session?.value !== 'authenticated') redirect('/admin/login');
+export default function AdminDashboard() {
+  const router = useRouter();
+  const { token, isAuthenticated, isLoading } = useAdmin();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [dataLoading, setDataLoading] = useState(true);
 
-  const products = readData<Product[]>('products.json');
-  const categories = readData<Category[]>('categories.json');
-  const messages = readData<Message[]>('messages.json');
-  const orders = readData<Order[]>('orders.json');
+  useEffect(() => {
+    if (isLoading) return;
+    if (!isAuthenticated || !token) {
+      router.push('/admin/login');
+      return;
+    }
+
+    Promise.all([
+      readJsonFile<Product[]>(token, 'data/products.json'),
+      readJsonFile<Category[]>(token, 'data/categories.json'),
+      readJsonFile<Message[]>(token, 'data/messages.json'),
+      readJsonFile<Order[]>(token, 'data/orders.json'),
+    ])
+      .then(([p, c, m, o]) => {
+        setProducts(p.data);
+        setCategories(c.data);
+        setMessages(m.data);
+        setOrders(o.data);
+      })
+      .catch(() => {})
+      .finally(() => setDataLoading(false));
+  }, [isAuthenticated, isLoading, token, router]);
+
+  if (isLoading || dataLoading) {
+    return <div className="p-8 text-stone-500">Laddar...</div>;
+  }
 
   const unreadMessages = messages.filter((m) => !m.read).length;
   const availableProducts = products.filter((p) => p.status === 'available').length;
@@ -20,6 +49,15 @@ export default async function AdminDashboard() {
   return (
     <div className="p-8">
       <h1 className="font-serif text-3xl text-stone-800 mb-8">Dashboard</h1>
+
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8 text-sm text-blue-800">
+        <p className="font-semibold mb-1">ℹ️ Hur admin-panelen fungerar</p>
+        <p>
+          Ändringar du gör här sparas direkt till GitHub-repot via GitHub API (som commits).
+          Det triggar automatiskt en ny GitHub Actions-byggning som uppdaterar den publika webbplatsen
+          inom några minuter.
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <StatCard title="Produkter" value={products.length} sub={`${availableProducts} tillgängliga`} href="/admin/products" color="amber" />
