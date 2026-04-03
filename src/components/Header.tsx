@@ -29,7 +29,7 @@ export default function Header() {
       <div className="site-header-inner">
         <Link href="/" className="site-logo">
           <Image
-            src={publicUrl('/images/logo.svg')}
+            src={publicUrl('/img/20676002-2972-4876-A8C6-6FAA7FA31B3E.png')}
             alt="Oliver's Konst"
             width={0}
             height={0}
