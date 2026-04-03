@@ -67,6 +67,57 @@ export async function writeJsonFile<T>(
   return result.content.sha;
 }
 
+/**
+ * Upload a binary file (image, etc.) to the repository via the GitHub Contents API.
+ * `base64Content` should be the raw base64-encoded file content (no data-URL prefix).
+ * Returns the SHA of the newly created blob.
+ */
+export async function uploadFile(
+  token: string,
+  filePath: string,
+  base64Content: string,
+  commitMessage: string,
+): Promise<string> {
+  const url = `${API_BASE}/repos/${siteConfig.repoOwner}/${siteConfig.repoName}/contents/${filePath}`;
+
+  // Check if file already exists so we can pass its SHA (required for updates)
+  let existingSha: string | undefined;
+  try {
+    const checkRes = await fetch(url, {
+      headers: {
+        Authorization: `token ${token}`,
+        Accept: 'application/vnd.github.v3+json',
+      },
+    });
+    if (checkRes.ok) {
+      const existing = (await checkRes.json()) as { sha: string };
+      existingSha = existing.sha;
+    }
+  } catch {
+    // file does not exist yet — that's fine
+  }
+
+  const body: Record<string, string> = { message: commitMessage, content: base64Content };
+  if (existingSha) body.sha = existingSha;
+
+  const res = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      Authorization: `token ${token}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    throw new Error(`GitHub API error ${res.status}: ${await res.text()}`);
+  }
+
+  const result = (await res.json()) as { content: { sha: string } };
+  return result.content.sha;
+}
+
 /** Validate a GitHub PAT by fetching the authenticated user. Returns the login on success. */
 export async function validateToken(token: string): Promise<string> {
   const res = await fetch(`${API_BASE}/user`, {

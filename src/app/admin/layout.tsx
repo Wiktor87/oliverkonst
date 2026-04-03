@@ -24,6 +24,12 @@ function AdminSidebar() {
         <Link href="/admin/categories" className="block px-3 py-2 rounded text-sm text-stone-300 hover:bg-stone-700 hover:text-white transition-colors">
           Kategorier
         </Link>
+        <Link href="/admin/exhibitions" className="block px-3 py-2 rounded text-sm text-stone-300 hover:bg-stone-700 hover:text-white transition-colors">
+          Utställningar
+        </Link>
+        <Link href="/admin/content" className="block px-3 py-2 rounded text-sm text-stone-300 hover:bg-stone-700 hover:text-white transition-colors">
+          Innehåll
+        </Link>
         <Link href="/admin/messages" className="block px-3 py-2 rounded text-sm text-stone-300 hover:bg-stone-700 hover:text-white transition-colors">
           Meddelanden
         </Link>

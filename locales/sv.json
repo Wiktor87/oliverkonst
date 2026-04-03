@@ -2,6 +2,7 @@
   "nav": {
     "home": "Hem",
     "shop": "Konst",
+    "exhibitions": "Utställningar",
     "about": "Om Oliver",
     "contact": "Kontakt",
     "cart": "Varukorg",
@@ -79,6 +80,16 @@
     "messagePlaceholder": "Skriv ditt meddelande här...",
     "mailtoNote": "Klicka på \"Skicka\" för att öppna din e-postklient med meddelandet förifyllt."
   },
+  "exhibitions": {
+    "title": "Utställningar",
+    "subtitle": "Kommande och tidigare utställningar",
+    "upcoming": "Kommande",
+    "active": "Pågående",
+    "past": "Tidigare",
+    "noExhibitions": "Inga utställningar.",
+    "dateRange": "–",
+    "viewMore": "Läs mer"
+  },
   "admin": {
     "login": {
       "title": "Admin-inloggning",
@@ -137,12 +148,54 @@
       "status": "Status",
       "date": "Datum"
     },
+    "exhibitions": {
+      "title": "Utställningar",
+      "add": "Lägg till utställning",
+      "edit": "Redigera",
+      "delete": "Ta bort",
+      "confirmDelete": "Är du säker på att du vill ta bort denna utställning?",
+      "titleSv": "Titel (svenska)",
+      "titleEn": "Titel (engelska)",
+      "descSv": "Beskrivning (svenska)",
+      "descEn": "Beskrivning (engelska)",
+      "locationSv": "Plats (svenska)",
+      "locationEn": "Plats (engelska)",
+      "startDate": "Startdatum",
+      "endDate": "Slutdatum",
+      "imageUrl": "Bild-URL",
+      "status": "Status"
+    },
+    "content": {
+      "title": "Redigera innehåll",
+      "biographySv": "Biografi (svenska)",
+      "biographyEn": "Biografi (engelska)",
+      "quoteSv": "Citat (svenska)",
+      "quoteEn": "Citat (engelska)",
+      "aboutTitleSv": "Om-rubrik (svenska)",
+      "aboutTitleEn": "Om-rubrik (engelska)",
+      "contactEmail": "Kontakt-e-post",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "save": "Spara innehåll"
+    },
+    "images": {
+      "upload": "Ladda upp bilder",
+      "uploading": "Laddar upp...",
+      "reorder": "Ändra ordning",
+      "remove": "Ta bort",
+      "primary": "Primär",
+      "setPrimary": "Sätt som primär",
+      "dragHint": "Dra för att ändra ordning",
+      "rebuildNote": "Ändringar syns på webbplatsen efter nästa bygge (vanligtvis 1–2 minuter)."
+    },
     "nav": {
       "dashboard": "Dashboard",
       "products": "Produkter",
       "categories": "Kategorier",
       "messages": "Meddelanden",
       "orders": "Beställningar",
+      "exhibitions": "Utställningar",
+      "content": "Innehåll",
       "logout": "Logga ut"
     }
   },

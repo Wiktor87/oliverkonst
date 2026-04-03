@@ -18,6 +18,7 @@ export default function Header() {
         <nav className="site-nav">
           <Link href="/" prefetch={false} className="nav-link">{t.nav.home}</Link>
           <Link href="/shop" prefetch={false} className="nav-link">{t.nav.shop}</Link>
+          <Link href="/exhibitions" prefetch={false} className="nav-link">{t.nav.exhibitions}</Link>
           <Link href="/about" prefetch={false} className="nav-link">{t.nav.about}</Link>
           <Link href="/contact" prefetch={false} className="nav-link">{t.nav.contact}</Link>
         </nav>
@@ -44,6 +45,7 @@ export default function Header() {
       <div className="mobile-nav">
         <Link href="/" prefetch={false} className="mobile-nav-link">{t.nav.home}</Link>
         <Link href="/shop" prefetch={false} className="mobile-nav-link">{t.nav.shop}</Link>
+        <Link href="/exhibitions" prefetch={false} className="mobile-nav-link">{t.nav.exhibitions}</Link>
         <Link href="/about" prefetch={false} className="mobile-nav-link">{t.nav.about}</Link>
         <Link href="/contact" prefetch={false} className="mobile-nav-link">{t.nav.contact}</Link>
       </div>

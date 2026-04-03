@@ -17,6 +17,7 @@ export default function ProductDetailClient() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [added, setAdded] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     if (!params.id) return;
@@ -60,6 +61,14 @@ export default function ProductDetailClient() {
 
   if (!product) return null;
 
+  const images: string[] =
+    product.images && product.images.length > 0
+      ? product.images
+      : [product.imageUrl];
+
+  const resolveImg = (url: string) =>
+    url.startsWith('http') ? url : publicUrl(url);
+
   const statusClass = {
     available: 'status-available',
     sold: 'status-sold',
@@ -79,17 +88,43 @@ export default function ProductDetailClient() {
       </Link>
 
       <div className="product-detail-grid">
-        <div className="product-detail-mat">
-          <div className="product-detail-image-wrap">
-            <Image
-              src={product.imageUrl.startsWith('http') ? product.imageUrl : publicUrl(product.imageUrl)}
-              alt={product.title[lang]}
-              fill
-              className="object-cover"
-              priority
-              unoptimized
-            />
+        {/* Image gallery */}
+        <div>
+          <div className="product-detail-mat">
+            <div className="product-detail-image-wrap">
+              <Image
+                src={resolveImg(images[activeIndex])}
+                alt={product.title[lang]}
+                fill
+                className="object-cover"
+                priority
+                unoptimized
+              />
+            </div>
           </div>
+
+          {/* Thumbnails — only shown when there are multiple images */}
+          {images.length > 1 && (
+            <div className="flex gap-2 mt-3 flex-wrap">
+              {images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveIndex(i)}
+                  className={`relative w-16 h-16 rounded overflow-hidden border-2 transition-colors ${
+                    i === activeIndex ? 'border-amber-600' : 'border-transparent hover:border-stone-300'
+                  }`}
+                >
+                  <Image
+                    src={resolveImg(img)}
+                    alt={`${product.title[lang]} – bild ${i + 1}`}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="product-detail-info">
@@ -128,3 +163,4 @@ export default function ProductDetailClient() {
     </div>
   );
 }
+

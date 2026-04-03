@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "shop": "Shop",
+    "exhibitions": "Exhibitions",
     "about": "About Oliver",
     "contact": "Contact",
     "cart": "Cart",
@@ -79,6 +80,16 @@
     "messagePlaceholder": "Write your message here...",
     "mailtoNote": "Click \"Send\" to open your email client with the message pre-filled."
   },
+  "exhibitions": {
+    "title": "Exhibitions",
+    "subtitle": "Upcoming and past exhibitions",
+    "upcoming": "Upcoming",
+    "active": "Active",
+    "past": "Past",
+    "noExhibitions": "No exhibitions found.",
+    "dateRange": "–",
+    "viewMore": "Learn more"
+  },
   "admin": {
     "login": {
       "title": "Admin Login",
@@ -137,12 +148,54 @@
       "status": "Status",
       "date": "Date"
     },
+    "exhibitions": {
+      "title": "Exhibitions",
+      "add": "Add exhibition",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDelete": "Are you sure you want to delete this exhibition?",
+      "titleSv": "Title (Swedish)",
+      "titleEn": "Title (English)",
+      "descSv": "Description (Swedish)",
+      "descEn": "Description (English)",
+      "locationSv": "Location (Swedish)",
+      "locationEn": "Location (English)",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "imageUrl": "Image URL",
+      "status": "Status"
+    },
+    "content": {
+      "title": "Edit content",
+      "biographySv": "Biography (Swedish)",
+      "biographyEn": "Biography (English)",
+      "quoteSv": "Quote (Swedish)",
+      "quoteEn": "Quote (English)",
+      "aboutTitleSv": "About title (Swedish)",
+      "aboutTitleEn": "About title (English)",
+      "contactEmail": "Contact email",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "save": "Save content"
+    },
+    "images": {
+      "upload": "Upload images",
+      "uploading": "Uploading...",
+      "reorder": "Reorder",
+      "remove": "Remove",
+      "primary": "Primary",
+      "setPrimary": "Set as primary",
+      "dragHint": "Drag to reorder",
+      "rebuildNote": "Changes will be live after the site rebuilds (usually 1–2 minutes)."
+    },
     "nav": {
       "dashboard": "Dashboard",
       "products": "Products",
       "categories": "Categories",
       "messages": "Messages",
       "orders": "Orders",
+      "exhibitions": "Exhibitions",
+      "content": "Content",
       "logout": "Log out"
     }
   },
