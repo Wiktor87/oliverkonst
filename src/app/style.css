@@ -356,16 +356,31 @@ a {
 }
 
 /* ============================================================
-   HEADER / NAVIGATION — "Varnish" glassmorphism
+   FIXED OVERLAY LOGO — stays in top-right, overlays content
+   ============================================================ */
+.site-logo-fixed {
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: block;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  pointer-events: auto;
+}
+
+.site-logo-fixed:hover {
+  opacity: 0.7;
+}
+
+/* ============================================================
+   HEADER / NAVIGATION — transparent, sticky at top
    ============================================================ */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: rgba(212, 197, 179, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-float);
+  background: transparent;
 }
 
 .site-header-inner {
@@ -375,22 +390,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.site-logo {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: var(--primary);
-  text-decoration: none;
-  letter-spacing: -0.01em;
-  transition: opacity 0.2s ease;
-  white-space: nowrap;
-}
-
-.site-logo:hover {
-  opacity: 0.8;
 }
 
 .site-nav {
@@ -476,7 +475,7 @@ a {
   justify-content: center;
   gap: 1.5rem;
   padding: 0.625rem 1rem;
-  background-color: rgba(212, 197, 179, 0.9);
+  background: transparent;
   flex-wrap: wrap;
 }
 
