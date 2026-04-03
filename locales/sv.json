@@ -1,0 +1,160 @@
+{
+  "nav": {
+    "home": "Hem",
+    "shop": "Butik",
+    "about": "Om Oliver",
+    "contact": "Kontakt",
+    "cart": "Varukorg",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero": {
+      "title": "Oliver's Konst",
+      "subtitle": "Originalmålningar skapade med passion och känsla",
+      "cta": "Utforska butiken"
+    },
+    "featured": {
+      "title": "Utvalda verk",
+      "subtitle": "Ett urval av mina senaste och mest omtyckta målningar"
+    },
+    "intro": {
+      "title": "Om konstnären",
+      "text": "Oliver är en svensk konstnär med passion för att fånga naturens skönhet och stämningar. Varje målning är ett unikt original, skapad med kärlek och hantverk.",
+      "readMore": "Läs mer"
+    }
+  },
+  "shop": {
+    "title": "Butik",
+    "subtitle": "Originalmålningar till salu",
+    "filter": {
+      "all": "Alla",
+      "label": "Filtrera efter kategori"
+    },
+    "addToCart": "Lägg i varukorg",
+    "noProducts": "Inga produkter hittades.",
+    "viewDetails": "Se detaljer"
+  },
+  "product": {
+    "dimensions": "Mått",
+    "technique": "Teknik",
+    "status": "Status",
+    "available": "Tillgänglig",
+    "sold": "Såld",
+    "reserved": "Reserverad",
+    "addToCart": "Lägg i varukorg",
+    "added": "Tillagd!",
+    "category": "Kategori",
+    "price": "Pris",
+    "backToShop": "Tillbaka till butiken"
+  },
+  "cart": {
+    "title": "Varukorg",
+    "empty": "Din varukorg är tom.",
+    "total": "Totalt",
+    "checkout": "Gå till kassan",
+    "contactMessage": "För att slutföra ditt köp, kontakta oss via kontaktformuläret eller e-post. Vi hjälper dig med betalning och leverans.",
+    "remove": "Ta bort",
+    "quantity": "Antal",
+    "continueShopping": "Fortsätt handla"
+  },
+  "about": {
+    "title": "Om Oliver",
+    "subtitle": "Konstnär och målare",
+    "content": "Oliver är en svensk konstnär bosatt i Göteborg, känd för sina expressiva och känslosamma målningar. Med en bakgrund i klassisk konstutbildning och ett öga för naturens detaljer, skapar Oliver verk som talar till hjärtat.\n\nHans arbete spänner från lugna landskap till abstrakta kompositioner, alltid med en distinkt personlig stil som kännetecknas av rika färger och djupa texturer.\n\nVarje målning är ett unikt original som skapas med traditionella tekniker – olja, akvarell och akryl – och representerar timmar av hängivet arbete och kärlek till konsten.\n\nOliver ställer ut regelbundet i Göteborg och Stockholm, och hans verk har samlats av konstälskare runt om i Skandinavien.",
+    "exhibitions": "Utställningar",
+    "education": "Utbildning",
+    "contact": "Kontakta Oliver"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Hör av dig",
+    "name": "Namn",
+    "email": "E-post",
+    "message": "Meddelande",
+    "send": "Skicka meddelande",
+    "success": "Tack för ditt meddelande! Vi återkommer så snart som möjligt.",
+    "error": "Något gick fel. Försök igen.",
+    "namePlaceholder": "Ditt namn",
+    "emailPlaceholder": "din@epost.se",
+    "messagePlaceholder": "Skriv ditt meddelande här..."
+  },
+  "admin": {
+    "login": {
+      "title": "Admin-inloggning",
+      "password": "Lösenord",
+      "submit": "Logga in",
+      "error": "Felaktigt lösenord"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "products": "Produkter",
+      "messages": "Meddelanden",
+      "orders": "Beställningar",
+      "unread": "olästa"
+    },
+    "products": {
+      "title": "Produkter",
+      "add": "Lägg till produkt",
+      "edit": "Redigera",
+      "delete": "Ta bort",
+      "confirmDelete": "Är du säker på att du vill ta bort denna produkt?",
+      "titleSv": "Titel (svenska)",
+      "titleEn": "Titel (engelska)",
+      "descSv": "Beskrivning (svenska)",
+      "descEn": "Beskrivning (engelska)",
+      "price": "Pris (SEK)",
+      "category": "Kategori",
+      "dimensions": "Mått",
+      "techniqueSv": "Teknik (svenska)",
+      "techniqueEn": "Teknik (engelska)",
+      "imageUrl": "Bild-URL",
+      "status": "Status",
+      "productType": "Produkttyp"
+    },
+    "categories": {
+      "title": "Kategorier",
+      "add": "Lägg till kategori",
+      "nameSv": "Namn (svenska)",
+      "nameEn": "Namn (engelska)",
+      "id": "ID"
+    },
+    "messages": {
+      "title": "Meddelanden",
+      "from": "Från",
+      "email": "E-post",
+      "message": "Meddelande",
+      "date": "Datum",
+      "markRead": "Markera som läst",
+      "unread": "Oläst"
+    },
+    "orders": {
+      "title": "Beställningar",
+      "customer": "Kund",
+      "email": "E-post",
+      "items": "Artiklar",
+      "total": "Totalt",
+      "status": "Status",
+      "date": "Datum"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "products": "Produkter",
+      "categories": "Kategorier",
+      "messages": "Meddelanden",
+      "orders": "Beställningar",
+      "logout": "Logga ut"
+    }
+  },
+  "common": {
+    "loading": "Laddar...",
+    "error": "Något gick fel",
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "delete": "Ta bort",
+    "edit": "Redigera",
+    "add": "Lägg till",
+    "close": "Stäng",
+    "back": "Tillbaka",
+    "currency": "kr"
+  }
+}
