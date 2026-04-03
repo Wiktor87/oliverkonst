@@ -97,7 +97,7 @@ export async function uploadFile(
     // file does not exist yet — that's fine
   }
 
-  const body: Record<string, string> = { message: commitMessage, content: base64Content };
+  const body: Record<string, string> = { message: commitMessage, content: base64Content, branch: 'main' };
   if (existingSha) body.sha = existingSha;
 
   const res = await fetch(url, {

@@ -6,6 +6,48 @@ import { Exhibition } from '@/types';
 import { useLanguage } from '@/components/LanguageContext';
 import { siteConfig, publicUrl } from '@/lib/config';
 
+/** Convert plain-text URLs in a string into clickable <a> elements. */
+function renderWithLinks(text: string): React.ReactNode[] {
+  const urlRegex = /https?:\/\/[^\s]+/g;
+  const parts: React.ReactNode[] = [];
+  let last = 0;
+  let match: RegExpExecArray | null;
+  while ((match = urlRegex.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    const url = match[0];
+    parts.push(
+      <a key={match.index} href={url} target="_blank" rel="noopener noreferrer" className="exhibition-link">
+        {url}
+      </a>,
+    );
+    last = match.index + url.length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
+/**
+ * Convert a Google Maps share URL to an embeddable src URL.
+ * Returns null if the URL cannot be embedded.
+ */
+function toEmbedUrl(mapUrl: string): string | null {
+  if (!mapUrl) return null;
+  // Already an embed URL
+  if (mapUrl.includes('/maps/embed')) return mapUrl;
+  if (mapUrl.includes('output=embed')) return mapUrl;
+  try {
+    const u = new URL(mapUrl);
+    const q = u.searchParams.get('q');
+    if (q) return `https://www.google.com/maps?q=${encodeURIComponent(q)}&output=embed`;
+    const placeMatch = u.pathname.match(/\/maps\/(?:place|search)\/([^/@?]+)/);
+    if (placeMatch) return `https://www.google.com/maps?q=${placeMatch[1]}&output=embed`;
+    return null;
+  } catch {
+    // Treat plain text as a search query
+    return `https://www.google.com/maps?q=${encodeURIComponent(mapUrl)}&output=embed`;
+  }
+}
+
 export default function ExhibitionsPage() {
   const { lang, t } = useLanguage();
   const [exhibitions, setExhibitions] = useState<Exhibition[]>([]);
@@ -159,8 +201,41 @@ function ExhibitionCard({
           {formatDate(ex.startDate)} – {formatDate(ex.endDate)}
         </p>
         {!compact && ex.description[lang] && (
-          <p className="text-sm text-stone-600 leading-relaxed">{ex.description[lang]}</p>
+          <p className="text-sm text-stone-600 leading-relaxed whitespace-pre-line">
+            {renderWithLinks(ex.description[lang])}
+          </p>
         )}
+        {!compact && ex.mapUrl && (() => {
+          const embedUrl = toEmbedUrl(ex.mapUrl!);
+          return (
+            <div className="exhibition-map-wrap">
+              {embedUrl && (
+                <iframe
+                  src={embedUrl}
+                  width="100%"
+                  height="180"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="exhibition-map"
+                  title={lang === 'sv' ? 'Plats på karta' : 'Location map'}
+                />
+              )}
+              <a
+                href={ex.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="exhibition-map-link"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                {lang === 'sv' ? 'Öppna i Google Maps' : 'Open in Google Maps'}
+              </a>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );

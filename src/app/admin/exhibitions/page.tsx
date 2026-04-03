@@ -17,6 +17,7 @@ type ExhibitionFormData = {
   startDate: string;
   endDate: string;
   imageUrl: string;
+  mapUrl: string;
   status: ExhibitionStatus;
 };
 
@@ -24,7 +25,7 @@ const emptyForm: ExhibitionFormData = {
   titleSv: '', titleEn: '', descSv: '', descEn: '',
   locationSv: '', locationEn: '',
   startDate: '', endDate: '',
-  imageUrl: '', status: 'upcoming',
+  imageUrl: '', mapUrl: '', status: 'upcoming',
 };
 
 export default function AdminExhibitionsPage() {
@@ -57,7 +58,7 @@ export default function AdminExhibitionsPage() {
       descSv: ex.description.sv, descEn: ex.description.en,
       locationSv: ex.location.sv, locationEn: ex.location.en,
       startDate: ex.startDate, endDate: ex.endDate,
-      imageUrl: ex.imageUrl, status: ex.status,
+      imageUrl: ex.imageUrl, mapUrl: ex.mapUrl ?? '', status: ex.status,
     });
     setEditingId(ex.id);
     setShowForm(true);
@@ -101,6 +102,7 @@ export default function AdminExhibitionsPage() {
                 startDate: form.startDate,
                 endDate: form.endDate,
                 imageUrl: form.imageUrl,
+                mapUrl: form.mapUrl || undefined,
                 status: form.status,
               }
             : ex,
@@ -115,6 +117,7 @@ export default function AdminExhibitionsPage() {
           startDate: form.startDate,
           endDate: form.endDate,
           imageUrl: form.imageUrl,
+          mapUrl: form.mapUrl || undefined,
           status: form.status,
           createdAt: new Date().toISOString(),
         };
@@ -198,6 +201,18 @@ export default function AdminExhibitionsPage() {
               <div>
                 <label className="block text-sm font-medium text-stone-700 mb-1">Bild-URL</label>
                 <input className="input-field" value={form.imageUrl} onChange={(e) => f('imageUrl', e.target.value)} placeholder="/images/exhibitions/..." />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Google Maps-länk</label>
+                <input
+                  className="input-field"
+                  value={form.mapUrl}
+                  onChange={(e) => f('mapUrl', e.target.value)}
+                  placeholder="https://maps.google.com/?q=Gallerinamn+Stockholm"
+                />
+                <p className="text-xs text-stone-400 mt-1">
+                  Klistra in en Google Maps-länk (dela → kopiera länk). Lämna tomt om ingen karta ska visas.
+                </p>
               </div>
               <div>
                 <label className="block text-sm font-medium text-stone-700 mb-1">Status</label>
