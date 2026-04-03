@@ -21,6 +21,8 @@ export interface Product {
   status: 'available' | 'sold' | 'reserved';
   productType: 'physical' | 'digital';
   digitalAsset?: DigitalAsset;
+  /** Optional list of accepted payment providers for this product (future use) */
+  paymentMethods?: ('klarna' | 'stripe')[];
   createdAt: string;
   updatedAt: string;
 }

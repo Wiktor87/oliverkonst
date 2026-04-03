@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/components/LanguageContext';
 import { useCart } from '@/components/CartContext';
-import { siteConfig } from '@/lib/config';
+import { siteConfig, publicUrl } from '@/lib/config';
 
 export default function CartPage() {
   const { t, lang } = useLanguage();
@@ -42,7 +42,7 @@ export default function CartPage() {
         {items.map((item) => (
           <div key={item.productId} className="flex items-center gap-4 bg-white border border-stone-100 rounded-lg p-4 shadow-sm">
             <div className="relative w-20 h-20 flex-shrink-0 rounded overflow-hidden bg-stone-50">
-              <Image src={item.imageUrl} alt={item.title[lang]} fill className="object-cover" />
+              <Image src={item.imageUrl.startsWith('http') ? item.imageUrl : publicUrl(item.imageUrl)} alt={item.title[lang]} fill className="object-cover" unoptimized />
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="font-medium text-stone-800 truncate">{item.title[lang]}</h3>
@@ -85,6 +85,36 @@ export default function CartPage() {
           <p className="font-medium text-stone-700 mb-1">{t.cart.checkout}</p>
           <p>{t.cart.contactMessage}</p>
         </div>
+
+        {/* Future payment options – coming soon */}
+        <div className="bg-white rounded p-4 mb-4 border border-stone-100">
+          <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-3">
+            {lang === 'sv' ? 'Betalning kommer snart' : 'Payment coming soon'}
+          </p>
+          <div className="flex gap-3">
+            <button
+              disabled
+              title={lang === 'sv' ? 'Klarna – kommer snart' : 'Klarna – coming soon'}
+              className="flex-1 flex items-center justify-center gap-2 border border-stone-200 rounded py-2 px-3 opacity-40 cursor-not-allowed bg-stone-50"
+            >
+              <span className="font-bold text-[#FFB3C7] tracking-tight text-sm">Klarna</span>
+              <span className="text-xs text-stone-400">
+                {lang === 'sv' ? '(kommer snart)' : '(coming soon)'}
+              </span>
+            </button>
+            <button
+              disabled
+              title={lang === 'sv' ? 'Stripe – kommer snart' : 'Stripe – coming soon'}
+              className="flex-1 flex items-center justify-center gap-2 border border-stone-200 rounded py-2 px-3 opacity-40 cursor-not-allowed bg-stone-50"
+            >
+              <span className="font-bold text-indigo-500 tracking-tight text-sm">Stripe</span>
+              <span className="text-xs text-stone-400">
+                {lang === 'sv' ? '(kommer snart)' : '(coming soon)'}
+              </span>
+            </button>
+          </div>
+        </div>
+
         <div className="flex gap-3">
           <button onClick={handleCheckout} className="flex-1 btn-primary text-center">
             {t.cart.checkout}

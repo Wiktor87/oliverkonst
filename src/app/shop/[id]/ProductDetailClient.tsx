@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Product } from '@/types';
 import { useLanguage } from '@/components/LanguageContext';
 import { useCart } from '@/components/CartContext';
-import { siteConfig } from '@/lib/config';
+import { siteConfig, publicUrl } from '@/lib/config';
 
 export default function ProductDetailClient() {
   const params = useParams();
@@ -81,11 +81,12 @@ export default function ProductDetailClient() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
         <div className="relative aspect-square rounded-lg overflow-hidden shadow-md bg-stone-50">
           <Image
-            src={product.imageUrl}
+            src={product.imageUrl.startsWith('http') ? product.imageUrl : publicUrl(product.imageUrl)}
             alt={product.title[lang]}
             fill
             className="object-cover"
             priority
+            unoptimized
           />
         </div>
 
