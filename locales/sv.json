@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Hem",
-    "shop": "Butik",
+    "shop": "Konst",
     "about": "Om Oliver",
     "contact": "Kontakt",
     "cart": "Varukorg",
@@ -11,7 +11,7 @@
     "hero": {
       "title": "Oliver's Konst",
       "subtitle": "Originalmålningar skapade med passion och känsla",
-      "cta": "Utforska butiken"
+      "cta": "Utforska konsten"
     },
     "featured": {
       "title": "Utvalda verk",
@@ -24,7 +24,7 @@
     }
   },
   "shop": {
-    "title": "Butik",
+    "title": "Konst",
     "subtitle": "Originalmålningar till salu",
     "filter": {
       "all": "Alla",
@@ -45,7 +45,7 @@
     "added": "Tillagd!",
     "category": "Kategori",
     "price": "Pris",
-    "backToShop": "Tillbaka till butiken"
+    "backToShop": "Tillbaka till konsten"
   },
   "cart": {
     "title": "Varukorg",

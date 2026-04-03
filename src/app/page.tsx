@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { Product } from '@/types';
 import { useLanguage } from '@/components/LanguageContext';
 import ProductCard from '@/components/ProductCard';
-import { siteConfig } from '@/lib/config';
+import { siteConfig, publicUrl } from '@/lib/config';
 
 export default function HomePage() {
   const { lang, t } = useLanguage();
@@ -22,12 +22,28 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-amber-50 to-stone-100 py-24 px-4 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="font-serif text-5xl md:text-6xl text-amber-900 mb-6">
+      <section className="relative overflow-hidden py-24 px-4 text-center">
+        {/* Background image */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src={publicUrl('/images/oliver-banner.webp')}
+            alt="Oliver's Konst banner"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
+          {/* Fade to sides */}
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-50 via-transparent to-amber-50" />
+          {/* Slight dark overlay for text readability */}
+          <div className="absolute inset-0 bg-white/30" />
+        </div>
+
+        <div className="max-w-3xl mx-auto relative">
+          <h1 className="font-serif text-5xl md:text-6xl text-amber-900 mb-6 drop-shadow-sm">
             {t.home.hero.title}
           </h1>
-          <p className="text-xl text-stone-600 mb-8 leading-relaxed">
+          <p className="text-xl text-stone-700 mb-8 leading-relaxed drop-shadow-sm">
             {t.home.hero.subtitle}
           </p>
           <Link
@@ -72,11 +88,12 @@ export default function HomePage() {
           <div className="md:w-1/3">
             <div className="w-48 h-48 mx-auto rounded-full bg-amber-200 flex items-center justify-center overflow-hidden">
               <Image
-                src="/images/placeholder.svg"
+                src={publicUrl('/images/placeholder.svg')}
                 alt="Oliver"
                 width={192}
                 height={192}
                 className="object-cover w-full h-full"
+                unoptimized
               />
             </div>
           </div>

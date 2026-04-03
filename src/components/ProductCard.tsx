@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Product } from '@/types';
 import { useLanguage } from './LanguageContext';
 import { useCart } from './CartContext';
+import { publicUrl } from '@/lib/config';
 
 interface ProductCardProps {
   product: Product;
@@ -38,14 +39,17 @@ export default function ProductCard({ product }: ProductCardProps) {
     reserved: t.product.reserved,
   };
 
+  const imageSrc = product.imageUrl.startsWith('http') ? product.imageUrl : publicUrl(product.imageUrl);
+
   return (
     <Link href={`/shop/${product.id}`} className="group block bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-stone-100">
       <div className="relative aspect-[4/3] overflow-hidden bg-stone-50">
         <Image
-          src={product.imageUrl}
+          src={imageSrc}
           alt={product.title[lang]}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
+          unoptimized
         />
         <span className={`absolute top-2 right-2 text-xs font-medium px-2 py-1 rounded-full ${statusColors[product.status]}`}>
           {statusLabel[product.status]}

@@ -16,16 +16,16 @@ export default function Header() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="/" className="text-stone-600 hover:text-amber-700 transition-colors text-sm font-medium">
+          <Link href="/" prefetch={false} className="text-stone-600 hover:text-amber-700 transition-colors text-sm font-medium">
             {t.nav.home}
           </Link>
-          <Link href="/shop" className="text-stone-600 hover:text-amber-700 transition-colors text-sm font-medium">
+          <Link href="/shop" prefetch={false} className="text-stone-600 hover:text-amber-700 transition-colors text-sm font-medium">
             {t.nav.shop}
           </Link>
-          <Link href="/about" className="text-stone-600 hover:text-amber-700 transition-colors text-sm font-medium">
+          <Link href="/about" prefetch={false} className="text-stone-600 hover:text-amber-700 transition-colors text-sm font-medium">
             {t.nav.about}
           </Link>
-          <Link href="/contact" className="text-stone-600 hover:text-amber-700 transition-colors text-sm font-medium">
+          <Link href="/contact" prefetch={false} className="text-stone-600 hover:text-amber-700 transition-colors text-sm font-medium">
             {t.nav.contact}
           </Link>
         </nav>
@@ -38,7 +38,7 @@ export default function Header() {
             {lang === 'sv' ? 'EN' : 'SV'}
           </button>
 
-          <Link href="/cart" className="relative text-stone-600 hover:text-amber-700 transition-colors">
+          <Link href="/cart" prefetch={false} className="relative text-stone-600 hover:text-amber-700 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
@@ -53,10 +53,10 @@ export default function Header() {
 
       {/* Mobile nav */}
       <div className="md:hidden border-t border-amber-50 px-4 py-2 flex justify-center gap-6">
-        <Link href="/" className="text-stone-600 hover:text-amber-700 text-sm">{t.nav.home}</Link>
-        <Link href="/shop" className="text-stone-600 hover:text-amber-700 text-sm">{t.nav.shop}</Link>
-        <Link href="/about" className="text-stone-600 hover:text-amber-700 text-sm">{t.nav.about}</Link>
-        <Link href="/contact" className="text-stone-600 hover:text-amber-700 text-sm">{t.nav.contact}</Link>
+        <Link href="/" prefetch={false} className="text-stone-600 hover:text-amber-700 text-sm">{t.nav.home}</Link>
+        <Link href="/shop" prefetch={false} className="text-stone-600 hover:text-amber-700 text-sm">{t.nav.shop}</Link>
+        <Link href="/about" prefetch={false} className="text-stone-600 hover:text-amber-700 text-sm">{t.nav.about}</Link>
+        <Link href="/contact" prefetch={false} className="text-stone-600 hover:text-amber-700 text-sm">{t.nav.contact}</Link>
       </div>
     </header>
   );
