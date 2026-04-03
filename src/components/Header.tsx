@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useCart } from './CartContext';
 import { useLanguage } from './LanguageContext';
@@ -27,13 +28,21 @@ export default function Header() {
     <header className="site-header">
       <div className="site-header-inner">
         <Link href="/" className="site-logo">
-          Oliver&apos;s Konst
+          <Image
+            src={publicUrl('/images/logo.svg')}
+            alt="Oliver's Konst"
+            width={180}
+            height={40}
+            priority
+            unoptimized
+          />
         </Link>
 
         <nav className="site-nav">
           <Link href="/" prefetch={false} className="nav-link">{t.nav.home}</Link>
           <Link href="/shop" prefetch={false} className="nav-link">{t.nav.shop}</Link>
           <Link href="/exhibitions" prefetch={false} className="nav-link">{t.nav.exhibitions}</Link>
+          <Link href="/classes" prefetch={false} className="nav-link">{t.nav.classes}</Link>
           <Link href="/about" prefetch={false} className="nav-link">{t.nav.about}</Link>
           <Link href="/contact" prefetch={false} className="nav-link">{t.nav.contact}</Link>
         </nav>
@@ -77,6 +86,7 @@ export default function Header() {
         <Link href="/" prefetch={false} className="mobile-nav-link">{t.nav.home}</Link>
         <Link href="/shop" prefetch={false} className="mobile-nav-link">{t.nav.shop}</Link>
         <Link href="/exhibitions" prefetch={false} className="mobile-nav-link">{t.nav.exhibitions}</Link>
+        <Link href="/classes" prefetch={false} className="mobile-nav-link">{t.nav.classes}</Link>
         <Link href="/about" prefetch={false} className="mobile-nav-link">{t.nav.about}</Link>
         <Link href="/contact" prefetch={false} className="mobile-nav-link">{t.nav.contact}</Link>
       </div>

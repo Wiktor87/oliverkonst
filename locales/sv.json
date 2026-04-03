@@ -3,6 +3,7 @@
     "home": "Hem",
     "shop": "Konst",
     "exhibitions": "Utställningar",
+    "classes": "Kurser",
     "about": "Om Oliver",
     "contact": "Kontakt",
     "cart": "Varukorg",
@@ -31,6 +32,9 @@
       "all": "Alla",
       "label": "Filtrera efter kategori"
     },
+    "sortByPrice": "Sortera efter pris",
+    "priceAsc": "Pris: Lägst först",
+    "priceDesc": "Pris: Högst först",
     "addToCart": "Lägg i varukorg",
     "noProducts": "Inga produkter hittades.",
     "viewDetails": "Se detaljer"
@@ -62,8 +66,8 @@
     "title": "Om Oliver",
     "subtitle": "Konstnär och målare",
     "content": "Oliver är en svensk konstnär bosatt i Göteborg, känd för sina expressiva och känslosamma målningar. Med en bakgrund i klassisk konstutbildning och ett öga för naturens detaljer, skapar Oliver verk som talar till hjärtat.\n\nHans arbete spänner från lugna landskap till abstrakta kompositioner, alltid med en distinkt personlig stil som kännetecknas av rika färger och djupa texturer.\n\nVarje målning är ett unikt original som skapas med traditionella tekniker – olja, akvarell och akryl – och representerar timmar av hängivet arbete och kärlek till konsten.\n\nOliver ställer ut regelbundet i Göteborg och Stockholm, och hans verk har samlats av konstälskare runt om i Skandinavien.",
-    "exhibitions": "Utställningar",
-    "education": "Utbildning",
+    "exhibitions": "Tidigare utställningar",
+    "noExhibitions": "Inga tidigare utställningar ännu.",
     "contact": "Kontakta Oliver"
   },
   "contact": {
@@ -88,7 +92,17 @@
     "past": "Tidigare",
     "noExhibitions": "Inga utställningar.",
     "dateRange": "–",
-    "viewMore": "Läs mer"
+    "viewMore": "Läs mer",
+    "sortByDate": "Sortera efter datum",
+    "newest": "Nyast först",
+    "oldest": "Äldst först"
+  },
+  "classes": {
+    "title": "Kurser",
+    "subtitle": "Lär dig måla med Oliver",
+    "intro": "Oliver erbjuder konstkurser för alla nivåer – från nyfikna nybörjare till erfarna målare som vill utveckla sin teknik. Kurserna hålls i en varm och inspirerande ateljémiljö där kreativiteten kan blomstra.",
+    "noClasses": "Inga kurser är planerade just nu. Kom tillbaka snart eller hör av dig!",
+    "contact": "Kontakta för mer information"
   },
   "admin": {
     "login": {

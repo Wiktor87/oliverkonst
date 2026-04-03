@@ -52,6 +52,7 @@ export default function ExhibitionsPage() {
   const { lang, t } = useLanguage();
   const [exhibitions, setExhibitions] = useState<Exhibition[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
 
   useEffect(() => {
     fetch(`${siteConfig.basePath}/data/exhibitions.json`)
@@ -61,9 +62,15 @@ export default function ExhibitionsPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const upcoming = exhibitions.filter((ex) => ex.status === 'upcoming');
-  const active = exhibitions.filter((ex) => ex.status === 'active');
-  const past = exhibitions.filter((ex) => ex.status === 'past');
+  const sortExhibitions = (list: Exhibition[]) =>
+    [...list].sort((a, b) => {
+      const diff = new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
+      return sortOrder === 'newest' ? -diff : diff;
+    });
+
+  const upcoming = sortExhibitions(exhibitions.filter((ex) => ex.status === 'upcoming'));
+  const active = sortExhibitions(exhibitions.filter((ex) => ex.status === 'active'));
+  const past = sortExhibitions(exhibitions.filter((ex) => ex.status === 'past'));
 
   const formatDate = (dateStr: string) => {
     if (!dateStr) return '';
@@ -106,6 +113,22 @@ export default function ExhibitionsPage() {
         <div className="section-header">
           <h1 className="section-title">{t.exhibitions.title}</h1>
           <p className="section-subtitle">{t.exhibitions.subtitle}</p>
+        </div>
+
+        <div className="filter-bar">
+          <span className="sort-label">{t.exhibitions.sortByDate}:</span>
+          <button
+            onClick={() => setSortOrder('newest')}
+            className={`filter-btn${sortOrder === 'newest' ? ' active' : ''}`}
+          >
+            {t.exhibitions.newest}
+          </button>
+          <button
+            onClick={() => setSortOrder('oldest')}
+            className={`filter-btn${sortOrder === 'oldest' ? ' active' : ''}`}
+          >
+            {t.exhibitions.oldest}
+          </button>
         </div>
 
         {exhibitions.length === 0 && (
