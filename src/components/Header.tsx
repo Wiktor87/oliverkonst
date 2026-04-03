@@ -35,7 +35,7 @@ export default function Header() {
             height={0}
             priority
             unoptimized
-            style={{ height: '46px', width: 'auto' }}
+            style={{ height: '92px', width: 'auto' }}
           />
         </Link>
 
