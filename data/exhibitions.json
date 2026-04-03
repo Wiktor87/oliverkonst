@@ -1,16 +1,22 @@
 [
   {
     "id": "f1e2d3c4-b5a6-7890-abcd-ef1234567890",
-    "title": { "sv": "Sommarutställning 2026", "en": "Summer Exhibition 2026" },
+    "title": {
+      "sv": "Österlen Konstrundan 2026",
+      "en": "Summer Exhibition 2026"
+    },
     "description": {
       "sv": "En samlingsutställning med Olivers senaste akvarell- och oljemålningar inspirerade av det svenska sommarlandskapet.",
       "en": "A group exhibition featuring Oliver's latest watercolor and oil paintings inspired by the Swedish summer landscape."
     },
-    "location": { "sv": "Galleri Konst, Stockholm", "en": "Gallery Konst, Stockholm" },
-    "startDate": "2026-06-01",
-    "endDate": "2026-06-30",
+    "location": {
+      "sv": "Hylkegården",
+      "en": "Gallery Konst, Stockholm"
+    },
+    "startDate": "2026-03-31",
+    "endDate": "2026-04-06",
     "imageUrl": "",
-    "status": "upcoming",
+    "status": "active",
     "createdAt": "2026-04-03T00:00:00Z"
   }
 ]
