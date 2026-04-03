@@ -1,7 +1,10 @@
 [
   {
     "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "title": { "sv": "Solnedgång vid havet", "en": "Sunset by the Sea" },
+    "title": {
+      "sv": "Solnedgång vid havet",
+      "en": "Sunset by the Sea"
+    },
     "description": {
       "sv": "En vacker oljemålning som fångar solnedgångens varma färger reflekterade i havets stilla vatten. En meditativ och tidlös komposition.",
       "en": "A beautiful oil painting capturing the warm colors of sunset reflected in the calm sea waters. A meditative and timeless composition."
@@ -10,16 +13,22 @@
     "currency": "SEK",
     "category": "oil",
     "dimensions": "60x80 cm",
-    "technique": { "sv": "Olja på duk", "en": "Oil on canvas" },
-    "imageUrl": "/images/placeholder.svg",
+    "technique": {
+      "sv": "Olja på duk",
+      "en": "Oil on canvas"
+    },
+    "imageUrl": "https://hylkegarden.se/wp-content/uploads/2026/03/Oliver-Skifs-1-low-1-491x1030.jpg",
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-03T00:00:00Z",
-    "updatedAt": "2026-04-03T00:00:00Z"
+    "updatedAt": "2026-04-03T14:46:14.107Z"
   },
   {
     "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
-    "title": { "sv": "Vårblommor i vinden", "en": "Spring Flowers in the Wind" },
+    "title": {
+      "sv": "Vårblommor i vinden",
+      "en": "Spring Flowers in the Wind"
+    },
     "description": {
       "sv": "En akvarellmålning med levande vårblommor som dansar i vinden. De delikata färgerna skapar en känsla av lätthet och glädje.",
       "en": "A watercolor painting featuring vibrant spring flowers dancing in the wind. The delicate colors create a feeling of lightness and joy."
@@ -28,7 +37,10 @@
     "currency": "SEK",
     "category": "watercolor",
     "dimensions": "40x50 cm",
-    "technique": { "sv": "Akvarell på papper", "en": "Watercolor on paper" },
+    "technique": {
+      "sv": "Akvarell på papper",
+      "en": "Watercolor on paper"
+    },
     "imageUrl": "/images/placeholder.svg",
     "status": "available",
     "productType": "physical",
@@ -37,7 +49,10 @@
   },
   {
     "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
-    "title": { "sv": "Skogsstämning", "en": "Forest Atmosphere" },
+    "title": {
+      "sv": "Skogsstämning",
+      "en": "Forest Atmosphere"
+    },
     "description": {
       "sv": "Akrylmålning som gestaltar en mystisk skogsstämning i skymningen. De djupa gröna och blå tonerna skapar en drömsk och inbjudande atmosfär.",
       "en": "Acrylic painting depicting a mystical forest atmosphere at dusk. The deep green and blue tones create a dreamy and inviting atmosphere."
@@ -46,7 +61,10 @@
     "currency": "SEK",
     "category": "acrylic",
     "dimensions": "80x100 cm",
-    "technique": { "sv": "Akryl på duk", "en": "Acrylic on canvas" },
+    "technique": {
+      "sv": "Akryl på duk",
+      "en": "Acrylic on canvas"
+    },
     "imageUrl": "/images/placeholder.svg",
     "status": "available",
     "productType": "physical",
@@ -55,7 +73,10 @@
   },
   {
     "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
-    "title": { "sv": "Abstrakt harmoni", "en": "Abstract Harmony" },
+    "title": {
+      "sv": "Abstrakt harmoni",
+      "en": "Abstract Harmony"
+    },
     "description": {
       "sv": "En blandteknikverk som utforskar harmoni och kontrast. Lager av material och texturer skapar djup och komplexitet i kompositionen.",
       "en": "A mixed media work exploring harmony and contrast. Layers of materials and textures create depth and complexity in the composition."
@@ -64,7 +85,10 @@
     "currency": "SEK",
     "category": "mixed-media",
     "dimensions": "70x90 cm",
-    "technique": { "sv": "Blandteknik på duk", "en": "Mixed media on canvas" },
+    "technique": {
+      "sv": "Blandteknik på duk",
+      "en": "Mixed media on canvas"
+    },
     "imageUrl": "/images/placeholder.svg",
     "status": "reserved",
     "productType": "physical",
@@ -73,7 +97,10 @@
   },
   {
     "id": "e5f6a7b8-c9d0-1234-efab-345678901234",
-    "title": { "sv": "Vinterlandskap", "en": "Winter Landscape" },
+    "title": {
+      "sv": "Vinterlandskap",
+      "en": "Winter Landscape"
+    },
     "description": {
       "sv": "En stillsam oljemålning av ett snötäckt vinterlandskap. Det vita ljuset och de kala träden skapar en ren och kontemplativ bild.",
       "en": "A serene oil painting of a snow-covered winter landscape. The white light and bare trees create a pure and contemplative image."
@@ -82,7 +109,10 @@
     "currency": "SEK",
     "category": "oil",
     "dimensions": "90x120 cm",
-    "technique": { "sv": "Olja på duk", "en": "Oil on canvas" },
+    "technique": {
+      "sv": "Olja på duk",
+      "en": "Oil on canvas"
+    },
     "imageUrl": "/images/placeholder.svg",
     "status": "sold",
     "productType": "physical",
