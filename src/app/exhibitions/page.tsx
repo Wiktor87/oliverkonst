@@ -206,7 +206,7 @@ function ExhibitionCard({
           </p>
         )}
         {!compact && ex.mapUrl && (() => {
-          const embedUrl = toEmbedUrl(ex.mapUrl!);
+          const embedUrl = toEmbedUrl(ex.mapUrl);
           return (
             <div className="exhibition-map-wrap">
               {embedUrl && (
