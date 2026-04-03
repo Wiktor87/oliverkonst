@@ -2,16 +2,16 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAdmin } from '@/components/AdminContext';
 
 export default function LogoutPage() {
   const router = useRouter();
+  const { logout } = useAdmin();
 
   useEffect(() => {
-    fetch('/api/admin/logout', { method: 'POST' }).then(() => {
-      router.push('/admin/login');
-      router.refresh();
-    });
-  }, [router]);
+    logout();
+    router.push('/admin/login');
+  }, [logout, router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">

@@ -4,10 +4,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/components/LanguageContext';
 import { useCart } from '@/components/CartContext';
+import { siteConfig } from '@/lib/config';
 
 export default function CartPage() {
   const { t, lang } = useLanguage();
   const { items, removeItem, updateQuantity, totalPrice } = useCart();
+
+  const handleCheckout = () => {
+    const itemLines = items
+      .map((i) => `- ${i.title[lang]} x${i.quantity} = ${(i.price * i.quantity).toLocaleString('sv-SE')} SEK`)
+      .join('\n');
+    const subject = encodeURIComponent("Beställningsförfrågan – Oliver's Konst");
+    const body = encodeURIComponent(
+      `Hej Oliver!\n\nJag är intresserad av att beställa följande:\n\n${itemLines}\n\nTotalt: ${totalPrice.toLocaleString('sv-SE')} SEK\n\nVänligen kontakta mig för att slutföra köpet.\n\nMed vänliga hälsningar`,
+    );
+    window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
+  };
 
   if (items.length === 0) {
     return (
@@ -27,43 +39,41 @@ export default function CartPage() {
       <h1 className="font-serif text-4xl text-stone-800 mb-8">{t.cart.title}</h1>
 
       <div className="space-y-4 mb-8">
-        {items.map((item) => {
-          return (
-            <div key={item.productId} className="flex items-center gap-4 bg-white border border-stone-100 rounded-lg p-4 shadow-sm">
-              <div className="relative w-20 h-20 flex-shrink-0 rounded overflow-hidden bg-stone-50">
-                <Image src={item.imageUrl} alt={item.title[lang]} fill className="object-cover" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="font-medium text-stone-800 truncate">{item.title[lang]}</h3>
-                <p className="text-sm text-stone-500">{item.price.toLocaleString('sv-SE')} SEK</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => updateQuantity(item.productId, item.quantity - 1)}
-                  className="w-8 h-8 rounded border border-stone-200 flex items-center justify-center hover:bg-stone-50"
-                >
-                  −
-                </button>
-                <span className="w-8 text-center">{item.quantity}</span>
-                <button
-                  onClick={() => updateQuantity(item.productId, item.quantity + 1)}
-                  className="w-8 h-8 rounded border border-stone-200 flex items-center justify-center hover:bg-stone-50"
-                >
-                  +
-                </button>
-              </div>
-              <div className="text-right flex-shrink-0">
-                <p className="font-semibold text-amber-800">{(item.price * item.quantity).toLocaleString('sv-SE')} SEK</p>
-                <button
-                  onClick={() => removeItem(item.productId)}
-                  className="text-xs text-red-500 hover:text-red-700 mt-1"
-                >
-                  {t.cart.remove}
-                </button>
-              </div>
+        {items.map((item) => (
+          <div key={item.productId} className="flex items-center gap-4 bg-white border border-stone-100 rounded-lg p-4 shadow-sm">
+            <div className="relative w-20 h-20 flex-shrink-0 rounded overflow-hidden bg-stone-50">
+              <Image src={item.imageUrl} alt={item.title[lang]} fill className="object-cover" />
             </div>
-          );
-        })}
+            <div className="flex-1 min-w-0">
+              <h3 className="font-medium text-stone-800 truncate">{item.title[lang]}</h3>
+              <p className="text-sm text-stone-500">{item.price.toLocaleString('sv-SE')} SEK</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => updateQuantity(item.productId, item.quantity - 1)}
+                className="w-8 h-8 rounded border border-stone-200 flex items-center justify-center hover:bg-stone-50"
+              >
+                −
+              </button>
+              <span className="w-8 text-center">{item.quantity}</span>
+              <button
+                onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                className="w-8 h-8 rounded border border-stone-200 flex items-center justify-center hover:bg-stone-50"
+              >
+                +
+              </button>
+            </div>
+            <div className="text-right flex-shrink-0">
+              <p className="font-semibold text-amber-800">{(item.price * item.quantity).toLocaleString('sv-SE')} SEK</p>
+              <button
+                onClick={() => removeItem(item.productId)}
+                className="text-xs text-red-500 hover:text-red-700 mt-1"
+              >
+                {t.cart.remove}
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="bg-amber-50 rounded-lg p-6">
@@ -76,9 +86,9 @@ export default function CartPage() {
           <p>{t.cart.contactMessage}</p>
         </div>
         <div className="flex gap-3">
-          <Link href="/contact" className="flex-1 btn-primary text-center">
+          <button onClick={handleCheckout} className="flex-1 btn-primary text-center">
             {t.cart.checkout}
-          </Link>
+          </button>
           <Link href="/shop" className="btn-secondary">
             {t.cart.continueShopping}
           </Link>

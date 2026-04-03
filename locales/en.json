@@ -76,7 +76,8 @@
     "error": "Something went wrong. Please try again.",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "your@email.com",
-    "messagePlaceholder": "Write your message here..."
+    "messagePlaceholder": "Write your message here...",
+    "mailtoNote": "Click \"Send\" to open your email client with the message pre-filled."
   },
   "admin": {
     "login": {

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Product, Category } from '@/types';
 import { useLanguage } from '@/components/LanguageContext';
 import ProductCard from '@/components/ProductCard';
+import { siteConfig } from '@/lib/config';
 
 export default function ShopPage() {
   const { lang, t } = useLanguage();
@@ -13,7 +14,10 @@ export default function ShopPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([fetch('/api/products'), fetch('/api/categories')])
+    Promise.all([
+      fetch(`${siteConfig.basePath}/data/products.json`),
+      fetch(`${siteConfig.basePath}/data/categories.json`),
+    ])
       .then(async ([pr, cr]) => {
         const p = await pr.json();
         const c = await cr.json();
