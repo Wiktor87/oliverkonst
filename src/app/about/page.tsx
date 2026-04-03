@@ -2,12 +2,33 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/components/LanguageContext';
 import CuratorsNote from '@/components/CuratorsNote';
-import { publicUrl } from '@/lib/config';
+import { publicUrl, siteConfig } from '@/lib/config';
+import { Exhibition } from '@/types';
 
 export default function AboutPage() {
   const { t, lang } = useLanguage();
+  const [pastExhibitions, setPastExhibitions] = useState<Exhibition[]>([]);
+
+  useEffect(() => {
+    fetch(`${siteConfig.basePath}/data/exhibitions.json`)
+      .then((r) => r.json())
+      .then((data: Exhibition[]) =>
+        setPastExhibitions(
+          data
+            .filter((ex) => ex.status === 'past')
+            .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()),
+        ),
+      )
+      .catch(() => {});
+  }, []);
+
+  const formatYear = (dateStr: string) => {
+    if (!dateStr) return '';
+    return new Date(dateStr).getFullYear().toString();
+  };
 
   return (
     <div>
@@ -46,24 +67,19 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="about-info-grid">
-          <div className="about-info-box">
-            <h2 className="about-info-title">{t.about.exhibitions}</h2>
+        <div className="about-info-box" style={{ marginBottom: '3rem' }}>
+          <h2 className="about-info-title">{t.about.exhibitions}</h2>
+          {pastExhibitions.length === 0 ? (
+            <p className="about-bio-text">{t.about.noExhibitions}</p>
+          ) : (
             <ul className="about-info-list">
-              <li>2024 – Galleri Konstrum, Göteborg</li>
-              <li>2023 – Kulturhuset, Stockholm</li>
-              <li>2022 – Konsthall Malmö</li>
-              <li>2021 – Galleri 54, Göteborg</li>
+              {pastExhibitions.map((ex) => (
+                <li key={ex.id}>
+                  {formatYear(ex.startDate)} – {ex.title[lang]}{ex.location[lang] ? `, ${ex.location[lang]}` : ''}
+                </li>
+              ))}
             </ul>
-          </div>
-          <div className="about-info-box">
-            <h2 className="about-info-title">{t.about.education}</h2>
-            <ul className="about-info-list">
-              <li>Konstfack, Stockholm – MFA Fine Arts</li>
-              <li>Göteborgs konstskola – Grundutbildning</li>
-              <li>Atelier Cézanne, Aix-en-Provence</li>
-            </ul>
-          </div>
+          )}
         </div>
 
         <div className="about-cta">

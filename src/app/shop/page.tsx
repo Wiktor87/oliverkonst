@@ -11,6 +11,7 @@ export default function ShopPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [sortOrder, setSortOrder] = useState<'default' | 'asc' | 'desc'>('default');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,6 +32,12 @@ export default function ShopPage() {
     selectedCategory === 'all'
       ? products
       : products.filter((p) => p.category === selectedCategory);
+
+  const sorted = [...filtered].sort((a, b) => {
+    if (sortOrder === 'asc') return a.price - b.price;
+    if (sortOrder === 'desc') return b.price - a.price;
+    return 0;
+  });
 
   return (
     <div>
@@ -58,17 +65,33 @@ export default function ShopPage() {
           ))}
         </div>
 
+        <div className="filter-bar">
+          <span className="sort-label">{t.shop.sortByPrice}:</span>
+          <button
+            onClick={() => setSortOrder('asc')}
+            className={`filter-btn${sortOrder === 'asc' ? ' active' : ''}`}
+          >
+            {t.shop.priceAsc}
+          </button>
+          <button
+            onClick={() => setSortOrder('desc')}
+            className={`filter-btn${sortOrder === 'desc' ? ' active' : ''}`}
+          >
+            {t.shop.priceDesc}
+          </button>
+        </div>
+
         {loading ? (
           <div className="product-grid">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div key={i} className="skeleton skeleton-card" />
             ))}
           </div>
-        ) : filtered.length === 0 ? (
+        ) : sorted.length === 0 ? (
           <p className="no-products-msg">{t.shop.noProducts}</p>
         ) : (
           <div className="product-grid">
-            {filtered.map((p) => (
+            {sorted.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
