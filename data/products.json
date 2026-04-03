@@ -73,7 +73,11 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-03T00:00:00Z",
-    "updatedAt": "2026-04-03T00:00:00Z"
+    "updatedAt": "2026-04-03T15:14:38.748Z",
+    "images": [
+      "/images/placeholder.svg",
+      "/images/products/skogsstamning/1775229270029-1.webp"
+    ]
   },
   {
     "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
