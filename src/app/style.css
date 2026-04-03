@@ -19,8 +19,11 @@
   --outline:           #8a7267;   /* Ghost borders */
 
   /* --- Typography --- */
-  --font-display: 'Noto Serif', Georgia, 'Times New Roman', serif;
-  --font-body:    'Manrope', system-ui, -apple-system, sans-serif;
+  --font-display: Noto Serif, Georgia, Times New Roman, serif;
+  --font-body:    Manrope, system-ui, -apple-system, sans-serif;
+
+  /* --- Font Sizes --- */
+  --font-size-label: 0.6875rem; /* 11px — labels, metadata, badges */
 
   /* --- Shadows --- */
   --shadow-float: 0 20px 40px rgba(52, 48, 38, 0.06);
@@ -101,7 +104,7 @@ a {
 
 .label-md {
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -297,7 +300,7 @@ a {
 .input-label {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -395,7 +398,7 @@ a {
 }
 
 .lang-toggle {
-  font-size: 0.6875rem;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--secondary);
@@ -594,7 +597,7 @@ a {
   top: 0.4rem;
   right: 0.4rem;
   font-family: var(--font-body);
-  font-size: 0.6rem;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -634,7 +637,7 @@ a {
 
 .product-card-dims {
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: var(--font-size-label);
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -701,7 +704,7 @@ a {
 
 .curators-note-label {
   font-family: var(--font-body);
-  font-size: 0.6rem;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -760,7 +763,7 @@ a {
 
 .about-intro-eyebrow {
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -850,7 +853,7 @@ a {
 .product-detail-status {
   display: inline-block;
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -894,7 +897,7 @@ a {
   width: 7rem;
   flex-shrink: 0;
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1320,7 +1323,7 @@ a {
 
 .footer-col-heading {
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
