@@ -38,6 +38,7 @@ export interface Exhibition {
   startDate: string;
   endDate: string;
   imageUrl: string;
+  mapUrl?: string;
   status: ExhibitionStatus;
   createdAt: string;
 }
