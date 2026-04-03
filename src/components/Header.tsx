@@ -29,12 +29,13 @@ export default function Header() {
       <div className="site-header-inner">
         <Link href="/" className="site-logo">
           <Image
-            src={publicUrl('/images/logo.svg')}
+            src={publicUrl('/images/Logo.png')}
             alt="Oliver's Konst"
-            width={180}
-            height={40}
+            width={0}
+            height={0}
             priority
             unoptimized
+            style={{ height: '46px', width: 'auto' }}
           />
         </Link>
 
