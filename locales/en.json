@@ -1,0 +1,160 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About Oliver",
+    "contact": "Contact",
+    "cart": "Cart",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero": {
+      "title": "Oliver's Art",
+      "subtitle": "Original paintings created with passion and feeling",
+      "cta": "Explore the shop"
+    },
+    "featured": {
+      "title": "Featured Works",
+      "subtitle": "A selection of my latest and most beloved paintings"
+    },
+    "intro": {
+      "title": "About the artist",
+      "text": "Oliver is a Swedish artist with a passion for capturing the beauty and moods of nature. Each painting is a unique original, created with love and craftsmanship.",
+      "readMore": "Read more"
+    }
+  },
+  "shop": {
+    "title": "Shop",
+    "subtitle": "Original paintings for sale",
+    "filter": {
+      "all": "All",
+      "label": "Filter by category"
+    },
+    "addToCart": "Add to Cart",
+    "noProducts": "No products found.",
+    "viewDetails": "View details"
+  },
+  "product": {
+    "dimensions": "Dimensions",
+    "technique": "Technique",
+    "status": "Status",
+    "available": "Available",
+    "sold": "Sold",
+    "reserved": "Reserved",
+    "addToCart": "Add to Cart",
+    "added": "Added!",
+    "category": "Category",
+    "price": "Price",
+    "backToShop": "Back to shop"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty.",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "contactMessage": "To complete your purchase, contact us via the contact form or email. We will help you with payment and delivery.",
+    "remove": "Remove",
+    "quantity": "Quantity",
+    "continueShopping": "Continue shopping"
+  },
+  "about": {
+    "title": "About Oliver",
+    "subtitle": "Artist and painter",
+    "content": "Oliver is a Swedish artist based in Gothenburg, known for his expressive and emotional paintings. With a background in classical art education and an eye for nature's details, Oliver creates works that speak to the heart.\n\nHis work spans from calm landscapes to abstract compositions, always with a distinct personal style characterized by rich colors and deep textures.\n\nEach painting is a unique original created using traditional techniques – oil, watercolor, and acrylic – representing hours of dedicated work and love for art.\n\nOliver exhibits regularly in Gothenburg and Stockholm, and his works have been collected by art lovers throughout Scandinavia.",
+    "exhibitions": "Exhibitions",
+    "education": "Education",
+    "contact": "Contact Oliver"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in touch",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "success": "Thank you for your message! We will get back to you as soon as possible.",
+    "error": "Something went wrong. Please try again.",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "your@email.com",
+    "messagePlaceholder": "Write your message here..."
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "password": "Password",
+      "submit": "Log in",
+      "error": "Incorrect password"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "products": "Products",
+      "messages": "Messages",
+      "orders": "Orders",
+      "unread": "unread"
+    },
+    "products": {
+      "title": "Products",
+      "add": "Add product",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDelete": "Are you sure you want to delete this product?",
+      "titleSv": "Title (Swedish)",
+      "titleEn": "Title (English)",
+      "descSv": "Description (Swedish)",
+      "descEn": "Description (English)",
+      "price": "Price (SEK)",
+      "category": "Category",
+      "dimensions": "Dimensions",
+      "techniqueSv": "Technique (Swedish)",
+      "techniqueEn": "Technique (English)",
+      "imageUrl": "Image URL",
+      "status": "Status",
+      "productType": "Product type"
+    },
+    "categories": {
+      "title": "Categories",
+      "add": "Add category",
+      "nameSv": "Name (Swedish)",
+      "nameEn": "Name (English)",
+      "id": "ID"
+    },
+    "messages": {
+      "title": "Messages",
+      "from": "From",
+      "email": "Email",
+      "message": "Message",
+      "date": "Date",
+      "markRead": "Mark as read",
+      "unread": "Unread"
+    },
+    "orders": {
+      "title": "Orders",
+      "customer": "Customer",
+      "email": "Email",
+      "items": "Items",
+      "total": "Total",
+      "status": "Status",
+      "date": "Date"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "categories": "Categories",
+      "messages": "Messages",
+      "orders": "Orders",
+      "logout": "Log out"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "close": "Close",
+    "back": "Back",
+    "currency": "SEK"
+  }
+}

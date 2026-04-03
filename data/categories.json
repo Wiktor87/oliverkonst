@@ -1,0 +1,6 @@
+[
+  { "id": "oil", "name": { "sv": "Olja", "en": "Oil" } },
+  { "id": "watercolor", "name": { "sv": "Akvarell", "en": "Watercolor" } },
+  { "id": "acrylic", "name": { "sv": "Akryl", "en": "Acrylic" } },
+  { "id": "mixed-media", "name": { "sv": "Blandteknik", "en": "Mixed Media" } }
+]
