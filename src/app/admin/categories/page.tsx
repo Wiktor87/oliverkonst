@@ -105,7 +105,7 @@ export default function AdminCategoriesPage() {
                 <div>
                   <label className="block text-sm font-medium text-stone-700 mb-1">ID (slug)</label>
                   <input className="input-field" value={form.id} onChange={(e) => setForm({ ...form, id: e.target.value })} placeholder="t.ex. oil" required />
-                  <p className="text-xs text-stone-400 mt-1">Används som nyckel i databasen. ID:t kan inte redigeras efter att kategorin skapats.</p>
+                  <p className="text-xs text-stone-400 mt-1">Används som nyckel i databasen. ID:t kan inte redigerats efter att kategorin skapats.</p>
                 </div>
               )}
               <div>
