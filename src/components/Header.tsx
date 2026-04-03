@@ -25,72 +25,76 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="site-header">
-      <div className="site-header-inner">
-        <Link href="/" className="site-logo">
-          <Image
-            src={publicUrl('/img/20676002-2972-4876-A8C6-6FAA7FA31B3E.png')}
-            alt="Oliver's Konst"
-            width={0}
-            height={0}
-            priority
-            unoptimized
-            style={{ height: '92px', width: 'auto' }}
-          />
-        </Link>
+    <>
+      {/* Fixed overlay logo */}
+      <Link href="/" className="site-logo-fixed">
+        <Image
+          src={publicUrl('/img/20676002-2972-4876-A8C6-6FAA7FA31B3E.png')}
+          alt="Oliver's Konst"
+          width={0}
+          height={0}
+          priority
+          unoptimized
+          style={{ height: '160px', width: 'auto' }}
+        />
+      </Link>
 
-        <nav className="site-nav">
-          <Link href="/" prefetch={false} className="nav-link">{t.nav.home}</Link>
-          <Link href="/shop" prefetch={false} className="nav-link">{t.nav.shop}</Link>
-          <Link href="/exhibitions" prefetch={false} className="nav-link">{t.nav.exhibitions}</Link>
-          <Link href="/classes" prefetch={false} className="nav-link">{t.nav.classes}</Link>
-          <Link href="/about" prefetch={false} className="nav-link">{t.nav.about}</Link>
-          <Link href="/contact" prefetch={false} className="nav-link">{t.nav.contact}</Link>
-        </nav>
+      {/* Sticky nav bar — no background */}
+      <header className="site-header">
+        <div className="site-header-inner">
+          <nav className="site-nav">
+            <Link href="/" prefetch={false} className="nav-link">{t.nav.home}</Link>
+            <Link href="/shop" prefetch={false} className="nav-link">{t.nav.shop}</Link>
+            <Link href="/exhibitions" prefetch={false} className="nav-link">{t.nav.exhibitions}</Link>
+            <Link href="/classes" prefetch={false} className="nav-link">{t.nav.classes}</Link>
+            <Link href="/about" prefetch={false} className="nav-link">{t.nav.about}</Link>
+            <Link href="/contact" prefetch={false} className="nav-link">{t.nav.contact}</Link>
+          </nav>
 
-        <div className="header-actions">
-          {socialLinks.instagram && (
-            <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
-          )}
-          {socialLinks.facebook && (
-            <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-              </svg>
-            </a>
-          )}
-          <button
-            onClick={() => setLang(lang === 'sv' ? 'en' : 'sv')}
-            className="lang-toggle"
-          >
-            {lang === 'sv' ? 'EN' : 'SV'}
-          </button>
-
-          <Link href="/cart" prefetch={false} className="cart-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            {totalItems > 0 && (
-              <span className="cart-badge">{totalItems}</span>
+          <div className="header-actions">
+            {socialLinks.instagram && (
+              <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
             )}
-          </Link>
-        </div>
-      </div>
+            {socialLinks.facebook && (
+              <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+            )}
+            <button
+              onClick={() => setLang(lang === 'sv' ? 'en' : 'sv')}
+              className="lang-toggle"
+            >
+              {lang === 'sv' ? 'EN' : 'SV'}
+            </button>
 
-      <div className="mobile-nav">
-        <Link href="/" prefetch={false} className="mobile-nav-link">{t.nav.home}</Link>
-        <Link href="/shop" prefetch={false} className="mobile-nav-link">{t.nav.shop}</Link>
-        <Link href="/exhibitions" prefetch={false} className="mobile-nav-link">{t.nav.exhibitions}</Link>
-        <Link href="/classes" prefetch={false} className="mobile-nav-link">{t.nav.classes}</Link>
-        <Link href="/about" prefetch={false} className="mobile-nav-link">{t.nav.about}</Link>
-        <Link href="/contact" prefetch={false} className="mobile-nav-link">{t.nav.contact}</Link>
-      </div>
-    </header>
+            <Link href="/cart" prefetch={false} className="cart-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              {totalItems > 0 && (
+                <span className="cart-badge">{totalItems}</span>
+              )}
+            </Link>
+          </div>
+        </div>
+
+        <div className="mobile-nav">
+          <Link href="/" prefetch={false} className="mobile-nav-link">{t.nav.home}</Link>
+          <Link href="/shop" prefetch={false} className="mobile-nav-link">{t.nav.shop}</Link>
+          <Link href="/exhibitions" prefetch={false} className="mobile-nav-link">{t.nav.exhibitions}</Link>
+          <Link href="/classes" prefetch={false} className="mobile-nav-link">{t.nav.classes}</Link>
+          <Link href="/about" prefetch={false} className="mobile-nav-link">{t.nav.about}</Link>
+          <Link href="/contact" prefetch={false} className="mobile-nav-link">{t.nav.contact}</Link>
+        </div>
+      </header>
+    </>
   );
 }
