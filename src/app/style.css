@@ -340,57 +340,10 @@ a {
    HEADER / NAVIGATION — "Varnish" glassmorphism
    ============================================================ */
 .site-header {
-  position: relative;
-  z-index: 50;
-}
-
-/* Banner image strip — scrolls with the page */
-.header-banner {
-  position: relative;
-  height: clamp(120px, 18vw, 200px);
-  overflow: hidden;
-  background-color: var(--surface-low);
-}
-
-.header-banner-overlay-light {
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 248, 239, 0.3);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.header-banner-overlay-sides {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    var(--surface-low) 0%,
-    transparent 25%,
-    transparent 75%,
-    var(--surface-low) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.header-banner-overlay-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4rem;
-  background: linear-gradient(to top, var(--surface-low) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Sticky nav bar — stays fixed at the top when scrolling */
-.site-header-nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: rgba(255, 248, 239, 0.85);
+  background-color: rgba(255, 248, 239, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--shadow-float);
