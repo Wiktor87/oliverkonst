@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
 import { Product, Category } from '@/types';
 import { useAdmin } from '@/components/AdminContext';
-import { readJsonFile, writeJsonFile } from '@/lib/github';
+import { readJsonFile, writeJsonFile, uploadFile } from '@/lib/github';
+import { publicUrl } from '@/lib/config';
 
 type ProductFormData = {
   titleSv: string;
@@ -19,6 +21,7 @@ type ProductFormData = {
   techniqueSv: string;
   techniqueEn: string;
   imageUrl: string;
+  images: string[];
   status: 'available' | 'sold' | 'reserved';
   productType: 'physical' | 'digital';
 };
@@ -27,8 +30,31 @@ const emptyForm: ProductFormData = {
   titleSv: '', titleEn: '', descSv: '', descEn: '',
   price: '', currency: 'SEK', category: '', dimensions: '',
   techniqueSv: '', techniqueEn: '', imageUrl: '/images/placeholder.svg',
-  status: 'available', productType: 'physical',
+  images: [], status: 'available', productType: 'physical',
 };
+
+/** Convert a product title to a URL-safe slug */
+function toSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[åä]/g, 'a')
+    .replace(/ö/g, 'o')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/** Read a File as base64 (strips the data-URL prefix) */
+function readFileAsBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      resolve(result.split(',')[1]);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
 
 export default function AdminProductsPage() {
   const router = useRouter();
@@ -41,6 +67,9 @@ export default function AdminProductsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState('');
+  const [uploadingImages, setUploadingImages] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const fetchData = async (t: string) => {
     const [p, c] = await Promise.all([
@@ -62,13 +91,14 @@ export default function AdminProductsPage() {
 
   const openAdd = () => { setForm(emptyForm); setEditingId(null); setShowForm(true); setSaveError(''); };
   const openEdit = (p: Product) => {
+    const imgs = p.images && p.images.length > 0 ? p.images : (p.imageUrl ? [p.imageUrl] : []);
     setForm({
       titleSv: p.title.sv, titleEn: p.title.en,
       descSv: p.description.sv, descEn: p.description.en,
       price: String(p.price), currency: p.currency,
       category: p.category, dimensions: p.dimensions,
       techniqueSv: p.technique.sv, techniqueEn: p.technique.en,
-      imageUrl: p.imageUrl, status: p.status, productType: p.productType,
+      imageUrl: p.imageUrl, images: imgs, status: p.status, productType: p.productType,
     });
     setEditingId(p.id);
     setShowForm(true);
@@ -91,6 +121,58 @@ export default function AdminProductsPage() {
     }
   };
 
+  const handleImageUpload = async (files: FileList) => {
+    if (!token || files.length === 0) return;
+    const slug = toSlug(form.titleSv || form.titleEn || 'produkt');
+    if (!slug) {
+      alert('Ange produktens titel (svenska) innan du laddar upp bilder.');
+      return;
+    }
+    setUploadingImages(true);
+    const newPaths: string[] = [];
+    try {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg';
+        const filename = `${Date.now()}-${i + 1}.${ext}`;
+        const filePath = `public/images/products/${slug}/${filename}`;
+        const publicPath = `/images/products/${slug}/${filename}`;
+        setUploadProgress(`Laddar upp ${i + 1}/${files.length}: ${filename}`);
+        const base64 = await readFileAsBase64(file);
+        await uploadFile(token, filePath, base64, `Admin: lägg till produktbild ${publicPath}`);
+        newPaths.push(publicPath);
+      }
+      const combined = [...form.images, ...newPaths];
+      setForm((prev) => ({
+        ...prev,
+        images: combined,
+        imageUrl: combined[0] || prev.imageUrl,
+      }));
+    } catch (err) {
+      alert('Uppladdning misslyckades: ' + String(err));
+    } finally {
+      setUploadingImages(false);
+      setUploadProgress('');
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
+
+  const removeImage = (index: number) => {
+    setForm((prev) => {
+      const imgs = prev.images.filter((_, i) => i !== index);
+      return { ...prev, images: imgs, imageUrl: imgs[0] || '/images/placeholder.svg' };
+    });
+  };
+
+  const moveImage = (from: number, to: number) => {
+    setForm((prev) => {
+      const imgs = [...prev.images];
+      const [item] = imgs.splice(from, 1);
+      imgs.splice(to, 0, item);
+      return { ...prev, images: imgs, imageUrl: imgs[0] || prev.imageUrl };
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!token) return;
@@ -98,6 +180,9 @@ export default function AdminProductsPage() {
     setSaveError('');
 
     const now = new Date().toISOString();
+    const finalImages = form.images.length > 0 ? form.images : (form.imageUrl ? [form.imageUrl] : []);
+    const finalImageUrl = finalImages[0] || form.imageUrl;
+
     try {
       const { data, sha } = await readJsonFile<Product[]>(token, 'data/products.json');
       let updated: Product[];
@@ -114,7 +199,8 @@ export default function AdminProductsPage() {
                 category: form.category,
                 dimensions: form.dimensions,
                 technique: { sv: form.techniqueSv, en: form.techniqueEn },
-                imageUrl: form.imageUrl,
+                imageUrl: finalImageUrl,
+                images: finalImages,
                 status: form.status,
                 productType: form.productType,
                 updatedAt: now,
@@ -132,7 +218,8 @@ export default function AdminProductsPage() {
           category: form.category,
           dimensions: form.dimensions,
           technique: { sv: form.techniqueSv, en: form.techniqueEn },
-          imageUrl: form.imageUrl,
+          imageUrl: finalImageUrl,
+          images: finalImages,
           status: form.status,
           productType: form.productType,
           createdAt: now,
@@ -153,6 +240,8 @@ export default function AdminProductsPage() {
 
   const f = (key: keyof ProductFormData, val: string) => setForm((prev) => ({ ...prev, [key]: val }));
 
+  const resolveImg = (url: string) => url.startsWith('http') ? url : publicUrl(url);
+
   if (isLoading || loading) return <div className="p-8 text-stone-500">Laddar...</div>;
 
   return (
@@ -160,6 +249,10 @@ export default function AdminProductsPage() {
       <div className="flex items-center justify-between mb-6">
         <h1 className="font-serif text-3xl text-stone-800">Produkter</h1>
         <button onClick={openAdd} className="btn-primary text-sm">+ Lägg till produkt</button>
+      </div>
+
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-6 text-sm text-blue-800">
+        Ändringar syns på webbplatsen efter nästa bygge (vanligtvis 1–2 minuter).
       </div>
 
       {showForm && (
@@ -214,10 +307,77 @@ export default function AdminProductsPage() {
                   <input className="input-field" value={form.techniqueEn} onChange={(e) => f('techniqueEn', e.target.value)} />
                 </div>
               </div>
+
+              {/* Image management */}
               <div>
-                <label className="block text-sm font-medium text-stone-700 mb-1">Bild-URL</label>
-                <input className="input-field" value={form.imageUrl} onChange={(e) => f('imageUrl', e.target.value)} />
+                <label className="block text-sm font-medium text-stone-700 mb-2">Bilder</label>
+
+                {/* Existing images */}
+                {form.images.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {form.images.map((img, i) => (
+                      <div key={i} className="relative group">
+                        <div className="relative w-20 h-20 rounded border border-stone-200 overflow-hidden">
+                          <Image
+                            src={resolveImg(img)}
+                            alt={`Bild ${i + 1}`}
+                            fill
+                            className="object-cover"
+                            unoptimized
+                          />
+                          {i === 0 && (
+                            <span className="absolute bottom-0 left-0 right-0 bg-amber-600 text-white text-xs text-center py-0.5">
+                              Primär
+                            </span>
+                          )}
+                        </div>
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded flex items-center justify-center gap-1">
+                          {i > 0 && (
+                            <button type="button" onClick={() => moveImage(i, i - 1)} title="Flytta vänster" className="text-white text-xs bg-black/50 rounded px-1">←</button>
+                          )}
+                          {i < form.images.length - 1 && (
+                            <button type="button" onClick={() => moveImage(i, i + 1)} title="Flytta höger" className="text-white text-xs bg-black/50 rounded px-1">→</button>
+                          )}
+                          <button type="button" onClick={() => removeImage(i)} title="Ta bort" className="text-white text-xs bg-red-600/80 rounded px-1">✕</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Manual URL input (fallback) */}
+                {form.images.length === 0 && (
+                  <div className="mb-2">
+                    <input
+                      className="input-field"
+                      value={form.imageUrl}
+                      onChange={(e) => f('imageUrl', e.target.value)}
+                      placeholder="/images/products/..."
+                    />
+                  </div>
+                )}
+
+                {/* File upload */}
+                <div className="border-2 border-dashed border-stone-200 rounded-lg p-4">
+                  <p className="text-xs text-stone-500 mb-2">
+                    Ladda upp bilder direkt till repot (kräver att du sparat titeln).
+                    Första bilden blir primärbild.
+                  </p>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    className="text-sm text-stone-600"
+                    onChange={(e) => e.target.files && handleImageUpload(e.target.files)}
+                    disabled={uploadingImages}
+                  />
+                  {uploadingImages && (
+                    <p className="text-xs text-amber-700 mt-2">{uploadProgress || 'Laddar upp...'}</p>
+                  )}
+                </div>
               </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-stone-700 mb-1">Status</label>
@@ -237,7 +397,7 @@ export default function AdminProductsPage() {
               </div>
               {saveError && <p className="text-sm text-red-600">{saveError}</p>}
               <div className="flex gap-3 pt-2">
-                <button type="submit" disabled={saving} className="btn-primary disabled:opacity-50">
+                <button type="submit" disabled={saving || uploadingImages} className="btn-primary disabled:opacity-50">
                   {saving ? 'Sparar till GitHub...' : 'Spara'}
                 </button>
                 <button type="button" onClick={() => setShowForm(false)} className="btn-secondary">Avbryt</button>

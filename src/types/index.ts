@@ -18,6 +18,7 @@ export interface Product {
   dimensions: string;
   technique: LocalizedString;
   imageUrl: string;
+  images?: string[];
   status: 'available' | 'sold' | 'reserved';
   productType: 'physical' | 'digital';
   digitalAsset?: DigitalAsset;
@@ -25,6 +26,31 @@ export interface Product {
   paymentMethods?: ('klarna' | 'stripe')[];
   createdAt: string;
   updatedAt: string;
+}
+
+export type ExhibitionStatus = 'upcoming' | 'active' | 'past';
+
+export interface Exhibition {
+  id: string;
+  title: LocalizedString;
+  description: LocalizedString;
+  location: LocalizedString;
+  startDate: string;
+  endDate: string;
+  imageUrl: string;
+  status: ExhibitionStatus;
+  createdAt: string;
+}
+
+export interface SiteContent {
+  biography: LocalizedString;
+  profileQuote: LocalizedString;
+  aboutTitle: LocalizedString;
+  contactEmail: string;
+  socialLinks: {
+    instagram: string;
+    facebook: string;
+  };
 }
 
 export interface Category {

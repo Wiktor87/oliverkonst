@@ -93,6 +93,8 @@ export default function AdminDashboard() {
           <h2 className="font-medium text-stone-700 mb-4">Snabblänkar</h2>
           <div className="space-y-2">
             <Link href="/admin/products" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Lägg till ny produkt</Link>
+            <Link href="/admin/exhibitions" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Hantera utställningar</Link>
+            <Link href="/admin/content" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Redigera biografi & citat</Link>
             <Link href="/admin/categories" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Hantera kategorier</Link>
             <Link href="/admin/messages" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Läs meddelanden</Link>
             <Link href="/admin/orders" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Se beställningar</Link>

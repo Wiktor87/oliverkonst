@@ -19,8 +19,8 @@ module.exports = {
         outline:           '#8a7267',
       },
       fontFamily: {
-        display: ['"Noto Serif"', 'Georgia', 'serif'],
-        body:    ['Manrope', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', '"Noto Serif"', 'Georgia', 'serif'],
+        body:    ['var(--font-body)', 'Manrope', 'system-ui', 'sans-serif'],
       },
     },
   },
