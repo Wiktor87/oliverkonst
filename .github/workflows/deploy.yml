@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Sync public data from source
+        run: cp -v data/*.json public/data/
+
       - name: Build static site
         run: npm run build
         env:

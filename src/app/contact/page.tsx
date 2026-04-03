@@ -59,7 +59,7 @@ export default function ContactPage() {
           />
         </div>
         <div className="text-sm text-stone-500 bg-amber-50 border border-amber-100 rounded p-3">
-          {t.contact.mailtoNote ?? 'Klicka på "Skicka" för att öppna din e-postklient med meddelandet förifyllt.'}
+          {t.contact.mailtoNote}
         </div>
         <button type="submit" className="w-full btn-primary">
           {t.contact.send}

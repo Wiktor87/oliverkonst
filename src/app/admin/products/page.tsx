@@ -35,7 +35,6 @@ export default function AdminProductsPage() {
   const { token, isAuthenticated, isLoading } = useAdmin();
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [productsSha, setProductsSha] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<ProductFormData>(emptyForm);
@@ -49,7 +48,6 @@ export default function AdminProductsPage() {
       readJsonFile<Category[]>(t, 'data/categories.json'),
     ]);
     setProducts(p.data);
-    setProductsSha(p.sha);
     setCategories(c.data);
   };
 
@@ -86,7 +84,6 @@ export default function AdminProductsPage() {
       const updated = data.filter((p) => p.id !== id);
       await writeJsonFile(token, 'data/products.json', updated, sha, `Admin: ta bort produkt ${id}`);
       setProducts(updated);
-      setProductsSha(sha);
     } catch (err) {
       alert('Kunde inte ta bort produkt: ' + String(err));
     } finally {
@@ -146,7 +143,6 @@ export default function AdminProductsPage() {
       }
 
       setProducts(updated);
-      setProductsSha(productsSha);
       setShowForm(false);
     } catch (err) {
       setSaveError('Sparning misslyckades: ' + String(err));

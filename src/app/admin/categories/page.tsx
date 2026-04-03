@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { v4 as uuidv4 } from 'uuid';
 import { Category } from '@/types';
 import { useAdmin } from '@/components/AdminContext';
 import { readJsonFile, writeJsonFile } from '@/lib/github';
@@ -72,7 +71,7 @@ export default function AdminCategoriesPage() {
         await writeJsonFile(token, 'data/categories.json', updated, sha, `Admin: uppdatera kategori ${editingId}`);
       } else {
         const newCat: Category = {
-          id: form.id || uuidv4().split('-')[0],
+          id: form.id,
           name: { sv: form.nameSv, en: form.nameEn },
         };
         updated = [...data, newCat];
@@ -105,7 +104,8 @@ export default function AdminCategoriesPage() {
               {!editingId && (
                 <div>
                   <label className="block text-sm font-medium text-stone-700 mb-1">ID (slug)</label>
-                  <input className="input-field" value={form.id} onChange={(e) => setForm({ ...form, id: e.target.value })} placeholder="t.ex. oil" />
+                  <input className="input-field" value={form.id} onChange={(e) => setForm({ ...form, id: e.target.value })} placeholder="t.ex. oil" required />
+                  <p className="text-xs text-stone-400 mt-1">Används som nyckel i databasen. ID:t kan inte redigeras efter att kategorin skapats.</p>
                 </div>
               )}
               <div>

@@ -24,20 +24,30 @@ export async function readJsonFile<T>(token: string, filePath: string): Promise<
   }
 
   const file = (await res.json()) as GitHubFileResponse;
-  const decoded = atob(file.content.replace(/\n/g, ''));
+  const base64 = file.content.replace(/\n/g, '');
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  const decoded = new TextDecoder('utf-8').decode(bytes);
   return { data: JSON.parse(decoded) as T, sha: file.sha };
 }
 
-/** Write a JSON file back to the repository (creates a commit). */
+/** Write a JSON file back to the repository (creates a commit). Returns the new SHA. */
 export async function writeJsonFile<T>(
   token: string,
   filePath: string,
   data: T,
   sha: string,
   commitMessage: string,
-): Promise<void> {
+): Promise<string> {
   const url = `${API_BASE}/repos/${siteConfig.repoOwner}/${siteConfig.repoName}/contents/${filePath}`;
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+
+  const jsonString = JSON.stringify(data, null, 2);
+  const bytes = new TextEncoder().encode(jsonString);
+  const binary = Array.from(bytes, (b) => String.fromCharCode(b)).join('');
+  const content = btoa(binary);
 
   const res = await fetch(url, {
     method: 'PUT',
@@ -52,6 +62,9 @@ export async function writeJsonFile<T>(
   if (!res.ok) {
     throw new Error(`GitHub API error ${res.status}: ${await res.text()}`);
   }
+
+  const result = (await res.json()) as { content: { sha: string } };
+  return result.content.sha;
 }
 
 /** Validate a GitHub PAT by fetching the authenticated user. Returns the login on success. */
