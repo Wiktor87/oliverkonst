@@ -36,6 +36,9 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: /oliverkonst
 
+      - name: Ensure .nojekyll in output
+        run: touch out/.nojekyll
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

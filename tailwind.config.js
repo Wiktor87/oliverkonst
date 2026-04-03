@@ -8,21 +8,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        amber: {
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
-          800: '#92400e',
-          900: '#78350f',
-        },
+        primary:           '#8a3800',
+        'primary-container': '#af4b06',
+        secondary:         '#77574d',
+        surface:           '#fff8ef',
+        'surface-low':     '#fbf3e4',
+        'surface-high':    '#e9e2d3',
+        'on-surface':      '#1e1b13',
+        'on-primary':      '#ffffff',
+        outline:           '#8a7267',
       },
       fontFamily: {
-        serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+        display: ['"Noto Serif"', 'Georgia', 'serif'],
+        body:    ['Manrope', 'system-ui', 'sans-serif'],
       },
     },
   },
