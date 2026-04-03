@@ -35,7 +35,7 @@
     },
     "price": 2200,
     "currency": "SEK",
-    "category": "watercolor",
+    "category": "mixed-media",
     "dimensions": "40x50 cm",
     "technique": {
       "sv": "Akvarell på papper",
@@ -45,7 +45,11 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-03T00:00:00Z",
-    "updatedAt": "2026-04-03T00:00:00Z"
+    "updatedAt": "2026-04-03T15:13:57.971Z",
+    "images": [
+      "/images/placeholder.svg",
+      "/images/products/varblommor-i-vinden/1775229227153-1.avif"
+    ]
   },
   {
     "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
