@@ -16,9 +16,12 @@ export default function HomePage() {
   useEffect(() => {
     fetch(`${siteConfig.basePath}/data/products.json`)
       .then((r) => r.json())
-      .then((data: Product[]) => setFeatured(data.slice(0, 3)))
+      .then((data: Product[]) => setFeatured(data.slice(0, 6)))
       .catch(() => {});
   }, []);
+
+  const firstRow = featured.slice(0, 3);
+  const secondRow = featured.slice(3, 6);
 
   return (
     <div>
@@ -36,7 +39,6 @@ export default function HomePage() {
         </div>
         <div className="hero-overlay-light" />
         <div className="hero-overlay-sides" />
-        <div className="hero-overlay-bottom" />
 
         <div className="hero-content">
           <h1 className="hero-title">{t.home.hero.title}</h1>
@@ -45,16 +47,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured works */}
+      {/* Featured works — first row */}
       <section className="section">
         <div className="section-header">
           <h2 className="section-title">{t.home.featured.title}</h2>
           <p className="section-subtitle">{t.home.featured.subtitle}</p>
         </div>
 
-        {featured.length > 0 ? (
+        {firstRow.length > 0 ? (
           <div className="product-grid">
-            {featured.map((p) => (
+            {firstRow.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
@@ -65,10 +67,6 @@ export default function HomePage() {
             ))}
           </div>
         )}
-
-        <div className="featured-cta">
-          <Link href="/shop" className="btn-secondary">{t.home.hero.cta}</Link>
-        </div>
       </section>
 
       {/* Artist intro */}
@@ -106,6 +104,27 @@ export default function HomePage() {
               {t.home.intro.readMore} →
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Featured works — second row */}
+      <section className="section">
+        {secondRow.length > 0 ? (
+          <div className="product-grid">
+            {secondRow.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        ) : (
+          <div className="product-grid">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="skeleton skeleton-card" />
+            ))}
+          </div>
+        )}
+
+        <div className="featured-cta">
+          <Link href="/shop" className="btn-secondary">{t.home.hero.cta}</Link>
         </div>
       </section>
     </div>
