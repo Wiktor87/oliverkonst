@@ -31,8 +31,8 @@ export default function Header() {
           <Image
             src={publicUrl('/images/Logo.png')}
             alt="Oliver's Konst"
-            width={207}
-            height={46}
+            width={0}
+            height={0}
             priority
             unoptimized
             style={{ height: '46px', width: 'auto' }}
