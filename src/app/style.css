@@ -1680,7 +1680,7 @@ font-family: var(--font-display);
 
   .hero-content {
     max-width: 28rem;
-    margin-left: 5%;
+    margin-left: 0%;
   }
 
   .site-logo-fixed.site-logo-scrolled {
