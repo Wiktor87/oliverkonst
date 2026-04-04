@@ -26,5 +26,33 @@
     "productType": "physical",
     "createdAt": "2026-04-04T11:38:42.259Z",
     "updatedAt": "2026-04-04T11:40:19.378Z"
+  },
+  {
+    "id": "df07a142-1bd0-43bc-a9de-881c83c20246",
+    "title": {
+      "sv": "Calm",
+      "en": "Calm"
+    },
+    "description": {
+      "sv": "Akryl på duk.",
+      "en": "Acryllic on canvas."
+    },
+    "price": 19000,
+    "currency": "SEK",
+    "category": "acrylic",
+    "dimensions": "",
+    "technique": {
+      "sv": "Akryl på duk.",
+      "en": "Acryllic on canvas."
+    },
+    "imageUrl": "/images/products/calm/1775303208501-1.webp",
+    "images": [
+      "/images/products/calm/1775303208501-1.webp",
+      "/images/products/calm/1775303210256-2.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "createdAt": "2026-04-04T11:46:55.840Z",
+    "updatedAt": "2026-04-04T11:46:55.840Z"
   }
 ]
