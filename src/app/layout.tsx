@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Cormorant_Garamond, Manrope } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from '@/components/CartContext';
@@ -29,6 +30,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="sv" className={`${cormorantGaramond.variable} ${manrope.variable}`}>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BE191WDJL3"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BE191WDJL3');
+          `}
+        </Script>
+      </head>
       <body>
         <LanguageProvider>
           <CartProvider>
