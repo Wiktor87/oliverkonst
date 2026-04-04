@@ -34,7 +34,7 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /oliverkonst
+          NEXT_PUBLIC_BASE_PATH: ""
 
       - name: Ensure .nojekyll in output
         run: touch out/.nojekyll
