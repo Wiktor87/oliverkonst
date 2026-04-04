@@ -68,7 +68,7 @@
     "price": 4000,
     "currency": "SEK",
     "category": "leather",
-    "dimensions": "",
+    "dimensions": "20x20cm",
     "technique": {
       "sv": "Våtformat läder.",
       "en": "Wet moulded leather."
@@ -80,7 +80,7 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T11:56:52.616Z",
-    "updatedAt": "2026-04-04T11:56:52.616Z"
+    "updatedAt": "2026-04-04T15:02:55.247Z"
   },
   {
     "id": "d04f05f2-f479-4bf2-bc1f-629eff5cbe68",
