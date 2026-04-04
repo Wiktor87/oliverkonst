@@ -585,7 +585,6 @@ a {
   position: absolute;
   inset: 0;
   z-index: 0;
-  display: none;
 }
 
 .hero-overlay-sides {
@@ -1589,21 +1588,6 @@ font-family: var(--font-display);
   .site-logo-img {
     height: 160px;
     width: auto;
-  }
-
-  .hero-section {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  .hero-bg-image {
-    display: block;
-  }
-
-  .hero-content {
-    max-width: 28rem;
-    margin-right: 5%;
   }
 
   .site-logo-fixed.site-logo-scrolled {
