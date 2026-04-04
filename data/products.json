@@ -135,5 +135,32 @@
     "productType": "physical",
     "createdAt": "2026-04-04T12:18:51.718Z",
     "updatedAt": "2026-04-04T15:02:48.356Z"
+  },
+  {
+    "id": "b30c6e2d-8584-4609-a756-ed7c4b002d3c",
+    "title": {
+      "sv": "Not",
+      "en": "Note"
+    },
+    "description": {
+      "sv": "Lädermotiv på akrylmålad duk.",
+      "en": "Leather motif on acryllic painted canvas."
+    },
+    "price": 4000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "20x20cm",
+    "technique": {
+      "sv": "Lädermotiv på akrylmålad duk.",
+      "en": "Leather motif on acryllic painted canvas."
+    },
+    "imageUrl": "/images/products/produkt/1775315028350-1.png",
+    "images": [
+      "/images/products/produkt/1775315028350-1.png"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "createdAt": "2026-04-04T15:04:29.961Z",
+    "updatedAt": "2026-04-04T15:04:29.961Z"
   }
 ]
