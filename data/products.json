@@ -78,30 +78,6 @@
     ]
   },
   {
-    "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
-    "title": {
-      "sv": "Abstrakt harmoni",
-      "en": "Abstract Harmony"
-    },
-    "description": {
-      "sv": "En blandteknikverk som utforskar harmoni och kontrast. Lager av material och texturer skapar djup och komplexitet i kompositionen.",
-      "en": "A mixed media work exploring harmony and contrast. Layers of materials and textures create depth and complexity in the composition."
-    },
-    "price": 5500,
-    "currency": "SEK",
-    "category": "mixed-media",
-    "dimensions": "70x90 cm",
-    "technique": {
-      "sv": "Blandteknik på duk",
-      "en": "Mixed media on canvas"
-    },
-    "imageUrl": "/images/placeholder.svg",
-    "status": "reserved",
-    "productType": "physical",
-    "createdAt": "2026-04-03T00:00:00Z",
-    "updatedAt": "2026-04-03T00:00:00Z"
-  },
-  {
     "id": "e88e69b3-a60a-4f63-8e63-48b7030d6c09",
     "title": {
       "sv": "Strum",
