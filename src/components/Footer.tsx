@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <Image
-              src={publicUrl('/img/Logo.png')}
+              src={publicUrl('https://www.oliverskifs.se/img/20676002-2972-4876-A8C6-6FAA7FA31B3E.png')}
               alt="Oliver's Konst"
               width={0}
               height={0}
