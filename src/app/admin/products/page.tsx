@@ -26,6 +26,9 @@ type ProductFormData = {
   productType: 'physical' | 'digital';
 };
 
+/** Map from repo path (/images/products/...) to local blob URL for preview */
+type BlobPreviewMap = Record<string, string>;
+
 const emptyForm: ProductFormData = {
   titleSv: '', titleEn: '', descSv: '', descEn: '',
   price: '', currency: 'SEK', category: '', dimensions: '',
@@ -70,6 +73,7 @@ export default function AdminProductsPage() {
   const [uploadingImages, setUploadingImages] = useState(false);
   const [uploadProgress, setUploadProgress] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [blobPreviews, setBlobPreviews] = useState<BlobPreviewMap>({});
 
   const fetchData = async (t: string) => {
     const [p, c] = await Promise.all([
@@ -89,7 +93,7 @@ export default function AdminProductsPage() {
     fetchData(token).catch(() => {}).finally(() => setLoading(false));
   }, [isAuthenticated, isLoading, token, router]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const openAdd = () => { setForm(emptyForm); setEditingId(null); setShowForm(true); setSaveError(''); };
+  const openAdd = () => { setForm(emptyForm); setEditingId(null); setShowForm(true); setSaveError(''); setBlobPreviews({}); };
   const openEdit = (p: Product) => {
     const imgs = p.images && p.images.length > 0 ? p.images : (p.imageUrl ? [p.imageUrl] : []);
     setForm({
@@ -103,6 +107,7 @@ export default function AdminProductsPage() {
     setEditingId(p.id);
     setShowForm(true);
     setSaveError('');
+    setBlobPreviews({});
   };
 
   const handleDelete = async (id: string) => {
@@ -130,6 +135,7 @@ export default function AdminProductsPage() {
     }
     setUploadingImages(true);
     const newPaths: string[] = [];
+    const newBlobPreviews: BlobPreviewMap = {};
     try {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
@@ -140,8 +146,11 @@ export default function AdminProductsPage() {
         setUploadProgress(`Laddar upp ${i + 1}/${files.length}: ${filename}`);
         const base64 = await readFileAsBase64(file);
         await uploadFile(token, filePath, base64, `Admin: lägg till produktbild ${publicPath}`);
+        // Create blob URL for immediate preview (avoids 404 before deploy)
+        newBlobPreviews[publicPath] = URL.createObjectURL(file);
         newPaths.push(publicPath);
       }
+      setBlobPreviews((prev) => ({ ...prev, ...newBlobPreviews }));
       const combined = [...form.images, ...newPaths];
       setForm((prev) => ({
         ...prev,
@@ -240,7 +249,11 @@ export default function AdminProductsPage() {
 
   const f = (key: keyof ProductFormData, val: string) => setForm((prev) => ({ ...prev, [key]: val }));
 
-  const resolveImg = (url: string) => url.startsWith('http') ? url : publicUrl(url);
+  const resolveImg = (url: string) => {
+    // Use local blob preview if available (freshly uploaded, not yet deployed)
+    if (blobPreviews[url]) return blobPreviews[url];
+    return url.startsWith('http') ? url : publicUrl(url);
+  };
 
   if (isLoading || loading) return <div className="p-8 text-stone-500">Laddar...</div>;
 
