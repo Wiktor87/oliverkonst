@@ -54,5 +54,32 @@
     "productType": "physical",
     "createdAt": "2026-04-04T11:46:55.840Z",
     "updatedAt": "2026-04-04T11:46:55.840Z"
+  },
+  {
+    "id": "e2777e56-da6d-4f79-a0d5-783475386ccd",
+    "title": {
+      "sv": "Not",
+      "en": "Note"
+    },
+    "description": {
+      "sv": "Läder på akrylmålad duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "price": 4000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "",
+    "technique": {
+      "sv": "Våtformat läder.",
+      "en": "Wet moulded leather."
+    },
+    "imageUrl": "/images/products/not/1775303790204-1.png",
+    "images": [
+      "/images/products/not/1775303790204-1.png"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "createdAt": "2026-04-04T11:56:52.616Z",
+    "updatedAt": "2026-04-04T11:56:52.616Z"
   }
 ]
