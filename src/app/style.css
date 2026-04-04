@@ -1590,7 +1590,7 @@ a {
 
 
    .site-logo-fixed img {
-  height: 85px !important;
+  /* height: 85px !important;*/
    }
 
   .site-logo-fixed.site-logo-scrolled {
