@@ -122,7 +122,7 @@
     "price": 4000,
     "currency": "SEK",
     "category": "leather",
-    "dimensions": "",
+    "dimensions": "20x20cm",
     "technique": {
       "sv": "Läder på akrylbakgrund på duk.",
       "en": "Leather on acryllic painted canvas."
@@ -134,6 +134,6 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T12:18:51.718Z",
-    "updatedAt": "2026-04-04T12:18:51.718Z"
+    "updatedAt": "2026-04-04T15:02:48.356Z"
   }
 ]
