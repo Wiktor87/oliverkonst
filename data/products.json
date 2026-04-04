@@ -17,14 +17,14 @@
       "sv": "Läder",
       "en": "Leather"
     },
-    "imageUrl": "/images/products/strum/1775302712759-1.webp",
+    "imageUrl": "/images/products/strum/1775302714661-2.webp",
     "images": [
-      "/images/products/strum/1775302712759-1.webp",
-      "/images/products/strum/1775302714661-2.webp"
+      "/images/products/strum/1775302714661-2.webp",
+      "/images/products/strum/1775302712759-1.webp"
     ],
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T11:38:42.259Z",
-    "updatedAt": "2026-04-04T11:38:42.259Z"
+    "updatedAt": "2026-04-04T11:40:19.378Z"
   }
 ]
