@@ -582,7 +582,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background-color: var(--surface-low);
   margin-top: -7px;
 }
 
