@@ -842,7 +842,7 @@ a {
 .about-intro-inner {
   display: grid;
   grid-template-columns: 1fr;
-  align-items: center;
+  align-items: stretch;
 }
 
 .about-intro-image-col {
@@ -854,6 +854,9 @@ a {
 
 .about-intro-text-col {
   padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .about-intro-eyebrow {
