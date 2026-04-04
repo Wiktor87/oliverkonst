@@ -586,6 +586,11 @@ a {
   inset: 0;
   z-index: 0;
   display: none;
+  overflow: hidden;
+}
+
+.hero-bg-image img {
+  object-position: left center;
 }
 
 .hero-overlay-sides {
