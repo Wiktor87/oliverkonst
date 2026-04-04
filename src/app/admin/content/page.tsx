@@ -8,7 +8,7 @@ import { useAdmin } from '@/components/AdminContext';
 import { readJsonFile, writeJsonFile } from '@/lib/github';
 import { publicUrl } from '@/lib/config';
 
-const MAX_SELECTED = 8;
+const MAX_SELECTED = 6;
 
 const defaultContent: SiteContent = {
   biography: { sv: '', en: '' },
