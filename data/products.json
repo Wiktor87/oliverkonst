@@ -108,5 +108,32 @@
     "productType": "physical",
     "createdAt": "2026-04-04T12:01:41.883Z",
     "updatedAt": "2026-04-04T12:01:41.883Z"
+  },
+  {
+    "id": "dbccbf65-5156-4809-bb6e-1cdc93f4f969",
+    "title": {
+      "sv": "Grönt Hjärta",
+      "en": "Green Heart"
+    },
+    "description": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "price": 4000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "",
+    "technique": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "imageUrl": "/images/products/gront-hjarta/1775305128658-1.webp",
+    "images": [
+      "/images/products/gront-hjarta/1775305128658-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "createdAt": "2026-04-04T12:18:51.718Z",
+    "updatedAt": "2026-04-04T12:18:51.718Z"
   }
 ]
