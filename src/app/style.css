@@ -578,7 +578,9 @@ a {
   position: relative;
   overflow: hidden;
   padding: 6rem 1.5rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   background-color: var(--surface-low);
   margin-top: -7px;
 }
@@ -625,8 +627,9 @@ a {
 .hero-content {
   position: relative;
   z-index: 3;
-  max-width: 48rem;
-  margin: 0 auto;
+  max-width: 28rem;
+  text-align: left;
+  margin-right: 5%;
 }
 
 .hero-title {

@@ -37,8 +37,6 @@ export default function HomePage() {
             unoptimized
           />
         </div>
-        <div className="hero-overlay-light" />
-        <div className="hero-overlay-sides" />
 
         <div className="hero-content">
           <h1 className="hero-title">{t.home.hero.title}</h1>
