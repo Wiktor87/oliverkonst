@@ -1639,7 +1639,7 @@ a {
   }
 
   .section, .section-sm {
-    /* padding: 4rem 1.5rem; */
+    padding: 0;
     padding-top: 1rem;
     margin: 0 auto;
    }
