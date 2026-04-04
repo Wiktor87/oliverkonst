@@ -1689,7 +1689,6 @@ font-family: var(--font-display);
 
   img, video {
     max-width: 100%;
-    width: 300px;
   }
 
   .header-actions {
