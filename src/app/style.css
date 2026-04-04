@@ -583,6 +583,7 @@ a {
   align-items: center;
   justify-content: flex-end;
   margin-top: -7px;
+  background-color: var(--surface-low);
 }
 
 .hero-bg-image {
