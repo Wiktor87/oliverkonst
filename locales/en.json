@@ -35,7 +35,7 @@
     "sortByPrice": "Sort by price",
     "priceAsc": "Price: Low to High",
     "priceDesc": "Price: High to Low",
-    "addToCart": "Add to Cart",
+    "addToCart": "Buy",
     "noProducts": "No products found.",
     "viewDetails": "View details"
   },
@@ -46,7 +46,7 @@
     "available": "Available",
     "sold": "Sold",
     "reserved": "Reserved",
-    "addToCart": "Add to Cart",
+    "addToCart": "Buy",
     "added": "Added!",
     "category": "Category",
     "price": "Price",

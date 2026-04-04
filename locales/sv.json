@@ -35,7 +35,7 @@
     "sortByPrice": "Sortera efter pris",
     "priceAsc": "Pris: Lägst först",
     "priceDesc": "Pris: Högst först",
-    "addToCart": "Lägg i varukorg",
+    "addToCart": "Köp",
     "noProducts": "Inga produkter hittades.",
     "viewDetails": "Se detaljer"
   },
@@ -46,7 +46,7 @@
     "available": "Tillgänglig",
     "sold": "Såld",
     "reserved": "Reserverad",
-    "addToCart": "Lägg i varukorg",
+    "addToCart": "Köp",
     "added": "Tillagd!",
     "category": "Kategori",
     "price": "Pris",
