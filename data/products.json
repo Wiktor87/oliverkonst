@@ -102,30 +102,6 @@
     "updatedAt": "2026-04-03T00:00:00Z"
   },
   {
-    "id": "e5f6a7b8-c9d0-1234-efab-345678901234",
-    "title": {
-      "sv": "Vinterlandskap",
-      "en": "Winter Landscape"
-    },
-    "description": {
-      "sv": "En stillsam oljemålning av ett snötäckt vinterlandskap. Det vita ljuset och de kala träden skapar en ren och kontemplativ bild.",
-      "en": "A serene oil painting of a snow-covered winter landscape. The white light and bare trees create a pure and contemplative image."
-    },
-    "price": 6200,
-    "currency": "SEK",
-    "category": "oil",
-    "dimensions": "90x120 cm",
-    "technique": {
-      "sv": "Olja på duk",
-      "en": "Oil on canvas"
-    },
-    "imageUrl": "/images/placeholder.svg",
-    "status": "sold",
-    "productType": "physical",
-    "createdAt": "2026-04-03T00:00:00Z",
-    "updatedAt": "2026-04-03T00:00:00Z"
-  },
-  {
     "id": "e88e69b3-a60a-4f63-8e63-48b7030d6c09",
     "title": {
       "sv": "Strum",
