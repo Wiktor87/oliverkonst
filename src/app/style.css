@@ -396,6 +396,7 @@ a {
   display: none;
   align-items: center;
   gap: 2rem;
+  margin-right: 20px;
 }
 
 .nav-link {
@@ -1506,6 +1507,11 @@ a {
 @media (min-width: 768px) {
   .site-nav {
     display: flex;
+  }
+
+  img, video {
+    max-width: 100%;
+    width: 300px;
   }
 
   .mobile-nav {
