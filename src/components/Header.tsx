@@ -18,6 +18,7 @@ export default function Header() {
   const { lang, setLang, t } = useLanguage();
   const [socialLinks, setSocialLinks] = useState<SocialLinks>({ instagram: '', facebook: '' });
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -102,14 +103,30 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="mobile-nav">
-          <Link href="/" prefetch={false} className="mobile-nav-link">{t.nav.home}</Link>
-          <Link href="/shop" prefetch={false} className="mobile-nav-link">{t.nav.shop}</Link>
-          <Link href="/exhibitions" prefetch={false} className="mobile-nav-link">{t.nav.exhibitions}</Link>
-          <Link href="/classes" prefetch={false} className="mobile-nav-link">{t.nav.classes}</Link>
-          <Link href="/about" prefetch={false} className="mobile-nav-link">{t.nav.about}</Link>
-          <Link href="/contact" prefetch={false} className="mobile-nav-link">{t.nav.contact}</Link>
-        </div>
+        {/* Mobile hamburger button */}
+        <button
+          className="hamburger-btn"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+        >
+          <span className={`hamburger-icon${menuOpen ? ' open' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        {/* Mobile slide-out menu */}
+        {menuOpen && <div className="mobile-menu-overlay" onClick={() => setMenuOpen(false)} />}
+        <nav className={`mobile-menu${menuOpen ? ' open' : ''}`}>
+          <Link href="/" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.home}</Link>
+          <Link href="/shop" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.shop}</Link>
+          <Link href="/exhibitions" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.exhibitions}</Link>
+          <Link href="/classes" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.classes}</Link>
+          <Link href="/about" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.about}</Link>
+          <Link href="/contact" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.contact}</Link>
+        </nav>
       </header>
     </>
   );
