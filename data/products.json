@@ -81,5 +81,32 @@
     "productType": "physical",
     "createdAt": "2026-04-04T11:56:52.616Z",
     "updatedAt": "2026-04-04T11:56:52.616Z"
+  },
+  {
+    "id": "d04f05f2-f479-4bf2-bc1f-629eff5cbe68",
+    "title": {
+      "sv": "Löv",
+      "en": "Leaf"
+    },
+    "description": {
+      "sv": "Läder på akrylmålning på canvas.",
+      "en": "Leather on acryllic painting on canvas."
+    },
+    "price": 4000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "",
+    "technique": {
+      "sv": "Våtformat läder på akrylmålad duk.",
+      "en": "Leather on acryllic painting on canvas."
+    },
+    "imageUrl": "/images/products/lov/1775304097201-1.png",
+    "images": [
+      "/images/products/lov/1775304097201-1.png"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "createdAt": "2026-04-04T12:01:41.883Z",
+    "updatedAt": "2026-04-04T12:01:41.883Z"
   }
 ]
