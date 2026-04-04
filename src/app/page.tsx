@@ -75,7 +75,7 @@ export default function HomePage() {
           <div className="about-portrait-wrap">
             <div className="about-portrait">
               <Image
-                src={publicUrl('/images/oliver-profil.webp')}
+                src={publicUrl('/img/profile-large.webp')}
                 alt="Oliver"
                 fill
                 className="object-cover"

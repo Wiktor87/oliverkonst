@@ -52,7 +52,7 @@ export default function Header() {
           height={0}
           priority
           unoptimized
-          style={{ height: '160px', width: 'auto' }}
+          className="site-logo-img"
         />
       </Link>
 

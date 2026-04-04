@@ -377,6 +377,11 @@ a {
   opacity: 0.7;
 }
 
+.site-logo-img {
+  height: 60px;
+  width: auto;
+}
+
 /* ============================================================
    HEADER / NAVIGATION — transparent, sticky at top
    ============================================================ */
@@ -1589,9 +1594,10 @@ a {
   }
 
 
-   .site-logo-fixed img {
-  /* height: 85px !important;*/
-   }
+  .site-logo-img {
+    height: 160px;
+    width: auto;
+  }
 
   .site-logo-fixed.site-logo-scrolled {
     top: 0rem;
