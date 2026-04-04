@@ -72,18 +72,16 @@ export default function HomePage() {
       {/* Artist intro */}
       <section className="about-intro-section">
         <div className="about-intro-inner">
-          <div className="about-portrait-wrap">
-            <div className="about-portrait">
-              <Image
-                src={publicUrl('/img/profile-large.webp')}
-                alt="Oliver"
-                fill
-                className="object-cover"
-                unoptimized
-              />
-            </div>
+          <div className="about-intro-image-col">
+            <Image
+              src={publicUrl('/img/profile-large.webp')}
+              alt="Oliver"
+              fill
+              className="object-cover"
+              unoptimized
+            />
           </div>
-          <div>
+          <div className="about-intro-text-col">
             <p className="about-intro-eyebrow">
               {lang === 'sv' ? 'Om konstnären' : 'About the artist'}
             </p>

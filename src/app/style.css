@@ -837,31 +837,23 @@ a {
    ============================================================ */
 .about-intro-section {
   background-color: var(--surface-low);
-  padding: 5rem 1.5rem;
 }
 
 .about-intro-inner {
-  max-width: 56rem;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
   align-items: center;
 }
 
-.about-portrait-wrap {
-  display: flex;
-  justify-content: center;
+.about-intro-image-col {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  overflow: hidden;
 }
 
-.about-portrait {
-  width: 100%;
-  max-width: 260px;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  background-color: var(--surface-high);
-  position: relative;
-  display: block;
+.about-intro-text-col {
+  padding: 3rem 1.5rem;
 }
 
 .about-intro-eyebrow {
@@ -1625,7 +1617,15 @@ a {
   }
 
   .about-intro-inner {
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-intro-image-col {
+    min-height: 500px;
+  }
+
+  .about-intro-text-col {
+    padding: 5rem 4rem;
   }
 
   .about-bio-grid {
