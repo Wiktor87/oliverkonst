@@ -51,33 +51,6 @@
     ]
   },
   {
-    "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
-    "title": {
-      "sv": "Skogsstämning",
-      "en": "Forest Atmosphere"
-    },
-    "description": {
-      "sv": "Akrylmålning som gestaltar en mystisk skogsstämning i skymningen. De djupa gröna och blå tonerna skapar en drömsk och inbjudande atmosfär.",
-      "en": "Acrylic painting depicting a mystical forest atmosphere at dusk. The deep green and blue tones create a dreamy and inviting atmosphere."
-    },
-    "price": 4800,
-    "currency": "SEK",
-    "category": "acrylic",
-    "dimensions": "80x100 cm",
-    "technique": {
-      "sv": "Akryl på duk",
-      "en": "Acrylic on canvas"
-    },
-    "imageUrl": "/images/products/skogsstamning/1775229270029-1.webp",
-    "status": "available",
-    "productType": "physical",
-    "createdAt": "2026-04-03T00:00:00Z",
-    "updatedAt": "2026-04-03T15:30:10.518Z",
-    "images": [
-      "/images/products/skogsstamning/1775229270029-1.webp"
-    ]
-  },
-  {
     "id": "e88e69b3-a60a-4f63-8e63-48b7030d6c09",
     "title": {
       "sv": "Strum",
