@@ -124,5 +124,33 @@
     "productType": "physical",
     "createdAt": "2026-04-03T00:00:00Z",
     "updatedAt": "2026-04-03T00:00:00Z"
+  },
+  {
+    "id": "e88e69b3-a60a-4f63-8e63-48b7030d6c09",
+    "title": {
+      "sv": "Strum",
+      "en": "Strum"
+    },
+    "description": {
+      "sv": "Lädermotiv på canvas med akrylmålning.",
+      "en": "Leather motif on canvas with acryllic painting."
+    },
+    "price": 35000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "",
+    "technique": {
+      "sv": "Läder",
+      "en": "Leather"
+    },
+    "imageUrl": "/images/products/strum/1775302712759-1.webp",
+    "images": [
+      "/images/products/strum/1775302712759-1.webp",
+      "/images/products/strum/1775302714661-2.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "createdAt": "2026-04-04T11:38:42.259Z",
+    "updatedAt": "2026-04-04T11:38:42.259Z"
   }
 ]
