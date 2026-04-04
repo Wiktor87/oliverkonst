@@ -57,15 +57,35 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className={`product-card-status ${statusClass[product.status]}`}>
             {statusLabel[product.status]}
           </span>
+          {product.status === 'sold' && (
+            <div className="product-card-sold-stamp">
+              <Image
+                src={publicUrl('/images/sold.webp')}
+                alt={t.product.sold}
+                width={80}
+                height={80}
+                unoptimized
+              />
+            </div>
+          )}
         </div>
       </div>
       <div className="product-card-body">
         <h3 className="product-card-title">{product.title[lang]}</h3>
         <p className="product-card-dims">{product.dimensions}</p>
         <div className="product-card-footer">
-          <span className="product-card-price">
-            {product.price.toLocaleString('sv-SE')} {t.common.currency}
-          </span>
+          {product.status === 'sold' ? (
+            <span className="product-card-price-sold">
+              <span className="price-strikethrough">
+                {product.price.toLocaleString('sv-SE')} {t.common.currency}
+              </span>
+              <span className="sold-label">{t.product.sold}</span>
+            </span>
+          ) : (
+            <span className="product-card-price">
+              {product.price.toLocaleString('sv-SE')} {t.common.currency}
+            </span>
+          )}
           {product.status === 'available' && (
             <button onClick={handleAddToCart} className="product-card-add">
               {t.shop.addToCart}
