@@ -1645,7 +1645,7 @@ a {
   }
 
   .section, .section-sm {
-    padding: 0;
+    padding: 0rem;
     padding-top: 1rem;
     margin: 0 auto;
    }
