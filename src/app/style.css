@@ -580,7 +580,7 @@ a {
   padding: 6rem 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   background-color: var(--surface-low);
   margin-top: -7px;
 }
@@ -589,6 +589,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: 0;
+  display: none;
 }
 
 .hero-overlay-sides {
@@ -629,7 +630,6 @@ a {
   z-index: 3;
   max-width: 28rem;
   text-align: left;
-  margin-right: 5%;
 }
 
 .hero-title {
@@ -1595,6 +1595,18 @@ a {
   .site-logo-img {
     height: 160px;
     width: auto;
+  }
+
+  .hero-section {
+    justify-content: flex-end;
+  }
+
+  .hero-bg-image {
+    display: block;
+  }
+
+  .hero-content {
+    margin-right: 5%;
   }
 
   .site-logo-fixed.site-logo-scrolled {
