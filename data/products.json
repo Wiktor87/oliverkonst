@@ -162,5 +162,33 @@
     "productType": "physical",
     "createdAt": "2026-04-04T15:04:29.961Z",
     "updatedAt": "2026-04-04T15:04:29.961Z"
+  },
+  {
+    "id": "de175fce-189c-419a-bba5-45c34edd6ee6",
+    "title": {
+      "sv": "Deep notes",
+      "en": "Deep notes"
+    },
+    "description": {
+      "sv": "Lädermotiv på akrylmålad duk.",
+      "en": "Leather motif on acryllic painted canvas."
+    },
+    "price": 35000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "",
+    "technique": {
+      "sv": "Lädermotiv på akrylmålad duk.",
+      "en": "Leather motif on acryllic painted canvas."
+    },
+    "imageUrl": "/images/products/deep-notes/1775315351454-1.png",
+    "images": [
+      "/images/products/deep-notes/1775315351454-1.png",
+      "/images/products/deep-notes/1775315431513-1.png"
+    ],
+    "status": "sold",
+    "productType": "physical",
+    "createdAt": "2026-04-04T15:10:41.190Z",
+    "updatedAt": "2026-04-04T15:10:41.190Z"
   }
 ]
