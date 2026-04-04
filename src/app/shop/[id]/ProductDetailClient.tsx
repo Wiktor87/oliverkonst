@@ -147,8 +147,8 @@ export default function ProductDetailClient() {
                   <Image
                     src={publicUrl('/images/sold.webp')}
                     alt={t.product.sold}
-                    width={120}
-                    height={120}
+                    width={73}
+                    height={73}
                     unoptimized
                   />
                 </div>
