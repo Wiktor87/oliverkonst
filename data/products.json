@@ -24,33 +24,6 @@
     "updatedAt": "2026-04-03T14:46:14.107Z"
   },
   {
-    "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
-    "title": {
-      "sv": "Vårblommor i vinden",
-      "en": "Spring Flowers in the Wind"
-    },
-    "description": {
-      "sv": "En akvarellmålning med levande vårblommor som dansar i vinden. De delikata färgerna skapar en känsla av lätthet och glädje.",
-      "en": "A watercolor painting featuring vibrant spring flowers dancing in the wind. The delicate colors create a feeling of lightness and joy."
-    },
-    "price": 2200,
-    "currency": "SEK",
-    "category": "mixed-media",
-    "dimensions": "40x50 cm",
-    "technique": {
-      "sv": "Akvarell på papper",
-      "en": "Watercolor on paper"
-    },
-    "imageUrl": "/images/products/varblommor-i-vinden/1775229250763-1.avif",
-    "status": "available",
-    "productType": "physical",
-    "createdAt": "2026-04-03T00:00:00Z",
-    "updatedAt": "2026-04-03T15:30:06.700Z",
-    "images": [
-      "/images/products/varblommor-i-vinden/1775229250763-1.avif"
-    ]
-  },
-  {
     "id": "e88e69b3-a60a-4f63-8e63-48b7030d6c09",
     "title": {
       "sv": "Strum",
