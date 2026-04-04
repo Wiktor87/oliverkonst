@@ -630,17 +630,17 @@ a {
   z-index: 3;
   max-width: 28rem;
   text-align: left;
-  margin-right: 5%;
+  margin-right: 85%;
+  top: 70px;
 }
 
 .hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 7vw, 3.5rem);
-  color: var(--primary);
-  margin: 0 0 1.5rem;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  text-shadow: 0 1px 6px rgba(212, 197, 179, 0.6);
+font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
+    color: #2c2420;
+    margin: 0 0 1.5rem;
+    letter-spacing: -.02em;
+    line-height: 1.1;
 }
 
 .hero-subtitle {
