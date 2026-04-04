@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,6 +18,7 @@ export default function ProductDetailClient() {
   const [loading, setLoading] = useState(true);
   const [added, setAdded] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     if (!params.id) return;
@@ -30,6 +31,22 @@ export default function ProductDetailClient() {
       })
       .finally(() => setLoading(false));
   }, [params.id, router]);
+
+  const handleLightboxKey = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') setLightboxOpen(false);
+    if (e.key === 'ArrowLeft') setActiveIndex((prev) => (prev - 1 + (product?.images?.length || 1)) % (product?.images?.length || 1));
+    if (e.key === 'ArrowRight') setActiveIndex((prev) => (prev + 1) % (product?.images?.length || 1));
+  }, [product]);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    document.addEventListener('keydown', handleLightboxKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleLightboxKey);
+      document.body.style.overflow = '';
+    };
+  }, [lightboxOpen, handleLightboxKey]);
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -87,18 +104,43 @@ export default function ProductDetailClient() {
         ← {t.product.backToShop}
       </Link>
 
+      {/* Lightbox modal */}
+      {lightboxOpen && (
+        <div className="lightbox-overlay" onClick={() => setLightboxOpen(false)}>
+          <button className="lightbox-close" onClick={() => setLightboxOpen(false)} aria-label="Stäng">✕</button>
+          {images.length > 1 && (
+            <>
+              <button
+                className="lightbox-nav lightbox-prev"
+                onClick={(e) => { e.stopPropagation(); setActiveIndex((activeIndex - 1 + images.length) % images.length); }}
+                aria-label="Föregående"
+              >‹</button>
+              <button
+                className="lightbox-nav lightbox-next"
+                onClick={(e) => { e.stopPropagation(); setActiveIndex((activeIndex + 1) % images.length); }}
+                aria-label="Nästa"
+              >›</button>
+            </>
+          )}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={resolveImg(images[activeIndex])}
+            alt={product.title[lang]}
+            className="lightbox-image"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+
       <div className="product-detail-grid">
         {/* Image gallery */}
         <div>
           <div className="product-detail-mat">
-            <div className="product-detail-image-wrap">
-              <Image
+            <div className="product-detail-image-wrap" onClick={() => setLightboxOpen(true)}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={resolveImg(images[activeIndex])}
                 alt={product.title[lang]}
-                fill
-                className="object-cover"
-                priority
-                unoptimized
               />
             </div>
           </div>
