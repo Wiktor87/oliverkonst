@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from './LanguageContext';
 import { publicUrl } from '@/lib/config';
 
@@ -13,6 +15,7 @@ interface SocialLinks {
 export default function Footer() {
   const { t, lang } = useLanguage();
   const [socialLinks, setSocialLinks] = useState<SocialLinks>({ instagram: '', facebook: '' });
+  const pathname = usePathname();
 
   useEffect(() => {
     fetch(publicUrl('/data/site-content.json'))
@@ -21,11 +24,21 @@ export default function Footer() {
       .catch(() => {});
   }, []);
 
+  if (pathname.startsWith('/admin')) return null;
+
   return (
     <footer className="site-footer">
       <div className="site-footer-inner">
         <div className="footer-grid">
           <div>
+            <Image
+              src={publicUrl('/img/Logo.png')}
+              alt="Oliver's Konst"
+              width={0}
+              height={0}
+              unoptimized
+              style={{ height: '60px', width: 'auto', marginBottom: '0.75rem' }}
+            />
             <span className="footer-brand-name">Oliver&apos;s Konst</span>
             <p className="footer-tagline">
               {lang === 'en'
