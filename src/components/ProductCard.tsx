@@ -62,8 +62,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               <Image
                 src={publicUrl('/images/sold.webp')}
                 alt={t.product.sold}
-                width={80}
-                height={80}
+                width={55}
+                height={55}
                 unoptimized
               />
             </div>

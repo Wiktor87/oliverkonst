@@ -663,7 +663,6 @@ font-family: var(--font-display);
 .product-card {
   display: block;
   text-decoration: none;
-  background-color: var(--surface-high);
   overflow: hidden;
   transition: box-shadow 0.25s ease;
 }
@@ -728,7 +727,6 @@ font-family: var(--font-display);
   bottom: 0.5rem;
   right: 0.5rem;
   z-index: 2;
-  opacity: 0.85;
   pointer-events: none;
 }
 
@@ -1150,7 +1148,6 @@ font-family: var(--font-display);
   bottom: 1rem;
   right: 1rem;
   z-index: 2;
-  opacity: 0.85;
   pointer-events: none;
 }
 
