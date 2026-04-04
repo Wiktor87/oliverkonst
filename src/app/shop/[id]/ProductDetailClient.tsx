@@ -142,6 +142,17 @@ export default function ProductDetailClient() {
                 src={resolveImg(images[activeIndex])}
                 alt={product.title[lang]}
               />
+              {product.status === 'sold' && (
+                <div className="product-detail-sold-stamp">
+                  <Image
+                    src={publicUrl('/images/sold.webp')}
+                    alt={t.product.sold}
+                    width={120}
+                    height={120}
+                    unoptimized
+                  />
+                </div>
+              )}
             </div>
           </div>
 
@@ -188,9 +199,18 @@ export default function ProductDetailClient() {
             </div>
           </dl>
 
-          <p className="product-detail-price">
-            {product.price.toLocaleString('sv-SE')} {t.common.currency}
-          </p>
+          {product.status === 'sold' ? (
+            <p className="product-detail-price-sold">
+              <span className="price-strikethrough">
+                {product.price.toLocaleString('sv-SE')} {t.common.currency}
+              </span>
+              <span className="sold-label">{t.product.sold}</span>
+            </p>
+          ) : (
+            <p className="product-detail-price">
+              {product.price.toLocaleString('sv-SE')} {t.common.currency}
+            </p>
+          )}
 
           {product.status === 'available' && (
             <button
