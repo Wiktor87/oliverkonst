@@ -1671,7 +1671,7 @@ font-family: var(--font-display);
   .hero-section {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   .hero-bg-image {
@@ -1680,7 +1680,7 @@ font-family: var(--font-display);
 
   .hero-content {
     max-width: 28rem;
-    margin-right: 5%;
+    margin-left: 5%;
   }
 
   .site-logo-fixed.site-logo-scrolled {
