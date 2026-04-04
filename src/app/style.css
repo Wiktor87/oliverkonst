@@ -369,10 +369,6 @@ a {
   pointer-events: auto;
 }
 
-.site-logo-fixed img {
-  height: 85px !important;
-}
-
 .site-logo-fixed.site-logo-scrolled {
   top: 0;
 }
@@ -1592,9 +1588,10 @@ a {
     left: 1.5rem;
   }
 
-  .site-logo-fixed img {
-    height: 60px !important;
-  }
+
+   .site-logo-fixed img {
+  height: 85px !important;
+   }
 
   .site-logo-fixed.site-logo-scrolled {
     top: 0rem;
