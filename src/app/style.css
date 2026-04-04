@@ -360,13 +360,17 @@ a {
    ============================================================ */
 .site-logo-fixed {
   position: fixed;
-  top: 1rem;
+  top: 3rem;
   left: 1.5rem;
   z-index: 100;
   display: block;
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, top 0.4s ease;
   pointer-events: auto;
+}
+
+.site-logo-fixed.site-logo-scrolled {
+  top: 0rem;
 }
 
 .site-logo-fixed:hover {

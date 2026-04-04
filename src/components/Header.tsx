@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useCart } from './CartContext';
 import { useLanguage } from './LanguageContext';
 import { publicUrl } from '@/lib/config';
@@ -16,6 +17,8 @@ export default function Header() {
   const { totalItems } = useCart();
   const { lang, setLang, t } = useLanguage();
   const [socialLinks, setSocialLinks] = useState<SocialLinks>({ instagram: '', facebook: '' });
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     fetch(publicUrl('/data/site-content.json'))
@@ -24,10 +27,23 @@ export default function Header() {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Hide header on admin pages
+  const isAdmin = pathname.startsWith('/admin');
+  if (isAdmin) return null;
+
   return (
     <>
       {/* Fixed overlay logo */}
-      <Link href="/" className="site-logo-fixed">
+      <Link href="/" className={`site-logo-fixed${scrolled ? ' site-logo-scrolled' : ''}`}>
         <Image
           src={publicUrl('/img/20676002-2972-4876-A8C6-6FAA7FA31B3E.png')}
           alt="Oliver's Konst"
