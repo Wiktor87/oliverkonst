@@ -1540,6 +1540,12 @@ a {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .section, .section-sm {
+    /* padding: 4rem 1.5rem; */
+    padding-top: 1rem;
+    margin: 0 auto;
+   }
+
   .product-detail-grid {
     grid-template-columns: 7fr 5fr;
     gap: 4rem;
