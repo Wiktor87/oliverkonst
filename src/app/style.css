@@ -586,6 +586,11 @@ a {
   inset: 0;
   z-index: 0;
   display: none;
+  overflow: hidden;
+}
+
+.hero-bg-image img {
+  object-position: left center;
 }
 
 .hero-overlay-sides {
@@ -594,7 +599,7 @@ a {
   background: linear-gradient(
     to right,
     var(--surface-low) 0%,
-    transparent 40%,
+    transparent 30%,
     transparent 70%,
     var(--surface-low) 100%
   );
@@ -1676,15 +1681,11 @@ font-family: var(--font-display);
 
   .hero-bg-image {
     display: block;
-    left: 30%;
   }
 
   .hero-content {
     max-width: 28rem;
     margin-left: 0%;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 3;
   }
 
   .site-logo-fixed.site-logo-scrolled {
