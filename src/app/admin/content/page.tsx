@@ -2,9 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { SiteContent } from '@/types';
+import Image from 'next/image';
+import { SiteContent, Product } from '@/types';
 import { useAdmin } from '@/components/AdminContext';
 import { readJsonFile, writeJsonFile } from '@/lib/github';
+import { publicUrl } from '@/lib/config';
+
+const MAX_SELECTED = 8;
 
 const defaultContent: SiteContent = {
   biography: { sv: '', en: '' },
@@ -12,6 +16,7 @@ const defaultContent: SiteContent = {
   aboutTitle: { sv: '', en: '' },
   contactEmail: '',
   socialLinks: { instagram: '', facebook: '' },
+  selectedProducts: [],
 };
 
 export default function AdminContentPage() {
@@ -23,6 +28,7 @@ export default function AdminContentPage() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState('');
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     if (isLoading) return;
@@ -30,10 +36,14 @@ export default function AdminContentPage() {
       router.push('/admin/login');
       return;
     }
-    readJsonFile<SiteContent>(token, 'data/site-content.json')
-      .then(({ data, sha: s }) => {
-        setContent(data);
-        setSha(s);
+    Promise.all([
+      readJsonFile<SiteContent>(token, 'data/site-content.json'),
+      readJsonFile<Product[]>(token, 'data/products.json'),
+    ])
+      .then(([contentRes, productsRes]) => {
+        setContent({ ...defaultContent, ...contentRes.data });
+        setSha(contentRes.sha);
+        setAllProducts(productsRes.data);
       })
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -50,6 +60,37 @@ export default function AdminContentPage() {
         next[path[0]] = parent;
       }
       return next as unknown as SiteContent;
+    });
+  };
+
+  const selected = content.selectedProducts ?? [];
+
+  const toggleProduct = (id: string) => {
+    setContent((prev) => {
+      const current = prev.selectedProducts ?? [];
+      if (current.includes(id)) {
+        return { ...prev, selectedProducts: current.filter((pid) => pid !== id) };
+      }
+      if (current.length >= MAX_SELECTED) return prev;
+      return { ...prev, selectedProducts: [...current, id] };
+    });
+  };
+
+  const removeSelected = (id: string) => {
+    setContent((prev) => ({
+      ...prev,
+      selectedProducts: (prev.selectedProducts ?? []).filter((pid) => pid !== id),
+    }));
+  };
+
+  const moveSelected = (id: string, dir: -1 | 1) => {
+    setContent((prev) => {
+      const arr = [...(prev.selectedProducts ?? [])];
+      const idx = arr.indexOf(id);
+      const newIdx = idx + dir;
+      if (newIdx < 0 || newIdx >= arr.length) return prev;
+      [arr[idx], arr[newIdx]] = [arr[newIdx], arr[idx]];
+      return { ...prev, selectedProducts: arr };
     });
   };
 
@@ -191,8 +232,104 @@ export default function AdminContentPage() {
           </div>
         </section>
 
+        {/* Selected artworks */}
+        <section className="bg-white rounded-lg border border-stone-100 p-6">
+          <h2 className="font-medium text-stone-800 mb-1">Utvalda verk (startsidan)</h2>
+          <p className="text-sm text-stone-500 mb-4">
+            Välj upp till {MAX_SELECTED} verk som visas på startsidan. Ordningen bestämmer visningsordningen.
+          </p>
+
+          {/* Currently selected — sortable strip */}
+          {selected.length > 0 && (
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-stone-700 mb-2">
+                Valda ({selected.length}/{MAX_SELECTED})
+              </label>
+              <div className="flex flex-wrap gap-3">
+                {selected.map((pid, idx) => {
+                  const p = allProducts.find((pr) => pr.id === pid);
+                  if (!p) return null;
+                  const imgSrc = p.imageUrl.startsWith('http') ? p.imageUrl : publicUrl(p.imageUrl);
+                  return (
+                    <div key={pid} className="relative group w-24">
+                      <div className="w-24 h-24 rounded border border-stone-200 overflow-hidden relative">
+                        <Image src={imgSrc} alt={p.title.sv} fill className="object-cover" unoptimized />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors" />
+                      </div>
+                      <div className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                          type="button"
+                          onClick={() => removeSelected(pid)}
+                          className="bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center"
+                        >
+                          x
+                        </button>
+                      </div>
+                      <div className="flex justify-center gap-1 mt-1">
+                        <button
+                          type="button"
+                          disabled={idx === 0}
+                          onClick={() => moveSelected(pid, -1)}
+                          className="text-xs text-stone-500 hover:text-stone-800 disabled:opacity-30"
+                        >
+                          &larr;
+                        </button>
+                        <span className="text-xs text-stone-400">{idx + 1}</span>
+                        <button
+                          type="button"
+                          disabled={idx === selected.length - 1}
+                          onClick={() => moveSelected(pid, 1)}
+                          className="text-xs text-stone-500 hover:text-stone-800 disabled:opacity-30"
+                        >
+                          &rarr;
+                        </button>
+                      </div>
+                      <p className="text-xs text-stone-600 text-center truncate mt-0.5">{p.title.sv}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* All products picker */}
+          <label className="block text-sm font-medium text-stone-700 mb-2">Alla verk</label>
+          <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
+            {allProducts.map((p) => {
+              const isSelected = selected.includes(p.id);
+              const imgSrc = p.imageUrl.startsWith('http') ? p.imageUrl : publicUrl(p.imageUrl);
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => toggleProduct(p.id)}
+                  disabled={!isSelected && selected.length >= MAX_SELECTED}
+                  className={`relative rounded border-2 overflow-hidden transition-all ${
+                    isSelected
+                      ? 'border-amber-600 ring-2 ring-amber-300'
+                      : 'border-stone-200 hover:border-stone-400 disabled:opacity-40'
+                  }`}
+                >
+                  <div className="aspect-square relative">
+                    <Image src={imgSrc} alt={p.title.sv} fill className="object-cover" unoptimized />
+                  </div>
+                  {isSelected && (
+                    <div className="absolute top-1 right-1 bg-amber-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">
+                      {selected.indexOf(p.id) + 1}
+                    </div>
+                  )}
+                  <p className="text-xs text-stone-700 p-1 truncate">{p.title.sv}</p>
+                </button>
+              );
+            })}
+            {allProducts.length === 0 && (
+              <p className="col-span-full text-sm text-stone-400">Inga produkter hittades.</p>
+            )}
+          </div>
+        </section>
+
         {saveError && <p className="text-sm text-red-600">{saveError}</p>}
-        {saveSuccess && <p className="text-sm text-green-600">✓ Sparad! Webbplatsen bygger om inom 1–2 minuter.</p>}
+        {saveSuccess && <p className="text-sm text-green-600">Sparad! Webbplatsen bygger om inom 1-2 minuter.</p>}
 
         <button type="submit" disabled={saving} className="btn-primary disabled:opacity-50">
           {saving ? 'Sparar till GitHub...' : 'Spara innehåll'}

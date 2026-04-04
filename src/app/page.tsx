@@ -7,6 +7,7 @@ import { Product } from '@/types';
 import { useLanguage } from '@/components/LanguageContext';
 import ProductCard from '@/components/ProductCard';
 import CuratorsNote from '@/components/CuratorsNote';
+import { SiteContent } from '@/types';
 import { siteConfig, publicUrl } from '@/lib/config';
 
 export default function HomePage() {
@@ -14,14 +15,26 @@ export default function HomePage() {
   const [featured, setFeatured] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch(`${siteConfig.basePath}/data/products.json`)
-      .then((r) => r.json())
-      .then((data: Product[]) => setFeatured(data.slice(0, 6)))
+    Promise.all([
+      fetch(`${siteConfig.basePath}/data/products.json`).then((r) => r.json()),
+      fetch(`${siteConfig.basePath}/data/site-content.json`).then((r) => r.json()),
+    ])
+      .then(([products, siteContent]: [Product[], SiteContent]) => {
+        const selectedIds = siteContent.selectedProducts ?? [];
+        if (selectedIds.length > 0) {
+          const ordered = selectedIds
+            .map((id) => products.find((p) => p.id === id))
+            .filter((p): p is Product => !!p);
+          setFeatured(ordered.slice(0, 8));
+        } else {
+          setFeatured(products.slice(0, 8));
+        }
+      })
       .catch(() => {});
   }, []);
 
-  const firstRow = featured.slice(0, 3);
-  const secondRow = featured.slice(3, 6);
+  const firstRow = featured.slice(0, 4);
+  const secondRow = featured.slice(4, 8);
 
   return (
     <div>
@@ -60,7 +73,7 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="product-grid">
-            {[1, 2, 3].map((i) => (
+            {[1, 2, 3, 4].map((i) => (
               <div key={i} className="skeleton skeleton-card" />
             ))}
           </div>
@@ -113,7 +126,7 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="product-grid">
-            {[1, 2, 3].map((i) => (
+            {[1, 2, 3, 4].map((i) => (
               <div key={i} className="skeleton skeleton-card" />
             ))}
           </div>

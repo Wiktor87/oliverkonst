@@ -1,26 +1,10 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Cormorant_Garamond, Manrope } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from '@/components/CartContext';
 import { LanguageProvider } from '@/components/LanguageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const manrope = Manrope({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-body',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: "Oliver's Konst",
@@ -29,8 +13,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="sv" className={`${cormorantGaramond.variable} ${manrope.variable}`}>
+    <html lang="sv">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-BE191WDJL3"
           strategy="afterInteractive"

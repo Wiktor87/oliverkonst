@@ -52,6 +52,7 @@ export interface SiteContent {
     instagram: string;
     facebook: string;
   };
+  selectedProducts?: string[];
 }
 
 export interface Category {
