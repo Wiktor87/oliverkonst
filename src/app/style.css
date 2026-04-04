@@ -224,6 +224,7 @@ a {
   text-align: center;
   transition: background-color 0.2s ease, color 0.2s ease;
   line-height: 1.4;
+  margin-bottom: 2rem;
 }
 
 .btn-secondary:hover {
