@@ -1,29 +1,5 @@
 [
   {
-    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "title": {
-      "sv": "Solnedgång vid havet",
-      "en": "Sunset by the Sea"
-    },
-    "description": {
-      "sv": "En vacker oljemålning som fångar solnedgångens varma färger reflekterade i havets stilla vatten. En meditativ och tidlös komposition.",
-      "en": "A beautiful oil painting capturing the warm colors of sunset reflected in the calm sea waters. A meditative and timeless composition."
-    },
-    "price": 3500,
-    "currency": "SEK",
-    "category": "oil",
-    "dimensions": "60x80 cm",
-    "technique": {
-      "sv": "Olja på duk",
-      "en": "Oil on canvas"
-    },
-    "imageUrl": "https://hylkegarden.se/wp-content/uploads/2026/03/Oliver-Skifs-1-low-1-491x1030.jpg",
-    "status": "available",
-    "productType": "physical",
-    "createdAt": "2026-04-03T00:00:00Z",
-    "updatedAt": "2026-04-03T14:46:14.107Z"
-  },
-  {
     "id": "e88e69b3-a60a-4f63-8e63-48b7030d6c09",
     "title": {
       "sv": "Strum",
