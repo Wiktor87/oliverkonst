@@ -4,10 +4,12 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { v4 as uuidv4 } from 'uuid';
 import { useLanguage } from '@/components/LanguageContext';
 import { useCart } from '@/components/CartContext';
 import { publicUrl } from '@/lib/config';
-import type { SiteContent } from '@/types';
+import { buildPaymentLinkUrl } from '@/lib/stripe';
+import type { SiteContent, Order } from '@/types';
 
 type DeliveryMethod = 'shipping' | 'pickup';
 
@@ -26,7 +28,7 @@ const emptyForm: CustomerForm = {
 
 export default function CheckoutPage() {
   const { lang } = useLanguage();
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, totalPrice } = useCart();
   const router = useRouter();
   const [form, setForm] = useState<CustomerForm>(emptyForm);
   const [delivery, setDelivery] = useState<DeliveryMethod>('shipping');
@@ -96,40 +98,48 @@ export default function CheckoutPage() {
       `${sv ? 'TOTALT' : 'TOTAL'}: ${totalAmount.toLocaleString('sv-SE')} SEK`,
     ].filter(Boolean).join('\n');
 
-    // Save order to sessionStorage for success page
-    const orderData = {
-      customer: form,
-      delivery,
-      items: items.map((i) => ({
-        title: i.title[lang],
-        quantity: i.quantity,
-        price: i.price,
-        shippingCost: i.shippingCost,
-        productId: i.productId,
-        stripePaymentLink: i.stripePaymentLink,
-      })),
-      totalPrice,
+    // Build the Order object for persistence
+    const orderId = uuidv4();
+    const order: Order = {
+      id: orderId,
+      items: items.map((i) => ({ ...i })),
+      customerName: form.name,
+      customerEmail: form.email,
+      customerPhone: form.phone || undefined,
+      customerAddress: delivery === 'shipping' ? form.street : undefined,
+      customerCity: delivery === 'shipping' ? form.city : undefined,
+      customerPostalCode: delivery === 'shipping' ? form.postalCode : undefined,
+      deliveryMethod: delivery,
+      status: 'pending',
+      totalProducts: totalPrice,
       totalShipping,
       totalAmount,
-      notificationRecipients: notificationRecipients || 'oliver@oliverkonst.se',
-      orderText,
       createdAt: new Date().toISOString(),
     };
-    sessionStorage.setItem('pendingOrder', JSON.stringify(orderData));
 
     // Find if we have a single item with a Payment Link
     const singleItemWithLink = items.length === 1 && items[0].stripePaymentLink;
 
+    // Store order data for the success page to handle saving + notifications
+    const recipients = notificationRecipients || 'oliver@oliverkonst.se';
+    sessionStorage.setItem('pendingOrder', JSON.stringify({
+      order,
+      notificationRecipients: recipients,
+      orderText,
+      orderToken: siteContent?.orderToken || '',
+      isStripe: !!singleItemWithLink,
+    }));
+
     if (singleItemWithLink) {
-      // Stripe: redirect directly — notification is sent on success page
-      window.location.href = items[0].stripePaymentLink!;
+      // Stripe: redirect to payment – success page handles the rest
+      const stripeUrl = buildPaymentLinkUrl(items[0].stripePaymentLink!, {
+        prefilled_email: form.email,
+        client_reference_id: orderId,
+      });
+      window.location.href = stripeUrl;
     } else {
-      // No Stripe link — email order to admin
-      const subject = encodeURIComponent(`Beställning – Oliver's Konst – ${form.name}`);
-      const body = encodeURIComponent(orderText);
-      const recipients = notificationRecipients || 'oliver@oliverkonst.se';
-      clearCart();
-      window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`;
+      // Non-Stripe: go straight to success page
+      router.push('/checkout/success');
     }
   };
 
