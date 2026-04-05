@@ -113,7 +113,9 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T12:01:41.883Z",
-    "updatedAt": "2026-04-04T15:02:52.048Z"
+    "updatedAt": "2026-04-05T10:28:02.079Z",
+    "stripePaymentLink": "https://buy.stripe.com/5kQ3co7Um7tf4JnaMzfjG04",
+    "shippingCost": 0
   },
   {
     "id": "dbccbf65-5156-4809-bb6e-1cdc93f4f969",
