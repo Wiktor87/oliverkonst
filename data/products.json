@@ -201,7 +201,7 @@
       "sv": "Test",
       "en": "Test"
     },
-    "price": 5,
+    "price": 2,
     "currency": "SEK",
     "category": "leather",
     "dimensions": "100x100cm",
@@ -217,6 +217,7 @@
     "productType": "physical",
     "stripePaymentLink": "https://buy.stripe.com/6oU3cofmO7tf4Jnf2PfjG00",
     "createdAt": "2026-04-05T07:55:43.022Z",
-    "updatedAt": "2026-04-05T07:55:43.022Z"
+    "updatedAt": "2026-04-05T09:16:42.188Z",
+    "shippingCost": 0
   }
 ]
