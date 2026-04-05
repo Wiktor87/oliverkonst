@@ -11,7 +11,7 @@ export default function ShopClient() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [sortOrder, setSortOrder] = useState<'default' | 'asc' | 'desc'>('default');
+  const [sortOrder, setSortOrder] = useState<'default' | 'asc' | 'desc' | 'newest' | 'oldest'>('newest');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,6 +36,8 @@ export default function ShopClient() {
   const sorted = [...filtered].sort((a, b) => {
     if (sortOrder === 'asc') return a.price - b.price;
     if (sortOrder === 'desc') return b.price - a.price;
+    if (sortOrder === 'newest') return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    if (sortOrder === 'oldest') return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     return 0;
   });
 
@@ -66,7 +68,20 @@ export default function ShopClient() {
         </div>
 
         <div className="filter-bar">
-          <span className="sort-label">{t.shop.sortByPrice}:</span>
+          <span className="sort-label">{t.shop.sortByDate}:</span>
+          <button
+            onClick={() => setSortOrder('newest')}
+            className={`filter-btn${sortOrder === 'newest' ? ' active' : ''}`}
+          >
+            {t.shop.newest}
+          </button>
+          <button
+            onClick={() => setSortOrder('oldest')}
+            className={`filter-btn${sortOrder === 'oldest' ? ' active' : ''}`}
+          >
+            {t.shop.oldest}
+          </button>
+          <span className="sort-label" style={{ marginLeft: '1rem' }}>{t.shop.sortByPrice}:</span>
           <button
             onClick={() => setSortOrder('asc')}
             className={`filter-btn${sortOrder === 'asc' ? ' active' : ''}`}

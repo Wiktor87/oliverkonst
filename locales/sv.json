@@ -32,6 +32,9 @@
       "all": "Alla",
       "label": "Filtrera efter kategori"
     },
+    "sortByDate": "Sortera efter datum",
+    "newest": "Nyast först",
+    "oldest": "Äldst först",
     "sortByPrice": "Sortera efter pris",
     "priceAsc": "Pris: Lägst först",
     "priceDesc": "Pris: Högst först",
