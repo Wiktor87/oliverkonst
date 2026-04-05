@@ -61,8 +61,6 @@ export interface SiteContent {
   selectedProducts?: string[];
   /** Email addresses that receive order notifications (comma-separated) */
   notificationEmails?: string;
-  /** Fine-grained GitHub PAT for saving orders (contents:write on this repo only) */
-  orderToken?: string;
   /** Purchase terms / Köpvillkor */
   purchaseTerms?: LocalizedString;
 }

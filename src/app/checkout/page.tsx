@@ -4,12 +4,11 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { v4 as uuidv4 } from 'uuid';
 import { useLanguage } from '@/components/LanguageContext';
 import { useCart } from '@/components/CartContext';
 import { publicUrl } from '@/lib/config';
 import { buildPaymentLinkUrl } from '@/lib/stripe';
-import type { SiteContent, Order } from '@/types';
+import type { SiteContent } from '@/types';
 
 type DeliveryMethod = 'shipping' | 'pickup';
 
@@ -28,7 +27,7 @@ const emptyForm: CustomerForm = {
 
 export default function CheckoutPage() {
   const { lang } = useLanguage();
-  const { items, totalPrice } = useCart();
+  const { items, totalPrice, clearCart } = useCart();
   const router = useRouter();
   const [form, setForm] = useState<CustomerForm>(emptyForm);
   const [delivery, setDelivery] = useState<DeliveryMethod>('shipping');
@@ -67,79 +66,67 @@ export default function CheckoutPage() {
     if (!acceptTerms) return;
     setSubmitting(true);
 
-    // Build order summary for email
-    const itemLines = items.map((i) =>
-      `- ${i.title[lang]} x${i.quantity} = ${(i.price * i.quantity).toLocaleString('sv-SE')} SEK` +
-      (delivery === 'shipping' && i.shippingCost ? ` (frakt: ${(i.shippingCost * i.quantity).toLocaleString('sv-SE')} SEK)` : '')
-    ).join('\n');
-
-    const deliveryLabel = delivery === 'shipping'
-      ? (sv ? 'Frakt' : 'Shipping')
-      : (sv ? 'Upphämtning' : 'Pickup');
-
-    const addressBlock = delivery === 'shipping'
-      ? `\n${sv ? 'Adress' : 'Address'}:\n${form.street}\n${form.postalCode} ${form.city}`
-      : '';
-
-    const orderText = [
-      `${sv ? 'NY BESTÄLLNING' : 'NEW ORDER'}`,
-      ``,
-      `${sv ? 'Kund' : 'Customer'}: ${form.name}`,
-      `${sv ? 'E-post' : 'Email'}: ${form.email}`,
-      `${sv ? 'Telefon' : 'Phone'}: ${form.phone}`,
-      `${sv ? 'Leverans' : 'Delivery'}: ${deliveryLabel}`,
-      addressBlock,
-      ``,
-      `${sv ? 'Produkter' : 'Products'}:`,
-      itemLines,
-      ``,
-      `${sv ? 'Produkter totalt' : 'Products total'}: ${totalPrice.toLocaleString('sv-SE')} SEK`,
-      delivery === 'shipping' ? `${sv ? 'Frakt' : 'Shipping'}: ${totalShipping.toLocaleString('sv-SE')} SEK` : '',
-      `${sv ? 'TOTALT' : 'TOTAL'}: ${totalAmount.toLocaleString('sv-SE')} SEK`,
-    ].filter(Boolean).join('\n');
-
-    // Build the Order object for persistence
-    const orderId = uuidv4();
-    const order: Order = {
-      id: orderId,
-      items: items.map((i) => ({ ...i })),
-      customerName: form.name,
-      customerEmail: form.email,
-      customerPhone: form.phone || undefined,
-      customerAddress: delivery === 'shipping' ? form.street : undefined,
-      customerCity: delivery === 'shipping' ? form.city : undefined,
-      customerPostalCode: delivery === 'shipping' ? form.postalCode : undefined,
-      deliveryMethod: delivery,
-      status: 'pending',
-      totalProducts: totalPrice,
-      totalShipping,
-      totalAmount,
-      createdAt: new Date().toISOString(),
-    };
-
     // Find if we have a single item with a Payment Link
     const singleItemWithLink = items.length === 1 && items[0].stripePaymentLink;
 
-    // Store order data for the success page to handle saving + notifications
-    const recipients = notificationRecipients || 'oliver@oliverkonst.se';
-    sessionStorage.setItem('pendingOrder', JSON.stringify({
-      order,
-      notificationRecipients: recipients,
-      orderText,
-      orderToken: siteContent?.orderToken || '',
-      isStripe: !!singleItemWithLink,
-    }));
-
     if (singleItemWithLink) {
-      // Stripe: redirect to payment – success page handles the rest
+      // Stripe flow: pack customer & delivery info into client_reference_id
+      // so it's visible in Stripe Dashboard under Betalningar
+      const deliveryLabel = delivery === 'shipping' ? 'Frakt' : 'Upphämtning';
+      const addressPart = delivery === 'shipping'
+        ? ` | ${form.street}, ${form.postalCode} ${form.city}`
+        : '';
+      const refId = `${form.name} | ${form.phone} | ${deliveryLabel}${addressPart}`;
+
       const stripeUrl = buildPaymentLinkUrl(items[0].stripePaymentLink!, {
         prefilled_email: form.email,
-        client_reference_id: orderId,
+        client_reference_id: refId.slice(0, 200),
       });
+
+      // Save info for success page display
+      sessionStorage.setItem('pendingOrder', JSON.stringify({
+        name: form.name,
+        email: form.email,
+      }));
+
       window.location.href = stripeUrl;
     } else {
-      // Non-Stripe: go straight to success page
-      router.push('/checkout/success');
+      // Non-Stripe flow: send order details via email
+      const itemLines = items.map((i) =>
+        `- ${i.title[lang]} x${i.quantity} = ${(i.price * i.quantity).toLocaleString('sv-SE')} SEK` +
+        (delivery === 'shipping' && i.shippingCost ? ` (frakt: ${(i.shippingCost * i.quantity).toLocaleString('sv-SE')} SEK)` : '')
+      ).join('\n');
+
+      const deliveryLabel = delivery === 'shipping'
+        ? (sv ? 'Frakt' : 'Shipping')
+        : (sv ? 'Upphämtning' : 'Pickup');
+
+      const addressBlock = delivery === 'shipping'
+        ? `\n${sv ? 'Adress' : 'Address'}:\n${form.street}\n${form.postalCode} ${form.city}`
+        : '';
+
+      const orderText = [
+        `${sv ? 'NY BESTÄLLNING' : 'NEW ORDER'}`,
+        ``,
+        `${sv ? 'Kund' : 'Customer'}: ${form.name}`,
+        `${sv ? 'E-post' : 'Email'}: ${form.email}`,
+        `${sv ? 'Telefon' : 'Phone'}: ${form.phone}`,
+        `${sv ? 'Leverans' : 'Delivery'}: ${deliveryLabel}`,
+        addressBlock,
+        ``,
+        `${sv ? 'Produkter' : 'Products'}:`,
+        itemLines,
+        ``,
+        `${sv ? 'Produkter totalt' : 'Products total'}: ${totalPrice.toLocaleString('sv-SE')} SEK`,
+        delivery === 'shipping' ? `${sv ? 'Frakt' : 'Shipping'}: ${totalShipping.toLocaleString('sv-SE')} SEK` : '',
+        `${sv ? 'TOTALT' : 'TOTAL'}: ${totalAmount.toLocaleString('sv-SE')} SEK`,
+      ].filter(Boolean).join('\n');
+
+      const subject = encodeURIComponent(`Beställning – Oliver's Konst – ${form.name}`);
+      const body = encodeURIComponent(orderText);
+      const recipients = notificationRecipients || 'oliver@oliverkonst.se';
+      clearCart();
+      window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`;
     }
   };
 
