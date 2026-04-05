@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { useLanguage } from '@/components/LanguageContext';
 import { useCart } from '@/components/CartContext';
 import { publicUrl } from '@/lib/config';
-import { saveOrder } from '@/lib/orders';
 import { buildPaymentLinkUrl } from '@/lib/stripe';
 import type { SiteContent, Order } from '@/types';
 
@@ -29,7 +28,7 @@ const emptyForm: CustomerForm = {
 
 export default function CheckoutPage() {
   const { lang } = useLanguage();
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, totalPrice } = useCart();
   const router = useRouter();
   const [form, setForm] = useState<CustomerForm>(emptyForm);
   const [delivery, setDelivery] = useState<DeliveryMethod>('shipping');
@@ -121,29 +120,26 @@ export default function CheckoutPage() {
     // Find if we have a single item with a Payment Link
     const singleItemWithLink = items.length === 1 && items[0].stripePaymentLink;
 
-    if (singleItemWithLink) {
-      // Stripe flow: store order in sessionStorage – it gets saved on the success page
-      // (after Stripe confirms payment)
-      sessionStorage.setItem('pendingOrder', JSON.stringify({
-        order,
-        notificationRecipients: notificationRecipients || 'oliver@oliverkonst.se',
-        orderText,
-      }));
+    // Store order data for the success page to handle saving + notifications
+    const recipients = notificationRecipients || 'oliver@oliverkonst.se';
+    sessionStorage.setItem('pendingOrder', JSON.stringify({
+      order,
+      notificationRecipients: recipients,
+      orderText,
+      orderToken: siteContent?.orderToken || '',
+      isStripe: !!singleItemWithLink,
+    }));
 
-      // Build Stripe URL with customer email and order reference for Stripe Dashboard
+    if (singleItemWithLink) {
+      // Stripe: redirect to payment – success page handles the rest
       const stripeUrl = buildPaymentLinkUrl(items[0].stripePaymentLink!, {
         prefilled_email: form.email,
         client_reference_id: orderId,
       });
       window.location.href = stripeUrl;
     } else {
-      // Non-Stripe flow: save order immediately, then open mailto
-      saveOrder(order); // fire-and-forget
-      clearCart();
-      const subject = encodeURIComponent(`Beställning – Oliver's Konst – ${form.name}`);
-      const body = encodeURIComponent(orderText);
-      const recipients = notificationRecipients || 'oliver@oliverkonst.se';
-      window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`;
+      // Non-Stripe: go straight to success page
+      router.push('/checkout/success');
     }
   };
 

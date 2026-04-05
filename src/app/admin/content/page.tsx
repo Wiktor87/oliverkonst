@@ -297,6 +297,23 @@ export default function AdminContentPage() {
             Stripe hanterar betalning, kvitton och frakt-adress. Pengarna sätts in på ditt bankkonto automatiskt.
             Ingen programmeringskunskap krävs.
           </p>
+          <div className="mt-4 pt-4 border-t border-stone-100">
+            <label className="block text-sm font-medium text-stone-700 mb-1">
+              Order-token (GitHub)
+            </label>
+            <input
+              type="password"
+              className="input-field font-mono text-xs"
+              value={content.orderToken || ''}
+              onChange={(e) => set(['orderToken'], e.target.value)}
+              placeholder="github_pat_..."
+            />
+            <p className="text-xs text-stone-400 mt-1">
+              Skapa en <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer" className="underline">Fine-grained Personal Access Token</a> på GitHub
+              med enbart <strong>Contents: Read and write</strong> behörighet för detta repo.
+              Med denna token sparas beställningar automatiskt under Beställningar i admin-panelen.
+            </p>
+          </div>
         </section>
 
         {/* Purchase terms */}

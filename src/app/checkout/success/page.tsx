@@ -11,6 +11,8 @@ interface PendingOrderData {
   order: Order;
   notificationRecipients: string;
   orderText: string;
+  orderToken: string;
+  isStripe: boolean;
 }
 
 export default function CheckoutSuccessPage() {
@@ -18,7 +20,9 @@ export default function CheckoutSuccessPage() {
   const { clearCart } = useCart();
   const processed = useRef(false);
   const [order, setOrder] = useState<Order | null>(null);
+  const [isStripe, setIsStripe] = useState(false);
   const [mailtoUrl, setMailtoUrl] = useState<string | null>(null);
+  const [orderSaved, setOrderSaved] = useState<boolean | null>(null);
   const sv = lang === 'sv';
 
   useEffect(() => {
@@ -27,30 +31,26 @@ export default function CheckoutSuccessPage() {
 
     clearCart();
 
-    // Read order data from sessionStorage, save it, and build notification email
     try {
       const data = sessionStorage.getItem('pendingOrder');
       if (data) {
         const pending: PendingOrderData = JSON.parse(data);
         setOrder(pending.order);
+        setIsStripe(pending.isStripe);
         sessionStorage.removeItem('pendingOrder');
 
-        // Save order to the repository (GitHub API)
-        saveOrder(pending.order);
-
-        // Build mailto URL for notification
+        // Build mailto URL for the notification button
         const subject = encodeURIComponent(
-          `Beställning genomförd – Oliver's Konst – ${pending.order.customerName}`
+          `Beställning – Oliver's Konst – ${pending.order.customerName}`
         );
         const body = encodeURIComponent(pending.orderText);
-        const mailto = `mailto:${pending.notificationRecipients}?subject=${subject}&body=${body}`;
-        setMailtoUrl(mailto);
+        setMailtoUrl(`mailto:${pending.notificationRecipients}?subject=${subject}&body=${body}`);
 
-        // Attempt to open the email client automatically
-        try {
-          window.open(mailto, '_blank');
-        } catch {
-          // Popup blocked or mailto not supported – user can click the fallback link
+        // Save order to the repository
+        if (pending.orderToken) {
+          saveOrder(pending.order, pending.orderToken)
+            .then((ok) => setOrderSaved(ok))
+            .catch(() => setOrderSaved(false));
         }
       }
     } catch {
@@ -64,12 +64,14 @@ export default function CheckoutSuccessPage() {
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
       <h1 className="empty-state-title">
-        {sv ? 'Tack för ditt köp!' : 'Thank you for your purchase!'}
+        {isStripe
+          ? (sv ? 'Tack för ditt köp!' : 'Thank you for your purchase!')
+          : (sv ? 'Tack för din beställning!' : 'Thank you for your order!')}
       </h1>
       <p className="empty-state-text">
-        {sv
-          ? 'Din betalning har genomförts. Vi kontaktar dig med leveransinformation.'
-          : 'Your payment has been processed. We will contact you with delivery information.'}
+        {isStripe
+          ? (sv ? 'Din betalning har genomförts. Vi kontaktar dig med leveransinformation.' : 'Your payment has been processed. We will contact you with delivery information.')
+          : (sv ? 'Din beställning har registrerats. Vi kontaktar dig angående betalning och leverans.' : 'Your order has been registered. We will contact you regarding payment and delivery.')}
       </p>
 
       {order && (
@@ -94,9 +96,17 @@ export default function CheckoutSuccessPage() {
       )}
 
       {mailtoUrl && (
-        <a href={mailtoUrl} className="btn-secondary" style={{ marginBottom: '1rem', display: 'inline-block' }}>
+        <a href={mailtoUrl} className="btn-primary" style={{ marginBottom: '1rem', display: 'inline-block' }}>
           {sv ? 'Skicka orderbekräftelse via e-post' : 'Send order confirmation via email'}
         </a>
+      )}
+
+      {orderSaved === false && mailtoUrl && (
+        <p className="text-sm text-amber-600" style={{ marginBottom: '1rem' }}>
+          {sv
+            ? 'Ordern kunde inte sparas automatiskt. Klicka på knappen ovan för att skicka orderbekräftelse via e-post.'
+            : 'Order could not be saved automatically. Click the button above to send order confirmation via email.'}
+        </p>
       )}
 
       <Link href="/shop" className="btn-primary">
