@@ -298,20 +298,9 @@ export default function AdminContentPage() {
             Ingen programmeringskunskap krävs.
           </p>
           <div className="mt-4 pt-4 border-t border-stone-100">
-            <label className="block text-sm font-medium text-stone-700 mb-1">
-              Order-token (GitHub)
-            </label>
-            <input
-              type="password"
-              className="input-field font-mono text-xs"
-              value={content.orderToken || ''}
-              onChange={(e) => set(['orderToken'], e.target.value)}
-              placeholder="github_pat_..."
-            />
-            <p className="text-xs text-stone-400 mt-1">
-              Skapa en <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer" className="underline">Fine-grained Personal Access Token</a> på GitHub
-              med enbart <strong>Contents: Read and write</strong> behörighet för detta repo.
-              Med denna token sparas beställningar automatiskt under Beställningar i admin-panelen.
+            <p className="text-xs text-stone-500">
+              <strong>Tips:</strong> Aktivera &quot;Collect shipping addresses&quot; och &quot;Collect phone numbers&quot; på dina Payment Links i Stripe Dashboard
+              så att leveransinformation samlas in direkt av Stripe. All kundinformation syns sedan under Betalningar i Stripe.
             </p>
           </div>
         </section>
