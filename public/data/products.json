@@ -12,7 +12,7 @@
     "price": 35000,
     "currency": "SEK",
     "category": "leather",
-    "dimensions": "",
+    "dimensions": "50x100cm",
     "technique": {
       "sv": "Läder",
       "en": "Leather"
@@ -25,7 +25,9 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T11:38:42.259Z",
-    "updatedAt": "2026-04-04T11:40:19.378Z"
+    "updatedAt": "2026-04-05T14:39:12.597Z",
+    "stripePaymentLink": "https://buy.stripe.com/14A00cgqS8xj5NraMzfjG01",
+    "shippingCost": 0
   },
   {
     "id": "df07a142-1bd0-43bc-a9de-881c83c20246",
@@ -53,7 +55,9 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T11:46:55.840Z",
-    "updatedAt": "2026-04-04T11:46:55.840Z"
+    "updatedAt": "2026-04-05T10:22:43.687Z",
+    "stripePaymentLink": "https://buy.stripe.com/aFaeV63E600Ngs54obfjG02",
+    "shippingCost": 0
   },
   {
     "id": "e2777e56-da6d-4f79-a0d5-783475386ccd",
@@ -80,7 +84,9 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T11:56:52.616Z",
-    "updatedAt": "2026-04-04T15:02:55.247Z"
+    "updatedAt": "2026-04-05T10:25:50.417Z",
+    "stripePaymentLink": "https://buy.stripe.com/6oU00c6QieVHgs58ErfjG03",
+    "shippingCost": 0
   },
   {
     "id": "d04f05f2-f479-4bf2-bc1f-629eff5cbe68",
@@ -107,7 +113,9 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T12:01:41.883Z",
-    "updatedAt": "2026-04-04T15:02:52.048Z"
+    "updatedAt": "2026-04-05T10:28:02.079Z",
+    "stripePaymentLink": "https://buy.stripe.com/5kQ3co7Um7tf4JnaMzfjG04",
+    "shippingCost": 0
   },
   {
     "id": "dbccbf65-5156-4809-bb6e-1cdc93f4f969",
@@ -134,7 +142,9 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T12:18:51.718Z",
-    "updatedAt": "2026-04-04T15:02:48.356Z"
+    "updatedAt": "2026-04-05T10:30:04.463Z",
+    "stripePaymentLink": "https://buy.stripe.com/cNieV60rUfZLdfT1bZfjG05",
+    "shippingCost": 0
   },
   {
     "id": "b30c6e2d-8584-4609-a756-ed7c4b002d3c",
@@ -161,7 +171,9 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T15:04:29.961Z",
-    "updatedAt": "2026-04-04T15:04:29.961Z"
+    "updatedAt": "2026-04-05T10:31:52.943Z",
+    "stripePaymentLink": "https://buy.stripe.com/3cI5kw5Me28V6Rvf2PfjG06",
+    "shippingCost": 0
   },
   {
     "id": "de175fce-189c-419a-bba5-45c34edd6ee6",
@@ -192,31 +204,329 @@
     "updatedAt": "2026-04-04T15:10:41.190Z"
   },
   {
-    "id": "86e70eb5-0741-43f5-9368-0a7e07df58c2",
+    "id": "4479050b-7771-4055-812e-5e97330efeb4",
     "title": {
-      "sv": "Test",
-      "en": "Test"
+      "sv": "Hollow",
+      "en": "Hollow"
     },
     "description": {
-      "sv": "Test",
-      "en": "Test"
+      "sv": "Lädermotiv på akrylbakgrund på duk.",
+      "en": "Leather motif on acryllic painted background on canvas."
     },
-    "price": 5,
+    "price": 32000,
     "currency": "SEK",
     "category": "leather",
-    "dimensions": "100x100cm",
+    "dimensions": "",
     "technique": {
-      "sv": "Ingen",
-      "en": "Ingen"
+      "sv": "",
+      "en": ""
     },
-    "imageUrl": "/images/placeholder.svg",
+    "imageUrl": "/images/products/hollow/1775388132123-2.webp",
     "images": [
-      "/images/placeholder.svg"
+      "/images/products/hollow/1775388132123-2.webp",
+      "/images/products/hollow/1775388129968-1.webp"
     ],
     "status": "available",
     "productType": "physical",
-    "stripePaymentLink": "https://buy.stripe.com/6oU3cofmO7tf4Jnf2PfjG00",
-    "createdAt": "2026-04-05T07:55:43.022Z",
-    "updatedAt": "2026-04-05T07:55:43.022Z"
+    "stripePaymentLink": "https://buy.stripe.com/6oU5kweiK5l76Rv1bZfjG07",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T11:22:41.058Z",
+    "updatedAt": "2026-04-05T11:22:41.058Z"
+  },
+  {
+    "id": "be2dbc7a-92f0-4203-bf23-e207c977948d",
+    "title": {
+      "sv": "All That Jazz",
+      "en": "All That Jazz"
+    },
+    "description": {
+      "sv": "Lädermotiv på akrylmålad bakgrund på duk.",
+      "en": "Leather motif on acryllic background on canvas."
+    },
+    "price": 38000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "",
+    "technique": {
+      "sv": "Lädermotiv på akrylmålad bakgrund på duk.",
+      "en": "Leather motif on acryllic background on canvas."
+    },
+    "imageUrl": "/images/products/all-that-jazz/1775389081817-2.webp",
+    "images": [
+      "/images/products/all-that-jazz/1775389081817-2.webp",
+      "/images/products/all-that-jazz/1775389080122-1.webp"
+    ],
+    "status": "sold",
+    "productType": "physical",
+    "shippingCost": 0,
+    "createdAt": "2026-04-05T11:38:23.673Z",
+    "updatedAt": "2026-04-05T11:38:23.673Z"
+  },
+  {
+    "id": "f5cfee86-abc8-4e4b-904d-db446e497237",
+    "title": {
+      "sv": "Sax",
+      "en": "Sax"
+    },
+    "description": {
+      "sv": "Lädermotiv på akrylbakgrund på duk.",
+      "en": "Leather motif on acryllic background on canvas."
+    },
+    "price": 35000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "80x100cm",
+    "technique": {
+      "sv": "Lädermotiv på akrylbakgrund på duk.",
+      "en": "Leather motif on acryllic background on canvas."
+    },
+    "imageUrl": "/images/products/produkt/1775390404111-2.webp",
+    "images": [
+      "/images/products/produkt/1775390404111-2.webp",
+      "/images/products/produkt/1775390402195-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/00wcMY1vY6pb3Fj5sffjG08",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T12:00:45.126Z",
+    "updatedAt": "2026-04-05T14:39:28.564Z"
+  },
+  {
+    "id": "2b2b4c4d-d648-4955-94fe-f4a22cfeb752",
+    "title": {
+      "sv": "Porträtt av Keith Richards",
+      "en": "Portrait of Keith Richards"
+    },
+    "description": {
+      "sv": "Tatuerat porträtt av Keith Richards. Levereras imramat.",
+      "en": "Tattooed portrait of Keith Richards on fake skin. Delivered framed."
+    },
+    "price": 12000,
+    "currency": "SEK",
+    "category": "oil",
+    "dimensions": "",
+    "technique": {
+      "sv": "Tatuering.",
+      "en": "Tattoo."
+    },
+    "imageUrl": "/images/products/produkt/1775391131870-1.webp",
+    "images": [
+      "/images/products/produkt/1775391131870-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/00wbIU2A2dRD2Bf2g3fjG09",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T12:13:17.762Z",
+    "updatedAt": "2026-04-05T12:44:02.783Z"
+  },
+  {
+    "id": "fe43fd4a-ee2a-46ac-be9f-dd97c5c4e14a",
+    "title": {
+      "sv": "I I go, I'm goin'",
+      "en": "I I go, I'm goin'"
+    },
+    "description": {
+      "sv": "Lädermotiv på canvas med akrylmålning.",
+      "en": "Leather motif on canvas with acryllic painting."
+    },
+    "price": 39000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "",
+    "technique": {
+      "sv": "Läder",
+      "en": "Leather"
+    },
+    "imageUrl": "/images/products/i-i-go-i-m-goin/1775392292269-2.webp",
+    "images": [
+      "/images/products/i-i-go-i-m-goin/1775392292269-2.webp",
+      "/images/products/i-i-go-i-m-goin/1775392290524-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/aFa4gs0rU6pbfo11bZfjG0a",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T12:30:10.351Z",
+    "updatedAt": "2026-04-05T12:31:40.523Z"
+  },
+  {
+    "id": "a8bc810f-45e8-438b-9254-7feda59e0beb",
+    "title": {
+      "sv": "Röd Fiol",
+      "en": "Red Violin"
+    },
+    "description": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "price": 5000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "",
+    "technique": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "imageUrl": "/images/products/rod-fiol/1775400380721-2.webp",
+    "images": [
+      "/images/products/rod-fiol/1775400380721-2.webp",
+      "/images/products/rod-fiol/1775400379050-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/dRm28k6QicNzfo1aMzfjG0b",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T14:46:06.653Z",
+    "updatedAt": "2026-04-05T14:46:25.226Z"
+  },
+  {
+    "id": "02837b8b-018a-43f7-be8f-f579e0186bf3",
+    "title": {
+      "sv": "Blått Löv",
+      "en": "Blue Leaf"
+    },
+    "description": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "price": 4000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "20x20cm",
+    "technique": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "imageUrl": "/images/products/produkt/1775400943239-1.webp",
+    "images": [
+      "/images/products/produkt/1775400943239-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/fZufZaa2u6pb3Fj6wjfjG0c",
+    "shippingCost": 0,
+    "createdAt": "2026-04-05T14:55:58.327Z",
+    "updatedAt": "2026-04-05T14:55:58.327Z"
+  },
+  {
+    "id": "f01c058a-2a00-4049-a592-153f898be919",
+    "title": {
+      "sv": "Lila Hjärta",
+      "en": "Purple Heart"
+    },
+    "description": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "price": 4000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "20x20cm",
+    "technique": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "imageUrl": "/images/products/lila-hjarta/1775401091052-1.webp",
+    "images": [
+      "/images/products/lila-hjarta/1775401091052-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/00w28k1vYbJvfo1aMzfjG0d",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T14:58:15.019Z",
+    "updatedAt": "2026-04-05T14:58:15.019Z"
+  },
+  {
+    "id": "b6e0cdb2-2561-4bb9-8300-2ff1a284bce4",
+    "title": {
+      "sv": "Fly the friendly skies",
+      "en": "Fly the friendly skies"
+    },
+    "description": {
+      "sv": "Akryl på duk.",
+      "en": "Acryllic on canvas."
+    },
+    "price": 29000,
+    "currency": "SEK",
+    "category": "acrylic",
+    "dimensions": "",
+    "technique": {
+      "sv": "Akryl på duk.",
+      "en": "Acryllic on canvas."
+    },
+    "imageUrl": "/images/products/fly-the-friendly-skies/1775401907969-2.webp",
+    "images": [
+      "/images/products/fly-the-friendly-skies/1775401907969-2.webp",
+      "/images/products/fly-the-friendly-skies/1775401906128-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/dRmaEQdeGeVHcbP1bZfjG0e",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T15:11:55.155Z",
+    "updatedAt": "2026-04-05T15:11:55.155Z"
+  },
+  {
+    "id": "0f786397-256c-4f74-863b-48cc2c2923b9",
+    "title": {
+      "sv": "In Musica Spearmus",
+      "en": "In Musica Spearmus"
+    },
+    "description": {
+      "sv": "Akryl på duk.",
+      "en": "Acryllic on canvas."
+    },
+    "price": 42000,
+    "currency": "SEK",
+    "category": "acrylic",
+    "dimensions": "",
+    "technique": {
+      "sv": "Akryl på duk.",
+      "en": "Acryllic on canvas."
+    },
+    "imageUrl": "/images/products/in-musica-spearmus/1775402498815-2.webp",
+    "images": [
+      "/images/products/in-musica-spearmus/1775402498815-2.webp",
+      "/images/products/in-musica-spearmus/1775402497062-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/8x2bIU1vY00N4Jn7AnfjG0f",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T15:21:43.749Z",
+    "updatedAt": "2026-04-05T15:21:43.749Z"
+  },
+  {
+    "id": "3c1685a1-008f-4104-b343-1c0c10a64b3f",
+    "title": {
+      "sv": "Sunken Treasure",
+      "en": "Sunken Treasure"
+    },
+    "description": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "price": 30000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "20x20cm",
+    "technique": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "imageUrl": "/images/products/produkt/1775403178973-2.webp",
+    "images": [
+      "/images/products/produkt/1775403178973-2.webp",
+      "/images/products/produkt/1775403172407-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/00wdR2b6y6pb5Nr6wjfjG0g",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T15:33:13.726Z",
+    "updatedAt": "2026-04-05T15:33:13.726Z"
   }
 ]

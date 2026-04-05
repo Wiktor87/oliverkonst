@@ -4,7 +4,7 @@ import ShopClient from './ShopClient';
 export const metadata: Metadata = {
   title: 'Konst till salu',
   description:
-    'Köp originalmålningar av Oliver. Unika konstverk i olja, akvarell, akryl och mixed media – varje målning är ett handgjort original.',
+    'Köp originalmålningar och läderkonst av Oliver Skifs. Unika konstverk i läder, akryl och mixed media – varje verk är ett handgjort original.',
   alternates: { canonical: '/shop/' },
 };
 

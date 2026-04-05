@@ -4,7 +4,7 @@ import ContactClient from './ContactClient';
 export const metadata: Metadata = {
   title: 'Kontakt',
   description:
-    'Kontakta konstnären Oliver för frågor om konstverk, beställningar, utställningar eller samarbeten.',
+    'Kontakta konstnären Oliver Skifs för frågor om konstverk, beställningar, utställningar eller samarbeten.',
   alternates: { canonical: '/contact/' },
 };
 

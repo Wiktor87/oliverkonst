@@ -4,7 +4,7 @@ import AboutClient from './AboutClient';
 export const metadata: Metadata = {
   title: 'Om Oliver',
   description:
-    'Lär känna Oliver – en svensk konstnär bosatt i Göteborg, känd för expressiva målningar i olja, akvarell och akryl.',
+    'Lär känna Oliver Skifs – en svensk konstnär bosatt i Kungsör, känd för unika konstverk i läder, akryl och mixed media på canvas.',
   alternates: { canonical: '/about/' },
 };
 
