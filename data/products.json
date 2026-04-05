@@ -12,7 +12,7 @@
     "price": 35000,
     "currency": "SEK",
     "category": "leather",
-    "dimensions": "",
+    "dimensions": "50x100cm",
     "technique": {
       "sv": "Läder",
       "en": "Leather"
@@ -25,7 +25,7 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T11:38:42.259Z",
-    "updatedAt": "2026-04-05T10:20:49.606Z",
+    "updatedAt": "2026-04-05T14:39:12.597Z",
     "stripePaymentLink": "https://buy.stripe.com/14A00cgqS8xj5NraMzfjG01",
     "shippingCost": 0
   },
