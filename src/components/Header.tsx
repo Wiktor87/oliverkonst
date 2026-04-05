@@ -43,6 +43,14 @@ export default function Header() {
 
   return (
     <>
+      {/* Mobile-only top banner image */}
+      <img
+        src={publicUrl('/img/IMG_0417.jpeg')}
+        alt=""
+        aria-hidden="true"
+        className="mobile-top-banner"
+      />
+
       {/* Fixed overlay logo */}
       <Link href="/" className={`site-logo-fixed${scrolled ? ' site-logo-scrolled' : ''}`}>
         <Image
