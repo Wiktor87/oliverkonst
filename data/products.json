@@ -261,5 +261,35 @@
     "shippingCost": 0,
     "createdAt": "2026-04-05T11:38:23.673Z",
     "updatedAt": "2026-04-05T11:38:23.673Z"
+  },
+  {
+    "id": "f5cfee86-abc8-4e4b-904d-db446e497237",
+    "title": {
+      "sv": "Sax",
+      "en": "Sax"
+    },
+    "description": {
+      "sv": "Lädermotiv på akrylbakgrund på duk.",
+      "en": "Leather motif on acryllic background on canvas."
+    },
+    "price": 35000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "",
+    "technique": {
+      "sv": "Lädermotiv på akrylbakgrund på duk.",
+      "en": "Leather motif on acryllic background on canvas."
+    },
+    "imageUrl": "/images/products/produkt/1775390404111-2.webp",
+    "images": [
+      "/images/products/produkt/1775390404111-2.webp",
+      "/images/products/produkt/1775390402195-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/00wcMY1vY6pb3Fj5sffjG08",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T12:00:45.126Z",
+    "updatedAt": "2026-04-05T12:00:45.126Z"
   }
 ]
