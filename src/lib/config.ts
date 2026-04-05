@@ -1,7 +1,7 @@
 export const siteConfig = {
   repoOwner: 'Wiktor87',
   repoName: 'oliverkonst',
-  contactEmail: 'oliver@oliverskonst.se',
+  contactEmail: 'oliver_skifs@hotmail.com',
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
 };
 

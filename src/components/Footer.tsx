@@ -73,10 +73,6 @@ export default function Footer() {
           </div>
           <div>
             <p className="footer-col-heading">{lang === 'sv' ? 'Kontakt' : 'Contact'}</p>
-            <a href={`mailto:${email}`} className="footer-contact-text footer-contact-link">{email}</a>
-            {phone && (
-              <a href={`tel:${phone.replace(/\s/g, '')}`} className="footer-contact-text footer-contact-link">{phone}</a>
-            )}
             <p className="footer-contact-text">{address}</p>
             {(data.socialLinks.instagram || data.socialLinks.facebook) && (
               <div className="footer-social">
