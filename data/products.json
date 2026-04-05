@@ -42,7 +42,7 @@
     "price": 19000,
     "currency": "SEK",
     "category": "acrylic",
-    "dimensions": "",
+    "dimensions": "40x50cm",
     "technique": {
       "sv": "Akryl på duk.",
       "en": "Acryllic on canvas."
@@ -55,7 +55,7 @@
     "status": "available",
     "productType": "physical",
     "createdAt": "2026-04-04T11:46:55.840Z",
-    "updatedAt": "2026-04-05T10:22:43.687Z",
+    "updatedAt": "2026-04-05T18:38:37.006Z",
     "stripePaymentLink": "https://buy.stripe.com/aFaeV63E600Ngs54obfjG02",
     "shippingCost": 0
   },
