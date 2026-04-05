@@ -24,6 +24,8 @@ export interface Product {
   digitalAsset?: DigitalAsset;
   /** Stripe Payment Link URL from Stripe Dashboard */
   stripePaymentLink?: string;
+  /** Shipping cost in SEK (0 = free shipping) */
+  shippingCost?: number;
   /** Optional list of accepted payment providers for this product (future use) */
   paymentMethods?: ('klarna' | 'stripe')[];
   createdAt: string;
@@ -57,6 +59,8 @@ export interface SiteContent {
     facebook: string;
   };
   selectedProducts?: string[];
+  /** Email addresses that receive order notifications (comma-separated) */
+  notificationEmails?: string;
   /** Purchase terms / Köpvillkor */
   purchaseTerms?: LocalizedString;
 }
@@ -71,8 +75,16 @@ export interface Order {
   items: CartItem[];
   customerName: string;
   customerEmail: string;
+  customerPhone?: string;
+  customerAddress?: string;
+  customerCity?: string;
+  customerPostalCode?: string;
+  deliveryMethod: 'shipping' | 'pickup';
   message?: string;
   status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
+  totalProducts: number;
+  totalShipping: number;
+  totalAmount: number;
   createdAt: string;
 }
 
@@ -80,9 +92,11 @@ export interface CartItem {
   productId: string;
   quantity: number;
   price: number;
+  shippingCost: number;
   title: LocalizedString;
   imageUrl: string;
   productType: 'physical' | 'digital';
+  stripePaymentLink?: string;
 }
 
 export interface Message {

@@ -19,6 +19,7 @@ const defaultContent: SiteContent = {
   contactAddress: { sv: '', en: '' },
   socialLinks: { instagram: '', facebook: '' },
   selectedProducts: [],
+  notificationEmails: '',
   purchaseTerms: { sv: '', en: '' },
 };
 
@@ -204,13 +205,25 @@ export default function AdminContentPage() {
           <h2 className="font-medium text-stone-800 mb-4">Kontakt & sociala medier</h2>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-stone-700 mb-1">Kontakt-e-post</label>
+              <label className="block text-sm font-medium text-stone-700 mb-1">Kontakt-e-post (visas på sidan)</label>
               <input
                 type="email"
                 className="input-field"
                 value={content.contactEmail}
                 onChange={(e) => set(['contactEmail'], e.target.value)}
               />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-stone-700 mb-1">Notifikations-e-post (för beställningar)</label>
+              <input
+                className="input-field"
+                value={content.notificationEmails || ''}
+                onChange={(e) => set(['notificationEmails'], e.target.value)}
+                placeholder="admin@example.se, medarbetare@example.se"
+              />
+              <p className="text-xs text-stone-400 mt-1">
+                Separera flera adresser med komma. Hit skickas ordernotifikationer. Om tomt används kontakt-e-posten ovan.
+              </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
