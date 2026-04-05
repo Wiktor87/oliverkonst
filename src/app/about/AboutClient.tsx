@@ -6,13 +6,21 @@ import { useEffect, useState } from 'react';
 import { useLanguage } from '@/components/LanguageContext';
 import CuratorsNote from '@/components/CuratorsNote';
 import { publicUrl, siteConfig } from '@/lib/config';
-import { Exhibition } from '@/types';
+import { Exhibition, SiteContent } from '@/types';
 
 export default function AboutClient() {
   const { t, lang } = useLanguage();
   const [pastExhibitions, setPastExhibitions] = useState<Exhibition[]>([]);
+  const [siteContent, setSiteContent] = useState<SiteContent | null>(null);
 
   useEffect(() => {
+    fetch(publicUrl('/data/site-content.json'))
+      .then((res) => res.json())
+      .then((d) => {
+        if (d) setSiteContent(d);
+      })
+      .catch(() => {});
+
     fetch(`${siteConfig.basePath}/data/exhibitions.json`)
       .then((r) => r.json())
       .then((data: Exhibition[]) =>
@@ -51,15 +59,17 @@ export default function AboutClient() {
             </div>
           </div>
           <div>
-            {t.about.content.split('\n\n').map((para, i) => (
+            {(siteContent?.biography?.[lang] || t.about.content).split('\n\n').map((para, i) => (
               <p key={i} className="about-bio-text">{para}</p>
             ))}
 
             <CuratorsNote
               text={
-                lang === 'sv'
-                  ? '"Konst är inte vad du ser, utan vad du får andra att se."'
-                  : '"Art is not what you see, but what you make others see."'
+                siteContent?.profileQuote?.[lang]
+                  ? `"${siteContent.profileQuote[lang]}"`
+                  : lang === 'sv'
+                    ? '"Konst är inte vad du ser, utan vad du får andra att se."'
+                    : '"Art is not what you see, but what you make others see."'
               }
               attribution={lang === 'sv' ? 'Oliver, om sitt konstnärskap' : 'Oliver, on his art'}
               label={lang === 'sv' ? 'Konstnärens ord' : "Artist's Words"}
