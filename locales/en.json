@@ -32,6 +32,9 @@
       "all": "All",
       "label": "Filter by category"
     },
+    "sortByDate": "Sort by date",
+    "newest": "Newest first",
+    "oldest": "Oldest first",
     "sortByPrice": "Sort by price",
     "priceAsc": "Price: Low to High",
     "priceDesc": "Price: High to Low",
