@@ -6,34 +6,54 @@ import { useCart } from '@/components/CartContext';
 import { useEffect, useRef, useState } from 'react';
 
 interface OrderData {
-  customer: { name: string; email: string };
-  items: Array<{ title: string; quantity: number; price: number; productId: string }>;
+  customer: { name: string; email: string; phone: string; street: string; postalCode: string; city: string };
+  delivery: string;
+  items: Array<{ title: string; quantity: number; price: number; shippingCost: number; productId: string }>;
+  totalPrice: number;
+  totalShipping: number;
   totalAmount: number;
+  notificationRecipients: string;
+  orderText: string;
   createdAt: string;
 }
 
 export default function CheckoutSuccessPage() {
   const { lang } = useLanguage();
   const { clearCart } = useCart();
-  const cleared = useRef(false);
+  const processed = useRef(false);
   const [order, setOrder] = useState<OrderData | null>(null);
   const sv = lang === 'sv';
 
   useEffect(() => {
-    if (!cleared.current) {
-      cleared.current = true;
-      clearCart();
+    if (processed.current) return;
+    processed.current = true;
 
-      // Read order data from sessionStorage
-      try {
-        const data = sessionStorage.getItem('pendingOrder');
-        if (data) {
-          setOrder(JSON.parse(data));
-          sessionStorage.removeItem('pendingOrder');
-        }
-      } catch {
-        // ignore
+    clearCart();
+
+    // Read order data from sessionStorage and send notification
+    try {
+      const data = sessionStorage.getItem('pendingOrder');
+      if (data) {
+        const orderData: OrderData = JSON.parse(data);
+        setOrder(orderData);
+        sessionStorage.removeItem('pendingOrder');
+
+        // Auto-send notification email to admin
+        const subject = encodeURIComponent(
+          `Beställning genomförd – Oliver's Konst – ${orderData.customer.name}`
+        );
+        const body = encodeURIComponent(orderData.orderText);
+        const mailto = `mailto:${orderData.notificationRecipients}?subject=${subject}&body=${body}`;
+
+        // Use a hidden iframe to trigger mailto without navigating away
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = mailto;
+        document.body.appendChild(iframe);
+        setTimeout(() => iframe.remove(), 2000);
       }
+    } catch {
+      // ignore
     }
   }, [clearCart]);
 
@@ -47,8 +67,8 @@ export default function CheckoutSuccessPage() {
       </h1>
       <p className="empty-state-text">
         {sv
-          ? 'Din betalning har genomförts. Du kommer att få en bekräftelse via e-post. Vi kontaktar dig med leveransinformation.'
-          : 'Your payment has been processed. You will receive a confirmation via email. We will contact you with delivery information.'}
+          ? 'Din betalning har genomförts. Vi kontaktar dig med leveransinformation.'
+          : 'Your payment has been processed. We will contact you with delivery information.'}
       </p>
 
       {order && (
@@ -56,6 +76,11 @@ export default function CheckoutSuccessPage() {
           <h3>{sv ? 'Orderdetaljer' : 'Order details'}</h3>
           <p><strong>{sv ? 'Kund' : 'Customer'}:</strong> {order.customer.name}</p>
           <p><strong>{sv ? 'E-post' : 'Email'}:</strong> {order.customer.email}</p>
+          <p><strong>{sv ? 'Telefon' : 'Phone'}:</strong> {order.customer.phone}</p>
+          {order.delivery === 'shipping' && order.customer.street && (
+            <p><strong>{sv ? 'Adress' : 'Address'}:</strong> {order.customer.street}, {order.customer.postalCode} {order.customer.city}</p>
+          )}
+          <p><strong>{sv ? 'Leverans' : 'Delivery'}:</strong> {order.delivery === 'shipping' ? (sv ? 'Frakt' : 'Shipping') : (sv ? 'Upphämtning' : 'Pickup')}</p>
           <ul>
             {order.items.map((item, i) => (
               <li key={i}>{item.title} x{item.quantity} – {(item.price * item.quantity).toLocaleString('sv-SE')} SEK</li>
