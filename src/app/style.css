@@ -30,6 +30,9 @@
 
   /* --- Radius --- */
   --radius-btn: 0.125rem; /* 2px — never pill-shaped */
+
+  /* --- Mobile Banner --- */
+  --mobile-banner-height: 150px;
 }
 
 /* ============================================================
@@ -385,7 +388,7 @@ a {
    MOBILE TOP BANNER — decorative image strip, mobile only, in normal flow
    ============================================================ */
 .mobile-top-banner {
-  height: 150px;
+  height: var(--mobile-banner-height);
   width: 100%;
   overflow: hidden;
 }
@@ -401,11 +404,11 @@ a {
 /* Offset fixed logo + hamburger below the 150px banner when not scrolled (mobile only) */
 @media (max-width: 767px) {
   .site-logo-fixed.banner-visible {
-    top: 150px;
+    top: var(--mobile-banner-height);
   }
 
   .hamburger-btn.banner-visible {
-    top: calc(0.75rem + 150px);
+    top: calc(0.75rem + var(--mobile-banner-height));
   }
 }
 
