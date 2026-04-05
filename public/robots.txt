@@ -3,5 +3,6 @@ Allow: /
 
 Disallow: /cart/
 Disallow: /admin/
+Disallow: /checkout/
 
 Sitemap: https://www.oliverskifs.se/sitemap.xml

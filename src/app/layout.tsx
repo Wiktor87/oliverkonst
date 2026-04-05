@@ -10,21 +10,33 @@ const siteUrl = 'https://www.oliverskifs.se';
 
 export const metadata: Metadata = {
   title: {
-    default: "Oliver's Konst – Originalmålningar av konstnären Oliver",
-    template: "%s | Oliver's Konst",
+    default: "Oliver Skifs Konst – Originalmålningar av konstnären Oliver Skifs",
+    template: "%s | Oliver Skifs Konst",
   },
   description:
-    'Originalmålningar av konstnären Oliver – olja, akvarell, akryl och mixed media. Unika konstverk skapade med passion och känsla.',
+    'Originalmålningar och läderkonst av konstnären Oliver Skifs – läder, akryl, canvas och mixed media. Unika handgjorda konstverk från Kungsör.',
+  keywords: [
+    'Oliver Skifs',
+    'konst',
+    'konstnär',
+    'originalmålningar',
+    'läder',
+    'akryl',
+    'canvas',
+    'Kungsör',
+    'svensk konst',
+    'köp konst online',
+  ],
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Oliver's Konst – Originalmålningar",
+    title: "Oliver Skifs Konst – Originalmålningar och läderkonst",
     description:
-      'Originalmålningar av konstnären Oliver – olja, akvarell, akryl och mixed media. Unika konstverk skapade med passion och känsla.',
+      'Unika handgjorda konstverk av Oliver Skifs – läder, akryl, canvas och mixed media från Kungsör. Köp original direkt från konstnären.',
     url: siteUrl,
-    siteName: "Oliver's Konst",
+    siteName: "Oliver Skifs Konst",
     locale: 'sv_SE',
     type: 'website',
     images: [
@@ -32,15 +44,15 @@ export const metadata: Metadata = {
         url: '/img/profile-large.webp',
         width: 1200,
         height: 630,
-        alt: 'Oliver – konstnär och målare',
+        alt: 'Oliver Skifs – konstnär och målare',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Oliver's Konst – Originalmålningar",
+    title: "Oliver Skifs Konst – Originalmålningar och läderkonst",
     description:
-      'Originalmålningar av konstnären Oliver – olja, akvarell, akryl och mixed media.',
+      'Unika handgjorda konstverk av Oliver Skifs – läder, akryl, canvas och mixed media från Kungsör.',
     images: ['/img/profile-large.webp'],
   },
   robots: {
@@ -51,19 +63,25 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Artist',
-  name: 'Oliver',
+  '@type': 'Person',
+  name: 'Oliver Skifs',
+  jobTitle: 'Konstnär',
   url: siteUrl,
   image: `${siteUrl}/img/profile-large.webp`,
   description:
-    'Svensk konstnär bosatt i Göteborg, känd för expressiva och känslosamma målningar i olja, akvarell och akryl.',
-  sameAs: [],
+    'Svensk konstnär bosatt i Kungsör, känd för expressiva och känslosamma konstverk i läder, akryl och canvas.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Kungsör',
+    addressCountry: 'SE',
+  },
+  sameAs: ['https://www.instagram.com/oliverskifskonst/'],
   makesOffer: {
     '@type': 'Offer',
     itemOffered: {
       '@type': 'VisualArtwork',
       artform: 'Painting',
-      artMedium: 'Oil, watercolor, acrylic, mixed media',
+      artMedium: 'Leather, acrylic, canvas, mixed media',
     },
   },
 };

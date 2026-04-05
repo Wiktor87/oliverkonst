@@ -4,7 +4,7 @@ import ClassesClient from './ClassesClient';
 export const metadata: Metadata = {
   title: 'Konstkurser',
   description:
-    'Lär dig måla med Oliver. Konstkurser för alla nivåer i en inspirerande ateljémiljö i Göteborg.',
+    'Lär dig skapa konst med Oliver Skifs. Konstkurser för alla nivåer i en inspirerande ateljémiljö.',
   alternates: { canonical: '/classes/' },
 };
 

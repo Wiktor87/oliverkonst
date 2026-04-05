@@ -4,7 +4,7 @@ import ExhibitionsClient from './ExhibitionsClient';
 export const metadata: Metadata = {
   title: 'Utställningar',
   description:
-    'Se Olivers kommande och tidigare konstutställningar i Göteborg, Stockholm och runt om i Sverige.',
+    'Se Oliver Skifs kommande och tidigare konstutställningar. Österlen Konstrundan och fler.',
   alternates: { canonical: '/exhibitions/' },
 };
 
