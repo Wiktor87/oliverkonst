@@ -512,7 +512,7 @@
     "price": 30000,
     "currency": "SEK",
     "category": "leather",
-    "dimensions": "20x20cm",
+    "dimensions": "80x100cm",
     "technique": {
       "sv": "Läder på akrylbakgrund på duk.",
       "en": "Leather on acryllic painted canvas."
@@ -527,6 +527,6 @@
     "stripePaymentLink": "https://buy.stripe.com/00wdR2b6y6pb5Nr6wjfjG0g",
     "shippingCost": 79,
     "createdAt": "2026-04-05T15:33:13.726Z",
-    "updatedAt": "2026-04-05T15:33:13.726Z"
+    "updatedAt": "2026-04-05T18:38:58.473Z"
   }
 ]
