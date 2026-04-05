@@ -111,6 +111,8 @@ export default function CheckoutPage() {
       totalPrice,
       totalShipping,
       totalAmount,
+      notificationRecipients: notificationRecipients || 'oliver@oliverkonst.se',
+      orderText,
       createdAt: new Date().toISOString(),
     };
     sessionStorage.setItem('pendingOrder', JSON.stringify(orderData));
@@ -118,26 +120,16 @@ export default function CheckoutPage() {
     // Find if we have a single item with a Payment Link
     const singleItemWithLink = items.length === 1 && items[0].stripePaymentLink;
 
-    // Compose mailto
-    const subject = encodeURIComponent(`Beställning – Oliver's Konst – ${form.name}`);
-    const body = encodeURIComponent(orderText);
-    const recipients = notificationRecipients || 'oliver@oliverkonst.se';
-    const mailtoUrl = `mailto:${recipients}?subject=${subject}&body=${body}`;
-
     if (singleItemWithLink) {
-      // Open mailto in background, then redirect to Stripe
-      const mailWindow = window.open(mailtoUrl, '_blank');
-      if (!mailWindow) {
-        window.location.href = mailtoUrl;
-      }
-      // Short delay then redirect to Stripe Payment Link
-      setTimeout(() => {
-        window.location.href = items[0].stripePaymentLink!;
-      }, 500);
+      // Stripe: redirect directly — notification is sent on success page
+      window.location.href = items[0].stripePaymentLink!;
     } else {
-      // No Stripe link - just send email with order details
+      // No Stripe link — email order to admin
+      const subject = encodeURIComponent(`Beställning – Oliver's Konst – ${form.name}`);
+      const body = encodeURIComponent(orderText);
+      const recipients = notificationRecipients || 'oliver@oliverkonst.se';
       clearCart();
-      window.location.href = mailtoUrl;
+      window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`;
     }
   };
 
