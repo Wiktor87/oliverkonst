@@ -339,15 +339,16 @@
       "sv": "Läder",
       "en": "Leather"
     },
-    "imageUrl": "/images/placeholder.svg",
+    "imageUrl": "/images/products/i-i-go-i-m-goin/1775392292269-2.webp",
     "images": [
-      "/images/placeholder.svg"
+      "/images/products/i-i-go-i-m-goin/1775392292269-2.webp",
+      "/images/products/i-i-go-i-m-goin/1775392290524-1.webp"
     ],
     "status": "available",
     "productType": "physical",
     "stripePaymentLink": "https://buy.stripe.com/aFa4gs0rU6pbfo11bZfjG0a",
     "shippingCost": 79,
     "createdAt": "2026-04-05T12:30:10.351Z",
-    "updatedAt": "2026-04-05T12:30:10.351Z"
+    "updatedAt": "2026-04-05T12:31:40.523Z"
   }
 ]
