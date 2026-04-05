@@ -96,7 +96,28 @@ export default function AdminProductsPage() {
     fetchData(token).catch(() => {}).finally(() => setLoading(false));
   }, [isAuthenticated, isLoading, token, router]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const openAdd = () => { setForm(emptyForm); setEditingId(null); setShowForm(true); setSaveError(''); setBlobPreviews({}); };
+  const openAdd = () => { setForm(emptyForm); setEditingId(null); setCopySource(''); setShowForm(true); setSaveError(''); setBlobPreviews({}); };
+  const [copySource, setCopySource] = useState('');
+  const handleCopyFrom = (productId: string) => {
+    setCopySource(productId);
+    if (!productId) { setForm(emptyForm); return; }
+    const p = products.find((x) => x.id === productId);
+    if (!p) return;
+    setForm({
+      ...emptyForm,
+      descSv: p.description.sv,
+      descEn: p.description.en,
+      price: String(p.price),
+      currency: p.currency,
+      category: p.category,
+      dimensions: p.dimensions,
+      techniqueSv: p.technique.sv,
+      techniqueEn: p.technique.en,
+      status: 'available',
+      productType: p.productType,
+      shippingCost: String(p.shippingCost || 0),
+    });
+  };
   const openEdit = (p: Product) => {
     const imgs = p.images && p.images.length > 0 ? p.images : (p.imageUrl ? [p.imageUrl] : []);
     setForm({
@@ -282,6 +303,16 @@ export default function AdminProductsPage() {
           <div className="bg-white rounded-lg w-full max-w-2xl max-h-screen overflow-y-auto p-6">
             <h2 className="font-serif text-xl mb-4">{editingId ? 'Redigera produkt' : 'Ny produkt'}</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {!editingId && products.length > 0 && (
+                <div className="bg-stone-50 border border-stone-200 rounded-lg p-3">
+                  <label className="block text-sm font-medium text-stone-700 mb-1">Kopiera från befintlig produkt</label>
+                  <select className="input-field" value={copySource} onChange={(e) => handleCopyFrom(e.target.value)}>
+                    <option value="">— Börja från tomt —</option>
+                    {products.map((p) => <option key={p.id} value={p.id}>{p.title.sv}</option>)}
+                  </select>
+                  <p className="text-xs text-stone-400 mt-1">Kopierar beskrivning, teknik, kategori, pris och andra fält. Titel, bilder och Stripe-länk kopieras inte.</p>
+                </div>
+              )}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-stone-700 mb-1">Titel (SV)</label>
