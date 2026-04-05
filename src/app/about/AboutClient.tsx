@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useLanguage } from '@/components/LanguageContext';
 import CuratorsNote from '@/components/CuratorsNote';
 import { publicUrl, siteConfig } from '@/lib/config';
@@ -84,9 +84,7 @@ export default function AboutClient() {
           ) : (
             <ul className="about-info-list">
               {pastExhibitions.map((ex) => (
-                <li key={ex.id}>
-                  {formatYear(ex.startDate)} – {ex.title[lang]}{ex.location[lang] ? `, ${ex.location[lang]}` : ''}
-                </li>
+                <ExhibitionItem key={ex.id} ex={ex} lang={lang} formatYear={formatYear} />
               ))}
             </ul>
           )}
@@ -97,5 +95,51 @@ export default function AboutClient() {
         </div>
       </div>
     </div>
+  );
+}
+
+function ExhibitionItem({
+  ex, lang, formatYear,
+}: {
+  ex: Exhibition;
+  lang: 'sv' | 'en';
+  formatYear: (d: string) => string;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const description = ex.description?.[lang];
+
+  const toggle = useCallback(() => setExpanded((v) => !v), []);
+
+  return (
+    <li>
+      <div
+        className="exhibition-item-header"
+        role={description ? 'button' : undefined}
+        tabIndex={description ? 0 : undefined}
+        onClick={description ? toggle : undefined}
+        onKeyDown={description ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } } : undefined}
+        aria-expanded={description ? expanded : undefined}
+      >
+        <span>{formatYear(ex.startDate)} – {ex.title[lang]}{ex.location[lang] ? `, ${ex.location[lang]}` : ''}</span>
+        {description && (
+          <svg
+            className={`exhibition-expand-icon ${expanded ? 'expanded' : ''}`}
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        )}
+      </div>
+      {description && expanded && (
+        <p className="exhibition-item-description">{description}</p>
+      )}
+    </li>
   );
 }
