@@ -60,7 +60,15 @@
     "contactMessage": "För att slutföra ditt köp, kontakta oss via kontaktformuläret eller e-post. Vi hjälper dig med betalning och leverans.",
     "remove": "Ta bort",
     "quantity": "Antal",
-    "continueShopping": "Fortsätt handla"
+    "continueShopping": "Fortsätt handla",
+    "payWithStripe": "Betala med Stripe",
+    "redirectingToStripe": "Omdirigerar till Stripe...",
+    "orderViaEmail": "Beställ via e-post",
+    "readTerms": "Läs våra köpvillkor"
+  },
+  "terms": {
+    "title": "Köpvillkor",
+    "subtitle": "Villkor för köp hos Oliver's Konst"
   },
   "about": {
     "title": "Om Oliver",

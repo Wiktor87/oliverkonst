@@ -12,9 +12,25 @@
     "en": "About Oliver"
   },
   "contactEmail": "oliver@oliverkonst.se",
+  "contactPhone": "",
+  "contactAddress": {
+    "sv": "Göteborg, Sverige",
+    "en": "Gothenburg, Sweden"
+  },
   "socialLinks": {
     "instagram": "https://www.instagram.com/oliverskifskonst/",
     "facebook": ""
   },
-  "selectedProducts": []
+  "selectedProducts": [
+    "e88e69b3-a60a-4f63-8e63-48b7030d6c09",
+    "df07a142-1bd0-43bc-a9de-881c83c20246",
+    "e2777e56-da6d-4f79-a0d5-783475386ccd",
+    "d04f05f2-f479-4bf2-bc1f-629eff5cbe68",
+    "dbccbf65-5156-4809-bb6e-1cdc93f4f969",
+    "de175fce-189c-419a-bba5-45c34edd6ee6"
+  ],
+  "purchaseTerms": {
+    "sv": "Alla priser anges i svenska kronor (SEK) inklusive moms.\n\nBetalning sker via Stripe. Betalningen genomförs när du slutför köpet.\n\nFrakt inom Sverige ingår i priset om inget annat anges. Leveranstid är normalt 5–10 arbetsdagar beroende på storlek och destination.\n\nDu har 14 dagars ångerrätt från mottagandet av varan enligt distansavtalslagen. Varan ska returneras i oskadat skick. Kontakta oss för att inleda en retur.\n\nVarje konstverk är ett unikt original. Färger kan variera något från bilderna på webbplatsen beroende på skärminställningar.\n\nVid frågor, kontakta oss på oliver@oliverkonst.se.",
+    "en": "All prices are listed in Swedish kronor (SEK) including VAT.\n\nPayment is processed via Stripe. The payment is charged when you complete the purchase.\n\nShipping within Sweden is included in the price unless otherwise stated. Delivery time is normally 5–10 business days depending on size and destination.\n\nYou have a 14-day right of withdrawal from receipt of the goods in accordance with the Swedish Distance Contracts Act. The item must be returned in undamaged condition. Contact us to initiate a return.\n\nEach artwork is a unique original. Colors may vary slightly from the images on the website due to screen settings.\n\nFor questions, contact us at oliver@oliverkonst.se."
+  }
 }

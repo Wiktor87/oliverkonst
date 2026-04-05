@@ -7,24 +7,35 @@ import { usePathname } from 'next/navigation';
 import { useLanguage } from './LanguageContext';
 import { publicUrl } from '@/lib/config';
 
-interface SocialLinks {
-  instagram: string;
-  facebook: string;
+interface SiteContentData {
+  contactEmail?: string;
+  contactPhone?: string;
+  contactAddress?: { sv: string; en: string };
+  socialLinks: {
+    instagram: string;
+    facebook: string;
+  };
 }
 
 export default function Footer() {
   const { t, lang } = useLanguage();
-  const [socialLinks, setSocialLinks] = useState<SocialLinks>({ instagram: '', facebook: '' });
+  const [data, setData] = useState<SiteContentData>({ socialLinks: { instagram: '', facebook: '' } });
   const pathname = usePathname();
 
   useEffect(() => {
     fetch(publicUrl('/data/site-content.json'))
       .then((res) => res.json())
-      .then((data) => { if (data?.socialLinks) setSocialLinks(data.socialLinks); })
+      .then((d) => {
+        if (d) setData(d);
+      })
       .catch(() => {});
   }, []);
 
   if (pathname.startsWith('/admin')) return null;
+
+  const email = data.contactEmail || 'oliver@oliverskonst.se';
+  const phone = data.contactPhone || '';
+  const address = data.contactAddress?.[lang] || (lang === 'sv' ? 'Göteborg, Sverige' : 'Gothenburg, Sweden');
 
   return (
     <footer className="site-footer">
@@ -53,16 +64,24 @@ export default function Footer() {
               <li><Link href="/shop" className="footer-link">{t.nav.shop}</Link></li>
               <li><Link href="/about" className="footer-link">{t.nav.about}</Link></li>
               <li><Link href="/contact" className="footer-link">{t.nav.contact}</Link></li>
+              <li>
+                <Link href="/terms" className="footer-link">
+                  {lang === 'sv' ? 'Köpvillkor' : 'Terms of Purchase'}
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
-            <p className="footer-col-heading">Kontakt / Contact</p>
-            <p className="footer-contact-text">oliver@oliverskonst.se</p>
-            <p className="footer-contact-text">Göteborg, Sverige</p>
-            {(socialLinks.instagram || socialLinks.facebook) && (
+            <p className="footer-col-heading">{lang === 'sv' ? 'Kontakt' : 'Contact'}</p>
+            <a href={`mailto:${email}`} className="footer-contact-text footer-contact-link">{email}</a>
+            {phone && (
+              <a href={`tel:${phone.replace(/\s/g, '')}`} className="footer-contact-text footer-contact-link">{phone}</a>
+            )}
+            <p className="footer-contact-text">{address}</p>
+            {(data.socialLinks.instagram || data.socialLinks.facebook) && (
               <div className="footer-social">
-                {socialLinks.instagram && (
-                  <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram">
+                {data.socialLinks.instagram && (
+                  <a href={data.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -70,8 +89,8 @@ export default function Footer() {
                     </svg>
                   </a>
                 )}
-                {socialLinks.facebook && (
-                  <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Facebook">
+                {data.socialLinks.facebook && (
+                  <a href={data.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                     </svg>
@@ -82,7 +101,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          © {new Date().getFullYear()} Oliver&apos;s Konst. All rights reserved.
+          © {new Date().getFullYear()} Oliver&apos;s Konst. {lang === 'sv' ? 'Alla rättigheter förbehållna.' : 'All rights reserved.'}
         </div>
       </div>
     </footer>

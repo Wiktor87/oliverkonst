@@ -15,8 +15,11 @@ const defaultContent: SiteContent = {
   profileQuote: { sv: '', en: '' },
   aboutTitle: { sv: '', en: '' },
   contactEmail: '',
+  contactPhone: '',
+  contactAddress: { sv: '', en: '' },
   socialLinks: { instagram: '', facebook: '' },
   selectedProducts: [],
+  purchaseTerms: { sv: '', en: '' },
 };
 
 export default function AdminContentPage() {
@@ -211,6 +214,37 @@ export default function AdminContentPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Telefonnummer</label>
+                <input
+                  className="input-field"
+                  value={content.contactPhone || ''}
+                  onChange={(e) => set(['contactPhone'], e.target.value)}
+                  placeholder="+46 70 123 45 67"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Adress (svenska)</label>
+                <input
+                  className="input-field"
+                  value={content.contactAddress?.sv || ''}
+                  onChange={(e) => set(['contactAddress', 'sv'], e.target.value)}
+                  placeholder="Göteborg, Sverige"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Adress (engelska)</label>
+                <input
+                  className="input-field"
+                  value={content.contactAddress?.en || ''}
+                  onChange={(e) => set(['contactAddress', 'en'], e.target.value)}
+                  placeholder="Gothenburg, Sweden"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
                 <label className="block text-sm font-medium text-stone-700 mb-1">Instagram (URL)</label>
                 <input
                   className="input-field"
@@ -228,6 +262,56 @@ export default function AdminContentPage() {
                   placeholder="https://facebook.com/..."
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stripe Payment Links info */}
+        <section className="bg-white rounded-lg border border-stone-100 p-6">
+          <h2 className="font-medium text-stone-800 mb-2">Stripe-betalning</h2>
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800">
+            <p className="font-semibold mb-1">Så här aktiverar du Stripe-betalning:</p>
+            <ol className="list-decimal list-inside space-y-1 text-xs">
+              <li>Skapa ett konto på <a href="https://dashboard.stripe.com" target="_blank" rel="noopener noreferrer" className="underline">Stripe</a> (gratis)</li>
+              <li>Gå till <a href="https://dashboard.stripe.com/payment-links" target="_blank" rel="noopener noreferrer" className="underline">Payment Links</a> i Stripe Dashboard</li>
+              <li>Skapa en Payment Link per konstverk (ange pris i SEK, lägg till bild)</li>
+              <li>Kopiera Payment Link-URL:en (börjar med https://buy.stripe.com/...)</li>
+              <li>Gå till <strong>Produkter</strong> i admin-panelen och klistra in URL:en i fältet &quot;Stripe Payment Link&quot;</li>
+              <li>Kunder kan nu betala direkt via Stripe!</li>
+            </ol>
+          </div>
+          <p className="text-xs text-stone-400 mt-3">
+            Stripe hanterar betalning, kvitton och frakt-adress. Pengarna sätts in på ditt bankkonto automatiskt.
+            Ingen programmeringskunskap krävs.
+          </p>
+        </section>
+
+        {/* Purchase terms */}
+        <section className="bg-white rounded-lg border border-stone-100 p-6">
+          <h2 className="font-medium text-stone-800 mb-2">Köpvillkor</h2>
+          <p className="text-sm text-stone-500 mb-4">
+            Dessa visas på sidan /terms och länkas i footern och varukorgen.
+          </p>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-stone-700 mb-1">Köpvillkor (svenska)</label>
+              <textarea
+                className="input-field"
+                rows={10}
+                value={content.purchaseTerms?.sv || ''}
+                onChange={(e) => set(['purchaseTerms', 'sv'], e.target.value)}
+                placeholder="Skriv köpvillkor på svenska..."
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-stone-700 mb-1">Köpvillkor (engelska)</label>
+              <textarea
+                className="input-field"
+                rows={10}
+                value={content.purchaseTerms?.en || ''}
+                onChange={(e) => set(['purchaseTerms', 'en'], e.target.value)}
+                placeholder="Write purchase terms in English..."
+              />
             </div>
           </div>
         </section>
