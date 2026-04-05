@@ -43,16 +43,17 @@ export default function Header() {
 
   return (
     <>
-      {/* Mobile-only top banner image */}
-      <img
-        src={publicUrl('/img/IMG_0417.jpeg')}
-        alt=""
-        aria-hidden="true"
-        className="mobile-top-banner"
-      />
+      {/* Mobile-only top banner image — in normal flow, scrolls away */}
+      <div className="mobile-top-banner">
+        <img
+          src={publicUrl('/img/IMG_0417.jpeg')}
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
 
       {/* Fixed overlay logo */}
-      <Link href="/" className={`site-logo-fixed${scrolled ? ' site-logo-scrolled' : ''}`}>
+      <Link href="/" className={`site-logo-fixed${scrolled ? ' site-logo-scrolled' : ' banner-visible'}`}>
         <Image
           src={publicUrl('/img/20676002-2972-4876-A8C6-6FAA7FA31B3E.png')}
           alt="Oliver's Konst"
@@ -113,7 +114,7 @@ export default function Header() {
 
         {/* Mobile hamburger button */}
         <button
-          className="hamburger-btn"
+          className={`hamburger-btn${scrolled ? '' : ' banner-visible'}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
