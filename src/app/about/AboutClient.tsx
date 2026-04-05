@@ -50,7 +50,7 @@ export default function AboutClient() {
           <div>
             <div className="about-portrait-page">
               <Image
-                src={publicUrl('/images/oliver-profil.webp')}
+                src={publicUrl('/img/profile-large.webp')}
                 alt="Oliver"
                 fill
                 className="object-cover"
