@@ -40,5 +40,25 @@
     "mapUrl": "https://maps.app.goo.gl/w56BY2nMbfLPJi8q8?g_st=ic",
     "status": "past",
     "createdAt": "2026-04-05T10:42:33.450Z"
+  },
+  {
+    "id": "d88a18b0-13ef-4d9f-8147-61687d0f2867",
+    "title": {
+      "sv": "Österlen Konstrundan 2025",
+      "en": "Österlen Konstrundan 2025"
+    },
+    "description": {
+      "sv": "Österlen Konstrundan 2025 på Hylkegården.",
+      "en": "Österlen Konstrundan 2025 på Hylkegården."
+    },
+    "location": {
+      "sv": "Hylkegården",
+      "en": "Hylkegården"
+    },
+    "startDate": "2025-04-16",
+    "endDate": "2025-04-21",
+    "imageUrl": "",
+    "status": "past",
+    "createdAt": "2026-04-05T12:37:44.176Z"
   }
 ]
