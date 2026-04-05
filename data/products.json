@@ -246,7 +246,7 @@
     "price": 38000,
     "currency": "SEK",
     "category": "leather",
-    "dimensions": "",
+    "dimensions": "80x100cm",
     "technique": {
       "sv": "Lädermotiv på akrylmålad bakgrund på duk.",
       "en": "Leather motif on acryllic background on canvas."
@@ -260,7 +260,7 @@
     "productType": "physical",
     "shippingCost": 0,
     "createdAt": "2026-04-05T11:38:23.673Z",
-    "updatedAt": "2026-04-05T11:38:23.673Z"
+    "updatedAt": "2026-04-05T18:44:43.135Z"
   },
   {
     "id": "f5cfee86-abc8-4e4b-904d-db446e497237",
