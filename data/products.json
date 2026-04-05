@@ -291,5 +291,34 @@
     "shippingCost": 79,
     "createdAt": "2026-04-05T12:00:45.126Z",
     "updatedAt": "2026-04-05T12:00:45.126Z"
+  },
+  {
+    "id": "2b2b4c4d-d648-4955-94fe-f4a22cfeb752",
+    "title": {
+      "sv": "Porträtt av Keith Richards",
+      "en": "Portrait of Keith Richards"
+    },
+    "description": {
+      "sv": "Tatuerat porträtt av Keith Richards. Levereras imramat.",
+      "en": "Tattooed portrait of Keith Richards on fake skin. Delivered framed."
+    },
+    "price": 10000,
+    "currency": "SEK",
+    "category": "oil",
+    "dimensions": "",
+    "technique": {
+      "sv": "Tatuering.",
+      "en": "Tattoo."
+    },
+    "imageUrl": "/images/products/produkt/1775391131870-1.webp",
+    "images": [
+      "/images/products/produkt/1775391131870-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/00wbIU2A2dRD2Bf2g3fjG09",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T12:13:17.762Z",
+    "updatedAt": "2026-04-05T12:13:17.762Z"
   }
 ]
