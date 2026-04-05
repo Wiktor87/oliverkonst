@@ -630,7 +630,7 @@ a {
   position: relative;
   z-index: 3;
   text-align: left;
-  margin-top: 55px;
+  margin-top: 85px;
 }
 
 .hero-title {
@@ -2111,7 +2111,7 @@ font-family: var(--font-display);
   }
 
   .site-logo-fixed {
-    top: 3rem;
+    top: 3.7rem;
     left: 1.5rem;
   }
 
