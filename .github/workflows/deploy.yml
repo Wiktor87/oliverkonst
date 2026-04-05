@@ -35,6 +35,7 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: ""
+          NEXT_PUBLIC_ORDER_TOKEN: ${{ secrets.ORDER_TOKEN }}
 
       - name: Ensure .nojekyll in output
         run: touch out/.nojekyll

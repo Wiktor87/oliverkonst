@@ -4,24 +4,21 @@ import Link from 'next/link';
 import { useLanguage } from '@/components/LanguageContext';
 import { useCart } from '@/components/CartContext';
 import { useEffect, useRef, useState } from 'react';
+import { saveOrder } from '@/lib/orders';
+import type { Order } from '@/types';
 
-interface OrderData {
-  customer: { name: string; email: string; phone: string; street: string; postalCode: string; city: string };
-  delivery: string;
-  items: Array<{ title: string; quantity: number; price: number; shippingCost: number; productId: string }>;
-  totalPrice: number;
-  totalShipping: number;
-  totalAmount: number;
+interface PendingOrderData {
+  order: Order;
   notificationRecipients: string;
   orderText: string;
-  createdAt: string;
 }
 
 export default function CheckoutSuccessPage() {
   const { lang } = useLanguage();
   const { clearCart } = useCart();
   const processed = useRef(false);
-  const [order, setOrder] = useState<OrderData | null>(null);
+  const [order, setOrder] = useState<Order | null>(null);
+  const [mailtoUrl, setMailtoUrl] = useState<string | null>(null);
   const sv = lang === 'sv';
 
   useEffect(() => {
@@ -30,27 +27,31 @@ export default function CheckoutSuccessPage() {
 
     clearCart();
 
-    // Read order data from sessionStorage and send notification
+    // Read order data from sessionStorage, save it, and build notification email
     try {
       const data = sessionStorage.getItem('pendingOrder');
       if (data) {
-        const orderData: OrderData = JSON.parse(data);
-        setOrder(orderData);
+        const pending: PendingOrderData = JSON.parse(data);
+        setOrder(pending.order);
         sessionStorage.removeItem('pendingOrder');
 
-        // Auto-send notification email to admin
-        const subject = encodeURIComponent(
-          `Beställning genomförd – Oliver's Konst – ${orderData.customer.name}`
-        );
-        const body = encodeURIComponent(orderData.orderText);
-        const mailto = `mailto:${orderData.notificationRecipients}?subject=${subject}&body=${body}`;
+        // Save order to the repository (GitHub API)
+        saveOrder(pending.order);
 
-        // Use a hidden iframe to trigger mailto without navigating away
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = mailto;
-        document.body.appendChild(iframe);
-        setTimeout(() => iframe.remove(), 2000);
+        // Build mailto URL for notification
+        const subject = encodeURIComponent(
+          `Beställning genomförd – Oliver's Konst – ${pending.order.customerName}`
+        );
+        const body = encodeURIComponent(pending.orderText);
+        const mailto = `mailto:${pending.notificationRecipients}?subject=${subject}&body=${body}`;
+        setMailtoUrl(mailto);
+
+        // Attempt to open the email client automatically
+        try {
+          window.open(mailto, '_blank');
+        } catch {
+          // Popup blocked or mailto not supported – user can click the fallback link
+        }
       }
     } catch {
       // ignore
@@ -74,20 +75,28 @@ export default function CheckoutSuccessPage() {
       {order && (
         <div className="checkout-success-details">
           <h3>{sv ? 'Orderdetaljer' : 'Order details'}</h3>
-          <p><strong>{sv ? 'Kund' : 'Customer'}:</strong> {order.customer.name}</p>
-          <p><strong>{sv ? 'E-post' : 'Email'}:</strong> {order.customer.email}</p>
-          <p><strong>{sv ? 'Telefon' : 'Phone'}:</strong> {order.customer.phone}</p>
-          {order.delivery === 'shipping' && order.customer.street && (
-            <p><strong>{sv ? 'Adress' : 'Address'}:</strong> {order.customer.street}, {order.customer.postalCode} {order.customer.city}</p>
+          <p><strong>{sv ? 'Kund' : 'Customer'}:</strong> {order.customerName}</p>
+          <p><strong>{sv ? 'E-post' : 'Email'}:</strong> {order.customerEmail}</p>
+          {order.customerPhone && (
+            <p><strong>{sv ? 'Telefon' : 'Phone'}:</strong> {order.customerPhone}</p>
           )}
-          <p><strong>{sv ? 'Leverans' : 'Delivery'}:</strong> {order.delivery === 'shipping' ? (sv ? 'Frakt' : 'Shipping') : (sv ? 'Upphämtning' : 'Pickup')}</p>
+          {order.deliveryMethod === 'shipping' && order.customerAddress && (
+            <p><strong>{sv ? 'Adress' : 'Address'}:</strong> {order.customerAddress}, {order.customerPostalCode} {order.customerCity}</p>
+          )}
+          <p><strong>{sv ? 'Leverans' : 'Delivery'}:</strong> {order.deliveryMethod === 'shipping' ? (sv ? 'Frakt' : 'Shipping') : (sv ? 'Upphämtning' : 'Pickup')}</p>
           <ul>
             {order.items.map((item, i) => (
-              <li key={i}>{item.title} x{item.quantity} – {(item.price * item.quantity).toLocaleString('sv-SE')} SEK</li>
+              <li key={i}>{item.title[lang]} x{item.quantity} – {(item.price * item.quantity).toLocaleString('sv-SE')} SEK</li>
             ))}
           </ul>
           <p><strong>{sv ? 'Totalt' : 'Total'}:</strong> {order.totalAmount.toLocaleString('sv-SE')} SEK</p>
         </div>
+      )}
+
+      {mailtoUrl && (
+        <a href={mailtoUrl} className="btn-secondary" style={{ marginBottom: '1rem', display: 'inline-block' }}>
+          {sv ? 'Skicka orderbekräftelse via e-post' : 'Send order confirmation via email'}
+        </a>
       )}
 
       <Link href="/shop" className="btn-primary">
