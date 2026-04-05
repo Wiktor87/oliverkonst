@@ -380,5 +380,34 @@
     "shippingCost": 79,
     "createdAt": "2026-04-05T14:46:06.653Z",
     "updatedAt": "2026-04-05T14:46:25.226Z"
+  },
+  {
+    "id": "02837b8b-018a-43f7-be8f-f579e0186bf3",
+    "title": {
+      "sv": "Blått Löv",
+      "en": "Blue Leaf"
+    },
+    "description": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "price": 4000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "20x20cm",
+    "technique": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "imageUrl": "/images/products/produkt/1775400943239-1.webp",
+    "images": [
+      "/images/products/produkt/1775400943239-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/fZufZaa2u6pb3Fj6wjfjG0c",
+    "shippingCost": 0,
+    "createdAt": "2026-04-05T14:55:58.327Z",
+    "updatedAt": "2026-04-05T14:55:58.327Z"
   }
 ]
