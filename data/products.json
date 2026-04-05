@@ -498,5 +498,35 @@
     "shippingCost": 79,
     "createdAt": "2026-04-05T15:21:43.749Z",
     "updatedAt": "2026-04-05T15:21:43.749Z"
+  },
+  {
+    "id": "3c1685a1-008f-4104-b343-1c0c10a64b3f",
+    "title": {
+      "sv": "Sunken Treasure",
+      "en": "Sunken Treasure"
+    },
+    "description": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "price": 30000,
+    "currency": "SEK",
+    "category": "leather",
+    "dimensions": "20x20cm",
+    "technique": {
+      "sv": "Läder på akrylbakgrund på duk.",
+      "en": "Leather on acryllic painted canvas."
+    },
+    "imageUrl": "/images/products/produkt/1775403178973-2.webp",
+    "images": [
+      "/images/products/produkt/1775403178973-2.webp",
+      "/images/products/produkt/1775403172407-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/00wdR2b6y6pb5Nr6wjfjG0g",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T15:33:13.726Z",
+    "updatedAt": "2026-04-05T15:33:13.726Z"
   }
 ]
