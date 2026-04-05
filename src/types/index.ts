@@ -22,6 +22,8 @@ export interface Product {
   status: 'available' | 'sold' | 'reserved';
   productType: 'physical' | 'digital';
   digitalAsset?: DigitalAsset;
+  /** Stripe Payment Link URL from Stripe Dashboard */
+  stripePaymentLink?: string;
   /** Optional list of accepted payment providers for this product (future use) */
   paymentMethods?: ('klarna' | 'stripe')[];
   createdAt: string;
@@ -48,11 +50,15 @@ export interface SiteContent {
   profileQuote: LocalizedString;
   aboutTitle: LocalizedString;
   contactEmail: string;
+  contactPhone?: string;
+  contactAddress?: LocalizedString;
   socialLinks: {
     instagram: string;
     facebook: string;
   };
   selectedProducts?: string[];
+  /** Purchase terms / Köpvillkor */
+  purchaseTerms?: LocalizedString;
 }
 
 export interface Category {

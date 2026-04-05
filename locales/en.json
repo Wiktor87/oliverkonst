@@ -60,7 +60,15 @@
     "contactMessage": "To complete your purchase, contact us via the contact form or email. We will help you with payment and delivery.",
     "remove": "Remove",
     "quantity": "Quantity",
-    "continueShopping": "Continue shopping"
+    "continueShopping": "Continue shopping",
+    "payWithStripe": "Pay with Stripe",
+    "redirectingToStripe": "Redirecting to Stripe...",
+    "orderViaEmail": "Order via email",
+    "readTerms": "Read our terms of purchase"
+  },
+  "terms": {
+    "title": "Terms of Purchase",
+    "subtitle": "Terms and conditions for purchases at Oliver's Konst"
   },
   "about": {
     "title": "About Oliver",

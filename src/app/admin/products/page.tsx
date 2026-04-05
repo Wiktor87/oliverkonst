@@ -24,6 +24,7 @@ type ProductFormData = {
   images: string[];
   status: 'available' | 'sold' | 'reserved';
   productType: 'physical' | 'digital';
+  stripePaymentLink: string;
 };
 
 /** Map from repo path (/images/products/...) to local blob URL for preview */
@@ -34,6 +35,7 @@ const emptyForm: ProductFormData = {
   price: '', currency: 'SEK', category: '', dimensions: '',
   techniqueSv: '', techniqueEn: '', imageUrl: '/images/placeholder.svg',
   images: [], status: 'available', productType: 'physical',
+  stripePaymentLink: '',
 };
 
 /** Convert a product title to a URL-safe slug */
@@ -103,6 +105,7 @@ export default function AdminProductsPage() {
       category: p.category, dimensions: p.dimensions,
       techniqueSv: p.technique.sv, techniqueEn: p.technique.en,
       imageUrl: p.imageUrl, images: imgs, status: p.status, productType: p.productType,
+      stripePaymentLink: p.stripePaymentLink || '',
     });
     setEditingId(p.id);
     setShowForm(true);
@@ -212,6 +215,7 @@ export default function AdminProductsPage() {
                 images: finalImages,
                 status: form.status,
                 productType: form.productType,
+                stripePaymentLink: form.stripePaymentLink || undefined,
                 updatedAt: now,
               }
             : p,
@@ -231,6 +235,7 @@ export default function AdminProductsPage() {
           images: finalImages,
           status: form.status,
           productType: form.productType,
+          stripePaymentLink: form.stripePaymentLink || undefined,
           createdAt: now,
           updatedAt: now,
         };
@@ -407,6 +412,20 @@ export default function AdminProductsPage() {
                     <option value="digital">Digital</option>
                   </select>
                 </div>
+              </div>
+
+              {/* Stripe Payment Link */}
+              <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Stripe Payment Link</label>
+                <input
+                  className="input-field text-sm"
+                  value={form.stripePaymentLink}
+                  onChange={(e) => f('stripePaymentLink', e.target.value)}
+                  placeholder="https://buy.stripe.com/..."
+                />
+                <p className="text-xs text-stone-400 mt-1">
+                  Skapa en Payment Link i Stripe Dashboard och klistra in URL:en här. Lämna tomt om produkten inte ska säljas via Stripe.
+                </p>
               </div>
               {saveError && <p className="text-sm text-red-600">{saveError}</p>}
               <div className="flex gap-3 pt-2">

@@ -1,16 +1,23 @@
 [
   {
     "id": "f1e2d3c4-b5a6-7890-abcd-ef1234567890",
-    "title": { "sv": "Sommarutställning 2026", "en": "Summer Exhibition 2026" },
+    "title": {
+      "sv": "Österlen Konstrundan 2026",
+      "en": "Summer Exhibition 2026"
+    },
     "description": {
-      "sv": "En samlingsutställning med Olivers senaste akvarell- och oljemålningar inspirerade av det svenska sommarlandskapet.",
+      "sv": "En samlingsutställning med Olivers senaste akvarell- och oljemålningar inspirerade av det svenska sommarlandskapet.\n\nhttps://www.facebook.com/hylkegarden/posts/oliver-skifs-intar-traditionsenligt-halmloftet-p%C3%A5-hylkeg%C3%A5rden-i-p%C3%A5skveckan-d%C3%A4r-h/1505652108226605/",
       "en": "A group exhibition featuring Oliver's latest watercolor and oil paintings inspired by the Swedish summer landscape."
     },
-    "location": { "sv": "Galleri Konst, Stockholm", "en": "Gallery Konst, Stockholm" },
-    "startDate": "2026-06-01",
-    "endDate": "2026-06-30",
-    "imageUrl": "",
-    "status": "upcoming",
-    "createdAt": "2026-04-03T00:00:00Z"
+    "location": {
+      "sv": "Hylkegården",
+      "en": "Gallery Konst, Stockholm"
+    },
+    "startDate": "2026-03-31",
+    "endDate": "2026-04-06",
+    "imageUrl": "https://hylkegarden.se/wp-content/uploads/2026/03/Hylkegarden-konstrundan-2026-O.SE_.jpg",
+    "status": "active",
+    "createdAt": "2026-04-03T00:00:00Z",
+    "mapUrl": "https://www.google.com/maps/place/HYLKEG%C3%85RDEN/@55.5024977,14.3210086,881m/data=!3m2!1e3!4b1!4m6!3m5!1s0x46545b76dda7f4bf:0xb5c3e5c457e13790!8m2!3d55.5024977!4d14.3235835!16s%2Fg%2F1th22dx0?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D"
   }
 ]
