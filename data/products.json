@@ -438,5 +438,35 @@
     "shippingCost": 79,
     "createdAt": "2026-04-05T14:58:15.019Z",
     "updatedAt": "2026-04-05T14:58:15.019Z"
+  },
+  {
+    "id": "b6e0cdb2-2561-4bb9-8300-2ff1a284bce4",
+    "title": {
+      "sv": "Fly the friendly skies",
+      "en": "Fly the friendly skies"
+    },
+    "description": {
+      "sv": "Akryl på duk.",
+      "en": "Acryllic on canvas."
+    },
+    "price": 29000,
+    "currency": "SEK",
+    "category": "acrylic",
+    "dimensions": "",
+    "technique": {
+      "sv": "Akryl på duk.",
+      "en": "Acryllic on canvas."
+    },
+    "imageUrl": "/images/products/fly-the-friendly-skies/1775401907969-2.webp",
+    "images": [
+      "/images/products/fly-the-friendly-skies/1775401907969-2.webp",
+      "/images/products/fly-the-friendly-skies/1775401906128-1.webp"
+    ],
+    "status": "available",
+    "productType": "physical",
+    "stripePaymentLink": "https://buy.stripe.com/dRmaEQdeGeVHcbP1bZfjG0e",
+    "shippingCost": 79,
+    "createdAt": "2026-04-05T15:11:55.155Z",
+    "updatedAt": "2026-04-05T15:11:55.155Z"
   }
 ]
