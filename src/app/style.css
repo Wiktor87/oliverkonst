@@ -2235,6 +2235,7 @@ font-family: var(--font-display);
   .product-detail-grid {
     grid-template-columns: 7fr 5fr;
     gap: 4rem;
+    margin-top: 50px;
   }
 }
 
