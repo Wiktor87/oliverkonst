@@ -54,9 +54,11 @@ export default function ProductDetailClient() {
       productId: product.id,
       quantity: 1,
       price: product.price,
+      shippingCost: product.shippingCost || 0,
       title: product.title,
       imageUrl: product.imageUrl,
       productType: product.productType,
+      stripePaymentLink: product.stripePaymentLink,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);

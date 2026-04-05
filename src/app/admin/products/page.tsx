@@ -25,6 +25,7 @@ type ProductFormData = {
   status: 'available' | 'sold' | 'reserved';
   productType: 'physical' | 'digital';
   stripePaymentLink: string;
+  shippingCost: string;
 };
 
 /** Map from repo path (/images/products/...) to local blob URL for preview */
@@ -35,7 +36,7 @@ const emptyForm: ProductFormData = {
   price: '', currency: 'SEK', category: '', dimensions: '',
   techniqueSv: '', techniqueEn: '', imageUrl: '/images/placeholder.svg',
   images: [], status: 'available', productType: 'physical',
-  stripePaymentLink: '',
+  stripePaymentLink: '', shippingCost: '0',
 };
 
 /** Convert a product title to a URL-safe slug */
@@ -106,6 +107,7 @@ export default function AdminProductsPage() {
       techniqueSv: p.technique.sv, techniqueEn: p.technique.en,
       imageUrl: p.imageUrl, images: imgs, status: p.status, productType: p.productType,
       stripePaymentLink: p.stripePaymentLink || '',
+      shippingCost: String(p.shippingCost || 0),
     });
     setEditingId(p.id);
     setShowForm(true);
@@ -216,6 +218,7 @@ export default function AdminProductsPage() {
                 status: form.status,
                 productType: form.productType,
                 stripePaymentLink: form.stripePaymentLink || undefined,
+                shippingCost: Number(form.shippingCost) || 0,
                 updatedAt: now,
               }
             : p,
@@ -236,6 +239,7 @@ export default function AdminProductsPage() {
           status: form.status,
           productType: form.productType,
           stripePaymentLink: form.stripePaymentLink || undefined,
+          shippingCost: Number(form.shippingCost) || 0,
           createdAt: now,
           updatedAt: now,
         };
@@ -298,10 +302,14 @@ export default function AdminProductsPage() {
                   <textarea className="input-field" rows={3} value={form.descEn} onChange={(e) => f('descEn', e.target.value)} required />
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-4 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-stone-700 mb-1">Pris (SEK)</label>
                   <input type="number" className="input-field" value={form.price} onChange={(e) => f('price', e.target.value)} required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 mb-1">Fraktkostnad (SEK)</label>
+                  <input type="number" className="input-field" value={form.shippingCost} onChange={(e) => f('shippingCost', e.target.value)} placeholder="0" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-stone-700 mb-1">Kategori</label>
