@@ -47,6 +47,11 @@ export interface Exhibition {
   createdAt: string;
 }
 
+export interface FaqItem {
+  question: LocalizedString;
+  answer: LocalizedString;
+}
+
 export interface SiteContent {
   biography: LocalizedString;
   profileQuote: LocalizedString;
@@ -63,6 +68,8 @@ export interface SiteContent {
   notificationEmails?: string;
   /** Purchase terms / Köpvillkor */
   purchaseTerms?: LocalizedString;
+  /** FAQ items shown on the homepage */
+  faqItems?: FaqItem[];
 }
 
 export interface Category {

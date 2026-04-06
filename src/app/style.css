@@ -2285,3 +2285,165 @@ font-family: var(--font-display);
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* ============================================================
+   CREATIVE PROCESS SECTION
+   ============================================================ */
+.process-section {
+  background-color: var(--surface-low);
+  padding: 4rem 1.5rem;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .process-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.process-step {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.process-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.process-step-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin-bottom: 0.5rem;
+}
+
+.process-step-text {
+  font-family: var(--font-body);
+  color: var(--secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   WHY ORIGINAL ART SECTION
+   ============================================================ */
+.why-original-section {
+  padding: 4rem 1.5rem;
+}
+
+.why-original-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.why-original-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.why-original-item {
+  font-family: var(--font-body);
+  color: var(--on-surface);
+  font-size: 1rem;
+  line-height: 1.7;
+  padding: 0.75rem 0 0.75rem 2rem;
+  position: relative;
+  border-bottom: 1px solid var(--outline);
+}
+
+.why-original-item:last-child {
+  border-bottom: none;
+}
+
+.why-original-item::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 0.875rem;
+}
+
+/* ============================================================
+   FAQ SECTION
+   ============================================================ */
+.faq-section {
+  padding: 4rem 1.5rem;
+  background-color: var(--surface-low);
+}
+
+.faq-list {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--outline);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--outline);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.25rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--on-surface);
+  gap: 1rem;
+}
+
+.faq-question:hover {
+  color: var(--primary);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.faq-icon-open {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 0 1.25rem;
+}
+
+.faq-answer p {
+  font-family: var(--font-body);
+  color: var(--secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  margin: 0;
+}

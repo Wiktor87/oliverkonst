@@ -23,6 +23,33 @@
       "title": "About the artist",
       "text": "Oliver is a Swedish artist with a passion for capturing the beauty and moods of nature. Each painting is a unique original, created with love and craftsmanship.",
       "readMore": "Read more"
+    },
+    "process": {
+      "title": "From Vision to Artwork",
+      "subtitle": "How each unique original is created",
+      "steps": [
+        {
+          "title": "Inspiration",
+          "text": "Every piece begins with a feeling – a light, a mood, a story that wants to take shape. Oliver draws inspiration from nature, music, and life in Kungsör."
+        },
+        {
+          "title": "Materials & Technique",
+          "text": "With carefully selected materials – genuine leather, high-quality acrylic, and canvas – Oliver builds each piece layer by layer. The leather technique creates a unique, three-dimensional surface."
+        },
+        {
+          "title": "The Finished Work",
+          "text": "After hours of dedicated work, the piece is ready to find its new home. Each painting is signed and delivered with a certificate of authenticity."
+        }
+      ]
+    },
+    "whyOriginal": {
+      "title": "Why Choose Original Art?",
+      "points": [
+        "A unique artwork that no one else owns – your own piece of the artist's vision",
+        "Handcrafted quality that lasts for generations and appreciates in value over time",
+        "Support an independent Swedish artist directly – no middlemen",
+        "Each painting tells a story and gives your home a personal character"
+      ]
     }
   },
   "shop": {
@@ -223,6 +250,36 @@
       "content": "Content",
       "logout": "Log out"
     }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most common questions about Oliver's art and orders",
+    "items": [
+      {
+        "question": "Are all artworks originals?",
+        "answer": "Yes, every piece is a unique, handcrafted original. Oliver never creates copies or prints of his paintings – each work is a one-of-a-kind artwork made by hand using leather, acrylic, canvas, or mixed media."
+      },
+      {
+        "question": "How do I buy a painting?",
+        "answer": "Browse the artworks in our shop, add your chosen piece to the cart, and complete the purchase through our secure payment system. You can also contact Oliver directly via the contact form for inquiries or custom orders."
+      },
+      {
+        "question": "How are the artworks shipped?",
+        "answer": "All artworks are carefully packaged with protective materials to ensure your painting arrives in perfect condition. Shipping is available within Sweden with a typical delivery time of 3–7 business days."
+      },
+      {
+        "question": "Can I order a custom artwork?",
+        "answer": "Absolutely! Oliver welcomes custom commissions. Contact us via the contact form with your wishes regarding size, colors, and subject, and Oliver will respond with a proposal and quote."
+      },
+      {
+        "question": "What materials and techniques does Oliver use?",
+        "answer": "Oliver primarily works with leather, acrylic, and mixed media on canvas. His unique leather technique gives the artworks a three-dimensional quality and a texture that makes each piece a tactile experience beyond the visual."
+      },
+      {
+        "question": "Do you offer returns?",
+        "answer": "Yes, we comply with Swedish distance selling regulations, giving you a 14-day right of withdrawal from receipt. The artwork must be returned in the same condition as delivered. Read more in our terms of purchase."
+      }
+    ]
   },
   "common": {
     "loading": "Loading...",
