@@ -60,5 +60,26 @@
     "imageUrl": "",
     "status": "past",
     "createdAt": "2026-04-05T12:37:44.176Z"
+  },
+  {
+    "id": "d658f6af-7c53-41be-8658-9e1af87bd336",
+    "title": {
+      "sv": "En Värld av Skifs",
+      "en": "A World of Skifs"
+    },
+    "description": {
+      "sv": "Oliver ställde ut som konst i anslutning till Björn Skifs show En Värld av Skifs.",
+      "en": "Oliver exhibited his artworks in conjunction with Björn Skifs’ show A World of Skifs."
+    },
+    "location": {
+      "sv": "Rondo, Göteborg",
+      "en": "Rondo, Gothenburg"
+    },
+    "startDate": "2024-02-08",
+    "endDate": "2024-04-27",
+    "imageUrl": "",
+    "mapUrl": "https://maps.app.goo.gl/Qn5qDdwsN6kTnR8Y8?g_st=ic",
+    "status": "past",
+    "createdAt": "2026-04-06T08:36:17.169Z"
   }
 ]
