@@ -2344,48 +2344,6 @@ font-family: var(--font-display);
 }
 
 /* ============================================================
-   WHY ORIGINAL ART SECTION
-   ============================================================ */
-.why-original-section {
-  padding: 4rem 1.5rem;
-}
-
-.why-original-inner {
-  max-width: 42rem;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.why-original-list {
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0;
-  text-align: left;
-}
-
-.why-original-item {
-  font-family: var(--font-body);
-  color: var(--on-surface);
-  font-size: 1rem;
-  line-height: 1.7;
-  padding: 0.75rem 0 0.75rem 2rem;
-  position: relative;
-  border-bottom: 1px solid var(--outline);
-}
-
-.why-original-item:last-child {
-  border-bottom: none;
-}
-
-.why-original-item::before {
-  content: '✦';
-  position: absolute;
-  left: 0;
-  color: var(--primary);
-  font-size: 0.875rem;
-}
-
-/* ============================================================
    FAQ SECTION
    ============================================================ */
 .faq-section {

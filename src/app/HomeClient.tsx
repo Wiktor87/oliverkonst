@@ -187,19 +187,6 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* Why original art */}
-      <section className="section why-original-section">
-        <div className="why-original-inner">
-          <h2 className="section-title">{t.home.whyOriginal.title}</h2>
-          <ul className="why-original-list">
-            {t.home.whyOriginal.points.map((point, i) => (
-              <li key={i} className="why-original-item">{point}</li>
-            ))}
-          </ul>
-          <Link href="/shop" className="btn-primary">{t.home.hero.cta}</Link>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="section faq-section">
         <div className="section-header">
