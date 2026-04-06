@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { SiteContent, Product } from '@/types';
+import { SiteContent, Product, FaqItem } from '@/types';
 import { useAdmin } from '@/components/AdminContext';
 import { readJsonFile, writeJsonFile } from '@/lib/github';
 import { publicUrl } from '@/lib/config';
@@ -332,6 +332,107 @@ export default function AdminContentPage() {
                 placeholder="Write purchase terms in English..."
               />
             </div>
+          </div>
+        </section>
+
+        {/* FAQ Items */}
+        <section className="bg-white rounded-lg border border-stone-100 p-6">
+          <h2 className="font-medium text-stone-800 mb-2">Vanliga frågor (FAQ)</h2>
+          <p className="text-sm text-stone-500 mb-4">
+            Dessa visas på startsidan och hjälper med SEO (Google-sökresultat).
+          </p>
+          <div className="space-y-4">
+            {(content.faqItems ?? []).map((faq, idx) => (
+              <div key={idx} className="border border-stone-200 rounded-lg p-4 relative">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-stone-600">Fråga {idx + 1}</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setContent((prev) => ({
+                        ...prev,
+                        faqItems: (prev.faqItems ?? []).filter((_, i) => i !== idx),
+                      }));
+                    }}
+                    className="text-xs text-red-500 hover:text-red-700"
+                  >
+                    Ta bort
+                  </button>
+                </div>
+                <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-medium text-stone-500 mb-1">Fråga (svenska)</label>
+                      <input
+                        className="input-field"
+                        value={faq.question.sv}
+                        onChange={(e) => {
+                          const items = [...(content.faqItems ?? [])];
+                          items[idx] = { ...items[idx], question: { ...items[idx].question, sv: e.target.value } };
+                          setContent((prev) => ({ ...prev, faqItems: items }));
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-stone-500 mb-1">Fråga (engelska)</label>
+                      <input
+                        className="input-field"
+                        value={faq.question.en}
+                        onChange={(e) => {
+                          const items = [...(content.faqItems ?? [])];
+                          items[idx] = { ...items[idx], question: { ...items[idx].question, en: e.target.value } };
+                          setContent((prev) => ({ ...prev, faqItems: items }));
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-medium text-stone-500 mb-1">Svar (svenska)</label>
+                      <textarea
+                        className="input-field"
+                        rows={3}
+                        value={faq.answer.sv}
+                        onChange={(e) => {
+                          const items = [...(content.faqItems ?? [])];
+                          items[idx] = { ...items[idx], answer: { ...items[idx].answer, sv: e.target.value } };
+                          setContent((prev) => ({ ...prev, faqItems: items }));
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-stone-500 mb-1">Svar (engelska)</label>
+                      <textarea
+                        className="input-field"
+                        rows={3}
+                        value={faq.answer.en}
+                        onChange={(e) => {
+                          const items = [...(content.faqItems ?? [])];
+                          items[idx] = { ...items[idx], answer: { ...items[idx].answer, en: e.target.value } };
+                          setContent((prev) => ({ ...prev, faqItems: items }));
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => {
+                const newItem: FaqItem = {
+                  question: { sv: '', en: '' },
+                  answer: { sv: '', en: '' },
+                };
+                setContent((prev) => ({
+                  ...prev,
+                  faqItems: [...(prev.faqItems ?? []), newItem],
+                }));
+              }}
+              className="text-sm text-amber-700 hover:text-amber-900 font-medium"
+            >
+              + Lägg till fråga
+            </button>
           </div>
         </section>
 

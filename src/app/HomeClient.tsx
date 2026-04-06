@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { Product } from '@/types';
+import { Product, FaqItem } from '@/types';
 import { useLanguage } from '@/components/LanguageContext';
 import ProductCard from '@/components/ProductCard';
 import CuratorsNote from '@/components/CuratorsNote';
@@ -14,6 +14,7 @@ export default function HomeClient() {
   const { lang, t } = useLanguage();
   const [featured, setFeatured] = useState<Product[]>([]);
   const [siteContent, setSiteContent] = useState<SiteContent | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     Promise.all([
@@ -38,8 +39,36 @@ export default function HomeClient() {
   const firstRow = featured.slice(0, 3);
   const secondRow = featured.slice(3, 6);
 
+  // Use FAQ items from site-content.json (admin-editable) if available, else fall back to locale
+  const faqItems: { question: string; answer: string }[] =
+    siteContent?.faqItems && siteContent.faqItems.length > 0
+      ? siteContent.faqItems.map((item: FaqItem) => ({
+          question: item.question[lang],
+          answer: item.answer[lang],
+        }))
+      : t.faq.items;
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div>
+      {/* FAQPage structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* Hero */}
       <section className="hero-section">
         <div className="hero-bg-image">
@@ -138,6 +167,62 @@ export default function HomeClient() {
 
         <div className="featured-cta">
           <Link href="/shop" className="btn-secondary">{t.home.hero.cta}</Link>
+        </div>
+      </section>
+
+      {/* Creative process */}
+      <section className="section process-section">
+        <div className="section-header">
+          <h2 className="section-title">{t.home.process.title}</h2>
+          <p className="section-subtitle">{t.home.process.subtitle}</p>
+        </div>
+        <div className="process-grid">
+          {t.home.process.steps.map((step, i) => (
+            <div key={i} className="process-step">
+              <span className="process-step-number">{i + 1}</span>
+              <h3 className="process-step-title">{step.title}</h3>
+              <p className="process-step-text">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section faq-section">
+        <div className="section-header">
+          <h2 className="section-title">{t.faq.title}</h2>
+          <p className="section-subtitle">{t.faq.subtitle}</p>
+        </div>
+        <div className="faq-list">
+          {faqItems.map((item, i) => (
+            <div key={i} className="faq-item">
+              <button
+                className={`faq-question ${openFaq === i ? 'faq-question-open' : ''}`}
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                aria-expanded={openFaq === i}
+              >
+                <span>{item.question}</span>
+                <svg
+                  className={`faq-icon ${openFaq === i ? 'faq-icon-open' : ''}`}
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+              {openFaq === i && (
+                <div className="faq-answer">
+                  <p>{item.answer}</p>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </section>
     </div>

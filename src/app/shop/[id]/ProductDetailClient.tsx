@@ -100,8 +100,40 @@ export default function ProductDetailClient() {
     reserved: t.product.reserved,
   };
 
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'VisualArtwork',
+    name: product.title[lang],
+    description: product.description[lang],
+    image: images.map(resolveImg),
+    artist: {
+      '@type': 'Person',
+      name: 'Oliver Skifs',
+      url: 'https://www.oliverskifs.se',
+    },
+    artform: 'Painting',
+    artMedium: product.technique[lang],
+    width: product.dimensions,
+    offers: {
+      '@type': 'Offer',
+      url: `https://www.oliverskifs.se/shop/${product.id}/`,
+      priceCurrency: 'SEK',
+      price: product.price,
+      availability:
+        product.status === 'available'
+          ? 'https://schema.org/InStock'
+          : product.status === 'sold'
+            ? 'https://schema.org/SoldOut'
+            : 'https://schema.org/LimitedAvailability',
+    },
+  };
+
   return (
     <div className="product-detail-layout">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <Link href="/shop" className="back-link">
         ← {t.product.backToShop}
       </Link>

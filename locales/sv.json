@@ -23,6 +23,24 @@
       "title": "Om konstnären",
       "text": "Oliver är en svensk konstnär med passion för att fånga naturens skönhet och stämningar. Varje målning är ett unikt original, skapad med kärlek och hantverk.",
       "readMore": "Läs mer"
+    },
+    "process": {
+      "title": "Från vision till konstverk",
+      "subtitle": "Så skapas varje unikt original",
+      "steps": [
+        {
+          "title": "Inspiration",
+          "text": "Varje verk börjar med en känsla – ett ljus, en stämning, en berättelse som vill ta form. Oliver hämtar inspiration från naturen, musik och livet i Kungsör."
+        },
+        {
+          "title": "Material & teknik",
+          "text": "Med noggrant utvalda material – äkta läder, högkvalitativ akryl och canvas – bygger Oliver upp verket lager för lager. Lädertekniken ger en unik, tredimensionell yta."
+        },
+        {
+          "title": "Det färdiga verket",
+          "text": "Efter timmar av hängivet arbete är verket klart att hitta sitt nya hem. Varje tavla signeras och levereras med ett äkthetsintyg."
+        }
+      ]
     }
   },
   "shop": {
@@ -223,6 +241,36 @@
       "content": "Innehåll",
       "logout": "Logga ut"
     }
+  },
+  "faq": {
+    "title": "Vanliga frågor",
+    "subtitle": "Svar på de vanligaste frågorna om Oliver's konst och beställningar",
+    "items": [
+      {
+        "question": "Är alla konstverk original?",
+        "answer": "Ja, varje verk är ett unikt handgjort original. Oliver skapar aldrig kopior eller tryck av sina målningar – varje tavla är ett enskilt konstverk skapat för hand med läder, akryl, canvas eller mixed media."
+      },
+      {
+        "question": "Hur köper jag en tavla?",
+        "answer": "Bläddra bland verken i vår konstbutik, lägg till det du vill ha i varukorgen och slutför köpet via vår säkra betalningslösning. Du kan även kontakta Oliver direkt via kontaktformuläret för frågor eller specialbeställningar."
+      },
+      {
+        "question": "Hur skickas konstverken?",
+        "answer": "Alla konstverk förpackas noggrant med skyddande material för att garantera att tavlan anländer i perfekt skick. Frakt sker inom Sverige och leveranstid är normalt 3–7 arbetsdagar."
+      },
+      {
+        "question": "Kan jag beställa ett specialanpassat konstverk?",
+        "answer": "Absolut! Oliver tar gärna emot beställningar för specialanpassade verk. Kontakta oss via kontaktformuläret med dina önskemål om storlek, färger och motiv, så återkommer Oliver med ett förslag och en offert."
+      },
+      {
+        "question": "Vilka material och tekniker använder Oliver?",
+        "answer": "Oliver arbetar främst med läder, akryl och mixed media på canvas. Hans unika teknik med läder ger konstverken en tredimensionell känsla och en textur som gör varje verk till en taktil upplevelse utöver det visuella."
+      },
+      {
+        "question": "Erbjuder ni returrätt?",
+        "answer": "Ja, vi följer distanshandelslagen och du har 14 dagars ångerrätt från mottagandet. Konstverket måste returneras i samma skick som det levererades. Läs mer i våra köpvillkor."
+      }
+    ]
   },
   "common": {
     "loading": "Laddar...",
