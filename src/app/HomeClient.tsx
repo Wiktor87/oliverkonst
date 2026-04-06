@@ -13,14 +13,16 @@ import { siteConfig, publicUrl } from '@/lib/config';
 export default function HomeClient() {
   const { lang, t } = useLanguage();
   const [featured, setFeatured] = useState<Product[]>([]);
+  const [siteContent, setSiteContent] = useState<SiteContent | null>(null);
 
   useEffect(() => {
     Promise.all([
       fetch(`${siteConfig.basePath}/data/products.json`).then((r) => r.json()),
       fetch(`${siteConfig.basePath}/data/site-content.json`).then((r) => r.json()),
     ])
-      .then(([products, siteContent]: [Product[], SiteContent]) => {
-        const selectedIds = siteContent.selectedProducts ?? [];
+      .then(([products, content]: [Product[], SiteContent]) => {
+        setSiteContent(content);
+        const selectedIds = content.selectedProducts ?? [];
         if (selectedIds.length > 0) {
           const ordered = selectedIds
             .map((id) => products.find((p) => p.id === id))
@@ -101,9 +103,11 @@ export default function HomeClient() {
 
             <CuratorsNote
               text={
-                lang === 'sv'
-                  ? '"Varje penselstrag är ett samtal mellan känsla och form – ett försök att fånga det flyktiga ljuset och bevara det för evigt."'
-                  : '"Every brushstroke is a conversation between feeling and form – an attempt to capture fleeting light and preserve it forever."'
+                siteContent?.profileQuote?.[lang]
+                  ? `"${siteContent.profileQuote[lang]}"`
+                  : lang === 'sv'
+                    ? '"Varje penselstrag är ett samtal mellan känsla och form – ett försök att fånga det flyktiga ljuset och bevara det för evigt."'
+                    : '"Every brushstroke is a conversation between feeling and form – an attempt to capture fleeting light and preserve it forever."'
               }
               attribution="Oliver"
               label={lang === 'sv' ? 'Konstnärens röst' : "Artist's Voice"}
