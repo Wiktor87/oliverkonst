@@ -36,28 +36,74 @@
   },
   "faqItems": [
     {
-      "question": { "sv": "Är alla konstverk original?", "en": "Are all artworks originals?" },
-      "answer": { "sv": "Ja, varje verk är ett unikt handgjort original. Oliver skapar aldrig kopior eller tryck av sina målningar – varje tavla är ett enskilt konstverk skapat för hand med läder, akryl, canvas eller mixed media.", "en": "Yes, every piece is a unique, handcrafted original. Oliver never creates copies or prints of his paintings – each work is a one-of-a-kind artwork made by hand using leather, acrylic, canvas, or mixed media." }
+      "question": {
+        "sv": "Är alla konstverk original?",
+        "en": "Are all artworks originals?"
+      },
+      "answer": {
+        "sv": "Ja, varje verk är ett unikt handgjort original. Oliver skapar aldrig kopior eller tryck av sina målningar – varje tavla är ett enskilt konstverk skapat för hand med läder, akryl, canvas eller mixed media.",
+        "en": "Yes, every piece is a unique, handcrafted original. Oliver never creates copies or prints of his paintings – each work is a one-of-a-kind artwork made by hand using leather, acrylic, canvas, or mixed media."
+      }
     },
     {
-      "question": { "sv": "Hur köper jag en tavla?", "en": "How do I buy a painting?" },
-      "answer": { "sv": "Bläddra bland verken i vår konstbutik, lägg till det du vill ha i varukorgen och slutför köpet via vår säkra betalningslösning. Du kan även kontakta Oliver direkt via kontaktformuläret för frågor eller specialbeställningar.", "en": "Browse the artworks in our shop, add your chosen piece to the cart, and complete the purchase through our secure payment system. You can also contact Oliver directly via the contact form for inquiries or custom orders." }
+      "question": {
+        "sv": "Hur köper jag en tavla?",
+        "en": "How do I buy a painting?"
+      },
+      "answer": {
+        "sv": "Bläddra bland verken i vår konstbutik, lägg till det du vill ha i varukorgen och slutför köpet via vår säkra betalningslösning. Du kan även kontakta Oliver direkt via kontaktformuläret för frågor eller specialbeställningar.",
+        "en": "Browse the artworks in our shop, add your chosen piece to the cart, and complete the purchase through our secure payment system. You can also contact Oliver directly via the contact form for inquiries or custom orders."
+      }
     },
     {
-      "question": { "sv": "Hur skickas konstverken?", "en": "How are the artworks shipped?" },
-      "answer": { "sv": "Alla konstverk förpackas noggrant med skyddande material för att garantera att tavlan anländer i perfekt skick. Frakt sker inom Sverige och leveranstid är normalt 3–7 arbetsdagar.", "en": "All artworks are carefully packaged with protective materials to ensure your painting arrives in perfect condition. Shipping is available within Sweden with a typical delivery time of 3–7 business days." }
+      "question": {
+        "sv": "Hur skickas konstverken?",
+        "en": "How are the artworks shipped?"
+      },
+      "answer": {
+        "sv": "Alla konstverk förpackas noggrant med skyddande material för att garantera att tavlan anländer i perfekt skick. Frakt sker inom Sverige och leveranstid är normalt 3–7 arbetsdagar.",
+        "en": "All artworks are carefully packaged with protective materials to ensure your painting arrives in perfect condition. Shipping is available within Sweden with a typical delivery time of 3–7 business days."
+      }
     },
     {
-      "question": { "sv": "Kan jag beställa ett specialanpassat konstverk?", "en": "Can I order a custom artwork?" },
-      "answer": { "sv": "Absolut! Oliver tar gärna emot beställningar för specialanpassade verk. Kontakta oss via kontaktformuläret med dina önskemål om storlek, färger och motiv, så återkommer Oliver med ett förslag och en offert.", "en": "Absolutely! Oliver welcomes custom commissions. Contact us via the contact form with your wishes regarding size, colors, and subject, and Oliver will respond with a proposal and quote." }
+      "question": {
+        "sv": "Kan jag beställa ett specialanpassat konstverk?",
+        "en": "Can I order a custom artwork?"
+      },
+      "answer": {
+        "sv": "Absolut! Oliver tar gärna emot beställningar för specialanpassade verk. Kontakta oss via kontaktformuläret med dina önskemål om storlek, färger och motiv, så återkommer Oliver med ett förslag och en offert.",
+        "en": "Absolutely! Oliver welcomes custom commissions. Contact us via the contact form with your wishes regarding size, colors, and subject, and Oliver will respond with a proposal and quote."
+      }
     },
     {
-      "question": { "sv": "Vilka material och tekniker använder Oliver?", "en": "What materials and techniques does Oliver use?" },
-      "answer": { "sv": "Oliver arbetar främst med läder, akryl och mixed media på canvas. Hans unika teknik med läder ger konstverken en tredimensionell känsla och en textur som gör varje verk till en taktil upplevelse utöver det visuella.", "en": "Oliver primarily works with leather, acrylic, and mixed media on canvas. His unique leather technique gives the artworks a three-dimensional quality and a texture that makes each piece a tactile experience beyond the visual." }
+      "question": {
+        "sv": "Vilka material och tekniker använder Oliver?",
+        "en": "What materials and techniques does Oliver use?"
+      },
+      "answer": {
+        "sv": "Oliver arbetar främst med läder, akryl och mixed media på canvas. Hans unika teknik med läder ger konstverken en tredimensionell känsla och en textur som gör varje verk till en taktil upplevelse utöver det visuella.",
+        "en": "Oliver primarily works with leather, acrylic, and mixed media on canvas. His unique leather technique gives the artworks a three-dimensional quality and a texture that makes each piece a tactile experience beyond the visual."
+      }
     },
     {
-      "question": { "sv": "Erbjuder ni returrätt?", "en": "Do you offer returns?" },
-      "answer": { "sv": "Ja, vi följer distanshandelslagen och du har 14 dagars ångerrätt från mottagandet. Konstverket måste returneras i samma skick som det levererades. Läs mer i våra köpvillkor.", "en": "Yes, we comply with Swedish distance selling regulations, giving you a 14-day right of withdrawal from receipt. The artwork must be returned in the same condition as delivered. Read more in our terms of purchase." }
+      "question": {
+        "sv": "Erbjuder ni returrätt?",
+        "en": "Do you offer returns?"
+      },
+      "answer": {
+        "sv": "Ja, vi följer distanshandelslagen och du har 14 dagars ångerrätt från mottagandet. Konstverket måste returneras i samma skick som det levererades. Läs mer i våra köpvillkor.",
+        "en": "Yes, we comply with Swedish distance selling regulations, giving you a 14-day right of withdrawal from receipt. The artwork must be returned in the same condition as delivered. Read more in our terms of purchase."
+      }
+    },
+    {
+      "question": {
+        "sv": "Är det verkligen läder?",
+        "en": "Is it really leather?"
+      },
+      "answer": {
+        "sv": "Ja.",
+        "en": "Yes."
+      }
     }
   ]
 }
