@@ -50,3 +50,17 @@ ${urls}
 const outPath = path.join(__dirname, '..', 'public', 'sitemap.xml');
 fs.writeFileSync(outPath, sitemap);
 console.log(`Sitemap generated with ${allPages.length} URLs (${products.length} products)`);
+
+const robots = `User-agent: *
+Allow: /
+
+Disallow: /cart/
+Disallow: /admin/
+Disallow: /checkout/
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`;
+
+const robotsPath = path.join(__dirname, '..', 'public', 'robots.txt');
+fs.writeFileSync(robotsPath, robots);
+console.log('robots.txt generated');
