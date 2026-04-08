@@ -47,16 +47,15 @@
       "sv": "Akryl på duk.",
       "en": "Acryllic on canvas."
     },
-    "imageUrl": "/images/products/calm/1775303208501-1.webp",
+    "imageUrl": "/images/products/calm/1775303210256-2.webp",
     "images": [
-      "/images/products/calm/1775303208501-1.webp",
-      "/images/products/calm/1775303210256-2.webp"
+      "/images/products/calm/1775303210256-2.webp",
+      "/images/products/calm/1775303208501-1.webp"
     ],
-    "status": "available",
+    "status": "sold",
     "productType": "physical",
     "createdAt": "2026-04-04T11:46:55.840Z",
-    "updatedAt": "2026-04-05T18:38:37.006Z",
-    "stripePaymentLink": "https://buy.stripe.com/aFaeV63E600Ngs54obfjG02",
+    "updatedAt": "2026-04-08T16:45:47.290Z",
     "shippingCost": 0
   },
   {
