@@ -373,12 +373,12 @@
     "images": [
       "/images/products/produkt/1775400943239-1.webp"
     ],
-    "status": "available",
+    "status": "sold",
     "productType": "physical",
     "stripePaymentLink": "https://buy.stripe.com/fZufZaa2u6pb3Fj6wjfjG0c",
     "shippingCost": 0,
     "createdAt": "2026-04-05T14:55:58.327Z",
-    "updatedAt": "2026-04-05T14:55:58.327Z"
+    "updatedAt": "2026-04-12T19:31:14.353Z"
   },
   {
     "id": "f01c058a-2a00-4049-a592-153f898be919",
