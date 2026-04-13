@@ -72,6 +72,8 @@ export interface SiteContent {
   purchaseTerms?: LocalizedString;
   /** FAQ items shown on the homepage */
   faqItems?: FaqItem[];
+  /** Text shown under "Leveransinformation" for skrymmande products */
+  skrymmandeText?: string;
 }
 
 export interface Category {
