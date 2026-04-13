@@ -28,6 +28,8 @@ export interface Product {
   shippingCost?: number;
   /** Optional list of accepted payment providers for this product (future use) */
   paymentMethods?: ('klarna' | 'stripe')[];
+  /** If true, extra delivery/pickup info is shown on the product page */
+  skrymmande?: boolean;
   createdAt: string;
   updatedAt: string;
 }

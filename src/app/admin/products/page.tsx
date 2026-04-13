@@ -26,6 +26,7 @@ type ProductFormData = {
   productType: 'physical' | 'digital';
   stripePaymentLink: string;
   shippingCost: string;
+  skrymmande: boolean;
 };
 
 /** Map from repo path (/images/products/...) to local blob URL for preview */
@@ -36,7 +37,7 @@ const emptyForm: ProductFormData = {
   price: '', currency: 'SEK', category: '', dimensions: '',
   techniqueSv: '', techniqueEn: '', imageUrl: '/images/placeholder.svg',
   images: [], status: 'available', productType: 'physical',
-  stripePaymentLink: '', shippingCost: '0',
+  stripePaymentLink: '', shippingCost: '0', skrymmande: false,
 };
 
 /** Convert a product title to a URL-safe slug */
@@ -116,6 +117,7 @@ export default function AdminProductsPage() {
       status: 'available',
       productType: p.productType,
       shippingCost: String(p.shippingCost || 0),
+      skrymmande: p.skrymmande || false,
     });
   };
   const openEdit = (p: Product) => {
@@ -129,6 +131,7 @@ export default function AdminProductsPage() {
       imageUrl: p.imageUrl, images: imgs, status: p.status, productType: p.productType,
       stripePaymentLink: p.stripePaymentLink || '',
       shippingCost: String(p.shippingCost || 0),
+      skrymmande: p.skrymmande || false,
     });
     setEditingId(p.id);
     setShowForm(true);
@@ -240,6 +243,7 @@ export default function AdminProductsPage() {
                 productType: form.productType,
                 stripePaymentLink: form.stripePaymentLink || undefined,
                 shippingCost: Number(form.shippingCost) || 0,
+                skrymmande: form.skrymmande || undefined,
                 updatedAt: now,
               }
             : p,
@@ -261,6 +265,7 @@ export default function AdminProductsPage() {
           productType: form.productType,
           stripePaymentLink: form.stripePaymentLink || undefined,
           shippingCost: Number(form.shippingCost) || 0,
+          skrymmande: form.skrymmande || undefined,
           createdAt: now,
           updatedAt: now,
         };
@@ -451,6 +456,21 @@ export default function AdminProductsPage() {
                     <option value="digital">Digital</option>
                   </select>
                 </div>
+              </div>
+
+              {/* Skrymmande */}
+              <div className="flex items-start gap-3 p-3 bg-stone-50 border border-stone-200 rounded-lg">
+                <input
+                  id="skrymmande"
+                  type="checkbox"
+                  className="mt-0.5 h-4 w-4 accent-amber-600 cursor-pointer"
+                  checked={form.skrymmande}
+                  onChange={(e) => setForm((prev) => ({ ...prev, skrymmande: e.target.checked }))}
+                />
+                <label htmlFor="skrymmande" className="text-sm cursor-pointer">
+                  <span className="font-medium text-stone-700">Skrymmande</span>
+                  <p className="text-xs text-stone-400 mt-0.5">Lägger till leveransinformation om upphämtning och hemleverans i produktbeskrivningen.</p>
+                </label>
               </div>
 
               {/* Stripe Payment Link */}
