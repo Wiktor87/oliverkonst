@@ -15,7 +15,7 @@ export default function ProductDetailClient() {
   const { lang, t } = useLanguage();
   const { addItem } = useCart();
   const [product, setProduct] = useState<Product | null>(null);
-  const [skrymmandeText, setSkrymmandeText] = useState('');
+  const [skrymmandeText, setSkrymmandeText] = useState('Detta är en stor tavla med ömtåligt motiv. Det finns möjlighet för upphämtning i min ateljé i Kungsör, hemleverans inom Västmanland eller leverans via ombud. Jag, Oliver, kommer kontakta dig efter köp för att diskutera bästa och smidigaste alternativet.');
   const [loading, setLoading] = useState(true);
   const [added, setAdded] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -31,7 +31,7 @@ export default function ProductDetailClient() {
         const found = products.find((p) => p.id === params.id);
         if (!found) { router.push('/shop'); return; }
         setProduct(found);
-        setSkrymmandeText(siteContent.skrymmandeText ?? '');
+        if (siteContent.skrymmandeText) setSkrymmandeText(siteContent.skrymmandeText);
       })
       .finally(() => setLoading(false));
   }, [params.id, router]);
