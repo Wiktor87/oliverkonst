@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Product } from '@/types';
+import { Product, SiteContent } from '@/types';
 import { useLanguage } from '@/components/LanguageContext';
 import { useCart } from '@/components/CartContext';
 import { siteConfig, publicUrl } from '@/lib/config';
@@ -15,6 +15,7 @@ export default function ProductDetailClient() {
   const { lang, t } = useLanguage();
   const { addItem } = useCart();
   const [product, setProduct] = useState<Product | null>(null);
+  const [skrymmandeText, setSkrymmandeText] = useState('');
   const [loading, setLoading] = useState(true);
   const [added, setAdded] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -22,12 +23,15 @@ export default function ProductDetailClient() {
 
   useEffect(() => {
     if (!params.id) return;
-    fetch(`${siteConfig.basePath}/data/products.json`)
-      .then(async (r) => {
-        const products: Product[] = await r.json();
+    Promise.all([
+      fetch(`${siteConfig.basePath}/data/products.json`).then((r) => r.json() as Promise<Product[]>),
+      fetch(`${siteConfig.basePath}/data/site-content.json`).then((r) => r.json() as Promise<SiteContent>),
+    ])
+      .then(([products, siteContent]) => {
         const found = products.find((p) => p.id === params.id);
         if (!found) { router.push('/shop'); return; }
         setProduct(found);
+        setSkrymmandeText(siteContent.skrymmandeText ?? '');
       })
       .finally(() => setLoading(false));
   }, [params.id, router]);
@@ -221,10 +225,10 @@ export default function ProductDetailClient() {
 
           <h1 className="product-detail-title">{product.title[lang]}</h1>
           <p className="product-detail-description">{product.description[lang]}</p>
-          {product.skrymmande && (
+          {product.skrymmande && skrymmandeText && (
             <div className="mt-4">
               <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-1">Leveransinformation</p>
-              <p className="product-detail-description">Detta är en stor tavla med ömtåligt motiv. Det finns möjlighet för upphämtning i min ateljé i Kungsör, hemleverans inom Västmanland eller leverans via ombud. Jag, Oliver, kommer kontakta dig efter köp för att diskutera bästa och smidigaste alternativet.</p>
+              <p className="product-detail-description">{skrymmandeText}</p>
             </div>
           )}
 

@@ -21,6 +21,7 @@ const defaultContent: SiteContent = {
   selectedProducts: [],
   notificationEmails: '',
   purchaseTerms: { sv: '', en: '' },
+  skrymmandeText: 'Detta är en stor tavla med ömtåligt motiv. Det finns möjlighet för upphämtning i min ateljé i Kungsör, hemleverans inom Västmanland eller leverans via ombud. Jag, Oliver, kommer kontakta dig efter köp för att diskutera bästa och smidigaste alternativet.',
 };
 
 export default function AdminContentPage() {
@@ -303,6 +304,20 @@ export default function AdminContentPage() {
               så att leveransinformation samlas in direkt av Stripe. All kundinformation syns sedan under Betalningar i Stripe.
             </p>
           </div>
+        </section>
+
+        {/* Skrymmande delivery text */}
+        <section className="bg-white rounded-lg border border-stone-100 p-6">
+          <h2 className="font-medium text-stone-800 mb-1">Leveransinformation (skrymmande)</h2>
+          <p className="text-sm text-stone-500 mb-4">
+            Denna text visas på produktsidor där &quot;Skrymmande&quot; är aktiverat, under rubriken &quot;Leveransinformation&quot;.
+          </p>
+          <textarea
+            className="input-field"
+            rows={4}
+            value={content.skrymmandeText ?? ''}
+            onChange={(e) => set(['skrymmandeText'], e.target.value)}
+          />
         </section>
 
         {/* Purchase terms */}
