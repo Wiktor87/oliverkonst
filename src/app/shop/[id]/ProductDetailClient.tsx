@@ -220,7 +220,14 @@ export default function ProductDetailClient() {
           </span>
 
           <h1 className="product-detail-title">{product.title[lang]}</h1>
-          <p className="product-detail-description">{product.description[lang]}</p>
+          <p className="product-detail-description">
+            {product.description[lang]}
+            {product.skrymmande && (
+              <>
+                {' '}Detta är en stor tavla med ömtåligt motiv. Det finns möjlighet för upphämtning i min ateljé i Kungsör, hemleverans inom Västmanland eller leverans via ombud. Jag, Oliver, kommer kontakta dig efter köp för att diskutera bästa och smidigaste alternativet.
+              </>
+            )}
+          </p>
 
           <dl className="product-detail-meta">
             <div className="product-detail-meta-row">
