@@ -111,78 +111,91 @@
       "outlet": "NWT (Nya Wermlands-Tidningen)",
       "title": "Värmlandsaktuelle Oliver Skifs: ”Jag är fläcken som aldrig går att måla över”",
       "date": "2023-09-02",
+      "excerpt": "Oliver Skifs skapar skulpturala bilder med en speciell teknik där läder härdas med vatten eller vax och formas över formar. Utställningen på Museet Kvarnen i Filipstad visar hjärtan, fioler och saxofoner.",
       "url": "https://www.nwt.se/2023/09/02/varmlandsaktuelle-oliver-skifs-staller-ut-laderkonst-pa-museet-kvarnen-i-filipstad-2baf6/"
-    },
-    {
-      "outlet": "Sveriges Radio",
-      "title": "Oliver Skifs ställer ut på Österlens konstrunda",
-      "date": "",
-      "url": "https://www.sverigesradio.se/artikel/oliver-skifs-staller-ut-pa-osterlens-konstrunda"
     },
     {
       "outlet": "Magazin24",
       "title": "Skifs konst skapas i Kungsör",
-      "date": "",
+      "date": "2026-06-06",
+      "excerpt": "”Min stil är en häxbrygd av olika tekniker, stilar och hantverk, som jag arbetat med tidigare inom design, scenografi och kostymtillverkning.” Oliver skapar reliefmotiv i läder på dukar med skulpterade bakgrunder.",
       "url": "https://magazin24.se/vastmanland/vastra-malardalen/kungsor/skifs-konst-skapas-i-kungsor/"
+    },
+    {
+      "outlet": "Västra Mälardalen",
+      "title": "Oliver vill skapa mötesplats i konstens tecken",
+      "date": "2025-03",
+      "excerpt": "”Så länge Oliver kan minnas har han hållit på med konst och hantverk, gärna med olika typer av material.” Hans konstnärliga uttryck präglas av bakgrunden inom kostym- och scenografidesign.",
+      "url": "https://vastramalardalen.se/inflyttade-oliver/"
     },
     {
       "outlet": "Filipstads Tidning",
       "title": "Uppskattat Oxhäljabesök av Oliver Skifs: ”Han är mycket artig”",
       "date": "2023-09-05",
+      "excerpt": "”Han är en mycket trevlig, artig och tillmötesgående ung man, mycket trevlig att samarbeta med” – om konstnären som visade sin läderkonst på Museet Kvarnen under Oxhälja.",
       "url": "https://www.filipstadstidning.se/2023/09/05/uppskattat-oxhaljabesok-av-oliver-skifs-han-ar-mycket-artig-2da3b/"
-    },
-    {
-      "outlet": "Västra Mälardalen",
-      "title": "Oliver vill skapa mötesplats i konstens tecken",
-      "date": "",
-      "url": "https://vastramalardalen.se/inflyttade-oliver/"
     },
     {
       "outlet": "Siljan News",
       "title": "Oliver Skifs tillbaka hos Ateljé M",
-      "date": "",
+      "date": "2024-06-23",
+      "excerpt": "”Oliver har tecknat, målat, skulpterat och skapat med sina händer hela livet. Den konstnärliga talangen märktes tidigt och i tonåren började han jobba i läder och även experimentera med masktillverkning.”",
       "url": "https://www.siljannews.se/kultur/oliver-skifs-tillbaka-hos-atelje-m/"
+    },
+    {
+      "outlet": "Sveriges Radio",
+      "title": "Oliver Skifs ställer ut på Österlens konstrunda",
+      "date": "",
+      "excerpt": "Sveriges Radio uppmärksammar att konstnären Oliver Skifs ställer ut sin läderkonst på Österlens konstrunda.",
+      "url": "https://www.sverigesradio.se/artikel/oliver-skifs-staller-ut-pa-osterlens-konstrunda"
+    },
+    {
+      "outlet": "Glicko Nyhetsblogg",
+      "title": "Oliver Skifs ställer ut i Fjällbacka i helgen",
+      "date": "2021-07-16",
+      "excerpt": "Oliver är tillbaka och ställer ut sin unika konst i helgen vid Stora Hotellet i Fjällbacka. Konsten kretsar kring temat musik, dans och kärlek och innehåller ofta läder.",
+      "url": "https://glicko.me/2021/07/16/oliver-skifs-staller-ut-i-fjallbacka-i-helgen/"
     },
     {
       "outlet": "Modern Gallery",
       "title": "Oliver Skifs – konstnär hos Modern Gallery",
       "date": "",
+      "excerpt": "”Konstnär som jobbar med en mängd konstnärliga uttryck, allt från kostymdesign för teater och film till porträttmålningar.” Akryl, kol och skulpturala material kombineras med ledermotiv för en distinkt 3D-effekt.",
       "url": "https://moderngallery.se/oliver-skifs/"
     },
     {
       "outlet": "Phromotion",
       "title": "Oliver Skifs",
       "date": "",
+      "excerpt": "Konstnär som jobbar med en mängd konstnärliga uttryck, allt från kostymdesign för teater och film till porträttmålningar – ofta i kombination med läder. Musiken är en central inspirationskälla.",
       "url": "https://phromotion.se/oliver-skifs/"
     },
     {
       "outlet": "Phromotion",
       "title": "REFLECTION – grupputställning, Strandverket Marstrand",
-      "date": "2024",
+      "date": "2024-08",
+      "excerpt": "Grupputställning på Strandverket, Marstrand med Kjell Engman, Oliver Skifs, Amanda Egnell, John Lundqvist och Gunnar Larsson. Alla dagar kl 12–17 under 18/8–15/9 2024.",
       "url": "https://phromotion.se/reflection/"
     },
     {
       "outlet": "Hylkegården",
       "title": "Utställning på Hylkegården, Österlen",
       "date": "2026-04",
+      "excerpt": "”Konstnären Oliver Skifs som kommer från Österhaninge gjorde sommaren 2021 sin första utställning på Österlen.” Visar måleri, skulptur och kostym på temat Musik · Dans · Kärlek.",
       "url": "https://hylkegarden.se/utstallning/"
     },
     {
       "outlet": "Skillinge",
       "title": "Utställning: Oliver Skifs – Musik Dans Kärlek",
-      "date": "",
+      "date": "2024-03",
+      "excerpt": "Utställning på temat Musik · Dans · Kärlek med måleri, skulptur och kostym.",
       "url": "https://www.skillinge.com/event/utstallning-oliver-skifs-musik-dans-karlek/"
-    },
-    {
-      "outlet": "Glicko Nyhetsblogg",
-      "title": "Oliver Skifs ställer ut i Fjällbacka i helgen",
-      "date": "2021-07-16",
-      "url": "https://glicko.me/2021/07/16/oliver-skifs-staller-ut-i-fjallbacka-i-helgen/"
     },
     {
       "outlet": "Hänt",
       "title": "Björn Skifs son Oliver aktuell med konstutställning",
       "date": "",
+      "excerpt": "Björn Skifs fina ord om sonen Oliver Skifs nya konstkarriär och hans utställningar.",
       "url": "https://www.hant.se/noje/bjorn-skifs-fina-ord-om-oliver-skifs-nya-konstkarriar/5314662"
     }
   ]
