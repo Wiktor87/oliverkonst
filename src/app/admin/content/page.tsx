@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { SiteContent, Product, FaqItem } from '@/types';
+import { SiteContent, Product, FaqItem, PressItem } from '@/types';
 import { useAdmin } from '@/components/AdminContext';
 import { readJsonFile, writeJsonFile } from '@/lib/github';
 import { publicUrl } from '@/lib/config';
@@ -19,6 +19,7 @@ const defaultContent: SiteContent = {
   contactAddress: { sv: '', en: '' },
   socialLinks: { instagram: '', facebook: '' },
   selectedProducts: [],
+  pressItems: [],
   notificationEmails: '',
   purchaseTerms: { sv: '', en: '' },
   skrymmandeText: 'Detta är en stor tavla med ömtåligt motiv. Det finns möjlighet för upphämtning i min ateljé i Kungsör, hemleverans inom Västmanland eller leverans via ombud. Jag, Oliver, kommer kontakta dig efter köp för att diskutera bästa och smidigaste alternativet.',
@@ -447,6 +448,104 @@ export default function AdminContentPage() {
               className="text-sm text-amber-700 hover:text-amber-900 font-medium"
             >
               + Lägg till fråga
+            </button>
+          </div>
+        </section>
+
+        {/* Press / media */}
+        <section className="bg-white rounded-lg border border-stone-100 p-6">
+          <h2 className="font-medium text-stone-800 mb-2">I media (press)</h2>
+          <p className="text-sm text-stone-500 mb-4">
+            Artiklar och reportage som visas på sidan /press. Bra för SEO och trovärdighet. Nyaste datum visas överst.
+          </p>
+          <div className="space-y-4">
+            {(content.pressItems ?? []).map((item, idx) => (
+              <div key={idx} className="border border-stone-200 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-stone-600">Artikel {idx + 1}</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setContent((prev) => ({
+                        ...prev,
+                        pressItems: (prev.pressItems ?? []).filter((_, i) => i !== idx),
+                      }));
+                    }}
+                    className="text-xs text-red-500 hover:text-red-700"
+                  >
+                    Ta bort
+                  </button>
+                </div>
+                <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-medium text-stone-500 mb-1">Källa / tidning</label>
+                      <input
+                        className="input-field"
+                        value={item.outlet}
+                        placeholder="t.ex. NWT, Sveriges Radio"
+                        onChange={(e) => {
+                          const items = [...(content.pressItems ?? [])];
+                          items[idx] = { ...items[idx], outlet: e.target.value };
+                          setContent((prev) => ({ ...prev, pressItems: items }));
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-stone-500 mb-1">Datum (valfritt)</label>
+                      <input
+                        className="input-field"
+                        value={item.date || ''}
+                        placeholder="2023 eller 2023-09-02"
+                        onChange={(e) => {
+                          const items = [...(content.pressItems ?? [])];
+                          items[idx] = { ...items[idx], date: e.target.value };
+                          setContent((prev) => ({ ...prev, pressItems: items }));
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-stone-500 mb-1">Rubrik</label>
+                    <input
+                      className="input-field"
+                      value={item.title}
+                      placeholder="Artikelns rubrik"
+                      onChange={(e) => {
+                        const items = [...(content.pressItems ?? [])];
+                        items[idx] = { ...items[idx], title: e.target.value };
+                        setContent((prev) => ({ ...prev, pressItems: items }));
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-stone-500 mb-1">Länk (URL)</label>
+                    <input
+                      className="input-field"
+                      value={item.url}
+                      placeholder="https://..."
+                      onChange={(e) => {
+                        const items = [...(content.pressItems ?? [])];
+                        items[idx] = { ...items[idx], url: e.target.value };
+                        setContent((prev) => ({ ...prev, pressItems: items }));
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => {
+                const newItem: PressItem = { outlet: '', title: '', date: '', url: '' };
+                setContent((prev) => ({
+                  ...prev,
+                  pressItems: [...(prev.pressItems ?? []), newItem],
+                }));
+              }}
+              className="text-sm text-amber-700 hover:text-amber-900 font-medium"
+            >
+              + Lägg till artikel
             </button>
           </div>
         </section>

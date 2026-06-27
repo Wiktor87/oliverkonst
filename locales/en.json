@@ -5,9 +5,16 @@
     "exhibitions": "Exhibitions",
     "classes": "Classes",
     "about": "About Oliver",
+    "press": "In the media",
     "contact": "Contact",
     "cart": "Cart",
     "admin": "Admin"
+  },
+  "press": {
+    "title": "Oliver in the media",
+    "subtitle": "Press, radio and features about Oliver Skifs and his leather art.",
+    "empty": "No articles to show yet.",
+    "readMore": "Read article"
   },
   "home": {
     "hero": {
