@@ -63,6 +63,7 @@ export default function Footer() {
               <li><Link href="/" className="footer-link">{t.nav.home}</Link></li>
               <li><Link href="/shop" className="footer-link">{t.nav.shop}</Link></li>
               <li><Link href="/about" className="footer-link">{t.nav.about}</Link></li>
+              <li><Link href="/press" className="footer-link">{t.nav.press}</Link></li>
               <li><Link href="/contact" className="footer-link">{t.nav.contact}</Link></li>
               <li>
                 <Link href="/terms" className="footer-link">
