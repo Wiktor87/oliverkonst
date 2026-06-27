@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import HomeClient from './HomeClient';
 
 export const metadata: Metadata = {
-  title: "Oliver's Konst – Originalmålningar av konstnären Oliver",
+  title: { absolute: 'Oliver Skifs Konst – Läderkonst & originalmålningar' },
   description:
-    'Utforska originalmålningar av konstnären Oliver. Unika verk i olja, akvarell, akryl och mixed media skapade med passion och känsla.',
+    'Läderkonst och originalmålningar av konstnären Oliver Skifs – unika handgjorda verk i läder, akryl, canvas och mixed media. Köp original direkt från konstnären.',
   alternates: { canonical: '/' },
 };
 

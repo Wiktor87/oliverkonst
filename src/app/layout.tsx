@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/img/profile-large.webp',
-        width: 1200,
-        height: 630,
+        url: '/img/og-image.jpg',
+        width: 1142,
+        height: 699,
         alt: 'Oliver Skifs – konstnär och målare',
       },
     ],
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "Oliver Skifs Konst – Originalmålningar och läderkonst",
     description:
       'Unika handgjorda konstverk av Oliver Skifs – läder, akryl, canvas och mixed media från Kungsör.',
-    images: ['/img/profile-large.webp'],
+    images: ['/img/og-image.jpg'],
   },
   robots: {
     index: true,
