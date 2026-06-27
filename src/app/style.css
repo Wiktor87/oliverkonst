@@ -2468,10 +2468,26 @@ font-family: var(--font-display);
 }
 
 .press-item-excerpt {
+  position: relative;
+  font-style: italic;
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--secondary);
   margin: 0 0 0.75rem;
+  padding-left: 2.25rem;
+}
+
+.press-item-excerpt::before {
+  content: "\201C";
+  position: absolute;
+  left: 0;
+  top: -0.25rem;
+  font-family: var(--font-display);
+  font-style: normal;
+  font-size: 2.75rem;
+  line-height: 1;
+  color: var(--primary);
+  opacity: 0.45;
 }
 
 .press-item-cta {
