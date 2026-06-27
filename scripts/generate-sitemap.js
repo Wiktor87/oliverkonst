@@ -22,27 +22,50 @@ const products = JSON.parse(
   fs.readFileSync(path.join(__dirname, '..', 'data', 'products.json'), 'utf-8')
 );
 
+const xmlEscape = (s) =>
+  String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
+const absUrl = (u) =>
+  /^https?:\/\//.test(u) ? u : `${SITE_URL}${u.startsWith('/') ? '' : '/'}${u}`;
+
 const productPages = products.map((p) => ({
   path: `/shop/${p.id}/`,
   priority: '0.8',
   changefreq: 'monthly',
+  image: p.imageUrl ? absUrl(p.imageUrl) : null,
+  imageTitle: p.title?.sv || null,
 }));
 
 const allPages = [...staticPages, ...productPages];
 
 const urls = allPages
-  .map(
-    (page) => `  <url>
+  .map((page) => {
+    const imageBlock = page.image
+      ? `
+    <image:image>
+      <image:loc>${xmlEscape(page.image)}</image:loc>${
+          page.imageTitle
+            ? `\n      <image:title>${xmlEscape(page.imageTitle)} – läderkonst av Oliver Skifs</image:title>`
+            : ''
+        }
+    </image:image>`
+      : '';
+    return `  <url>
     <loc>${SITE_URL}${page.path}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`
-  )
+    <priority>${page.priority}</priority>${imageBlock}
+  </url>`;
+  })
   .join('\n');
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls}
 </urlset>
 `;
