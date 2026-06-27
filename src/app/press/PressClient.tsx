@@ -43,6 +43,7 @@ export default function PressClient({ items }: { items: PressItem[] }) {
                   {item.date && <span className="press-item-date">{item.date}</span>}
                 </div>
                 <p className="press-item-title">{item.title}</p>
+                {item.excerpt && <p className="press-item-excerpt">{item.excerpt}</p>}
                 <span className="press-item-cta">{t.press.readMore} →</span>
               </a>
             </li>

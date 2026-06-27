@@ -61,6 +61,8 @@ export interface PressItem {
   title: string;
   /** Free-text date, e.g. "2023" or "2023-09-02" */
   date?: string;
+  /** Short excerpt / quote from the article (adds indexable text) */
+  excerpt?: string;
   /** Link to the article */
   url: string;
 }

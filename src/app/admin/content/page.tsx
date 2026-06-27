@@ -519,6 +519,20 @@ export default function AdminContentPage() {
                     />
                   </div>
                   <div>
+                    <label className="block text-xs font-medium text-stone-500 mb-1">Utdrag (kort citat eller sammanfattning)</label>
+                    <textarea
+                      className="input-field"
+                      rows={3}
+                      value={item.excerpt || ''}
+                      placeholder="1–2 meningar från artikeln. Bra för SEO."
+                      onChange={(e) => {
+                        const items = [...(content.pressItems ?? [])];
+                        items[idx] = { ...items[idx], excerpt: e.target.value };
+                        setContent((prev) => ({ ...prev, pressItems: items }));
+                      }}
+                    />
+                  </div>
+                  <div>
                     <label className="block text-xs font-medium text-stone-500 mb-1">Länk (URL)</label>
                     <input
                       className="input-field"
@@ -537,7 +551,7 @@ export default function AdminContentPage() {
             <button
               type="button"
               onClick={() => {
-                const newItem: PressItem = { outlet: '', title: '', date: '', url: '' };
+                const newItem: PressItem = { outlet: '', title: '', date: '', excerpt: '', url: '' };
                 setContent((prev) => ({
                   ...prev,
                   pressItems: [...(prev.pressItems ?? []), newItem],

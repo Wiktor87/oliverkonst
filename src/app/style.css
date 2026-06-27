@@ -2467,6 +2467,13 @@ font-family: var(--font-display);
   color: var(--on-surface);
 }
 
+.press-item-excerpt {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--secondary);
+  margin: 0 0 0.75rem;
+}
+
 .press-item-cta {
   font-size: 0.85rem;
   color: var(--primary);
