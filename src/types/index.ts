@@ -54,6 +54,17 @@ export interface FaqItem {
   answer: LocalizedString;
 }
 
+export interface PressItem {
+  /** Publication name, e.g. "NWT", "Sveriges Radio" */
+  outlet: string;
+  /** Original article headline */
+  title: string;
+  /** Free-text date, e.g. "2023" or "2023-09-02" */
+  date?: string;
+  /** Link to the article */
+  url: string;
+}
+
 export interface SiteContent {
   biography: LocalizedString;
   profileQuote: LocalizedString;
@@ -72,6 +83,8 @@ export interface SiteContent {
   purchaseTerms?: LocalizedString;
   /** FAQ items shown on the homepage */
   faqItems?: FaqItem[];
+  /** Press / media coverage shown on the /press page */
+  pressItems?: PressItem[];
   /** Text shown under "Leveransinformation" for skrymmande products */
   skrymmandeText?: string;
 }

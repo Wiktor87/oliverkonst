@@ -74,6 +74,7 @@ export default function Header() {
             <Link href="/exhibitions" prefetch={false} className="nav-link">{t.nav.exhibitions}</Link>
             <Link href="/classes" prefetch={false} className="nav-link">{t.nav.classes}</Link>
             <Link href="/about" prefetch={false} className="nav-link">{t.nav.about}</Link>
+            <Link href="/press" prefetch={false} className="nav-link">{t.nav.press}</Link>
             <Link href="/contact" prefetch={false} className="nav-link">{t.nav.contact}</Link>
           </nav>
 
@@ -134,6 +135,7 @@ export default function Header() {
           <Link href="/exhibitions" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.exhibitions}</Link>
           <Link href="/classes" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.classes}</Link>
           <Link href="/about" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.about}</Link>
+          <Link href="/press" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.press}</Link>
           <Link href="/contact" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.contact}</Link>
         </nav>
       </header>

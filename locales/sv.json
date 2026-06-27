@@ -5,9 +5,16 @@
     "exhibitions": "Utställningar",
     "classes": "Kurser",
     "about": "Om Oliver",
+    "press": "I media",
     "contact": "Kontakt",
     "cart": "Varukorg",
     "admin": "Admin"
+  },
+  "press": {
+    "title": "Oliver i media",
+    "subtitle": "Press, radio och reportage om Oliver Skifs och hans läderkonst.",
+    "empty": "Inga artiklar att visa ännu.",
+    "readMore": "Läs artikeln"
   },
   "home": {
     "hero": {

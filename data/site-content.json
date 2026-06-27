@@ -105,5 +105,85 @@
         "en": "Yes."
       }
     }
+  ],
+  "pressItems": [
+    {
+      "outlet": "NWT (Nya Wermlands-Tidningen)",
+      "title": "Värmlandsaktuelle Oliver Skifs: ”Jag är fläcken som aldrig går att måla över”",
+      "date": "2023-09-02",
+      "url": "https://www.nwt.se/2023/09/02/varmlandsaktuelle-oliver-skifs-staller-ut-laderkonst-pa-museet-kvarnen-i-filipstad-2baf6/"
+    },
+    {
+      "outlet": "Sveriges Radio",
+      "title": "Oliver Skifs ställer ut på Österlens konstrunda",
+      "date": "",
+      "url": "https://www.sverigesradio.se/artikel/oliver-skifs-staller-ut-pa-osterlens-konstrunda"
+    },
+    {
+      "outlet": "Magazin24",
+      "title": "Skifs konst skapas i Kungsör",
+      "date": "",
+      "url": "https://magazin24.se/vastmanland/vastra-malardalen/kungsor/skifs-konst-skapas-i-kungsor/"
+    },
+    {
+      "outlet": "Filipstads Tidning",
+      "title": "Uppskattat Oxhäljabesök av Oliver Skifs: ”Han är mycket artig”",
+      "date": "2023-09-05",
+      "url": "https://www.filipstadstidning.se/2023/09/05/uppskattat-oxhaljabesok-av-oliver-skifs-han-ar-mycket-artig-2da3b/"
+    },
+    {
+      "outlet": "Västra Mälardalen",
+      "title": "Oliver vill skapa mötesplats i konstens tecken",
+      "date": "",
+      "url": "https://vastramalardalen.se/inflyttade-oliver/"
+    },
+    {
+      "outlet": "Siljan News",
+      "title": "Oliver Skifs tillbaka hos Ateljé M",
+      "date": "",
+      "url": "https://www.siljannews.se/kultur/oliver-skifs-tillbaka-hos-atelje-m/"
+    },
+    {
+      "outlet": "Modern Gallery",
+      "title": "Oliver Skifs – konstnär hos Modern Gallery",
+      "date": "",
+      "url": "https://moderngallery.se/oliver-skifs/"
+    },
+    {
+      "outlet": "Phromotion",
+      "title": "Oliver Skifs",
+      "date": "",
+      "url": "https://phromotion.se/oliver-skifs/"
+    },
+    {
+      "outlet": "Phromotion",
+      "title": "REFLECTION – grupputställning, Strandverket Marstrand",
+      "date": "2024",
+      "url": "https://phromotion.se/reflection/"
+    },
+    {
+      "outlet": "Hylkegården",
+      "title": "Utställning på Hylkegården, Österlen",
+      "date": "2026-04",
+      "url": "https://hylkegarden.se/utstallning/"
+    },
+    {
+      "outlet": "Skillinge",
+      "title": "Utställning: Oliver Skifs – Musik Dans Kärlek",
+      "date": "",
+      "url": "https://www.skillinge.com/event/utstallning-oliver-skifs-musik-dans-karlek/"
+    },
+    {
+      "outlet": "Glicko Nyhetsblogg",
+      "title": "Oliver Skifs ställer ut i Fjällbacka i helgen",
+      "date": "2021-07-16",
+      "url": "https://glicko.me/2021/07/16/oliver-skifs-staller-ut-i-fjallbacka-i-helgen/"
+    },
+    {
+      "outlet": "Hänt",
+      "title": "Björn Skifs son Oliver aktuell med konstutställning",
+      "date": "",
+      "url": "https://www.hant.se/noje/bjorn-skifs-fina-ord-om-oliver-skifs-nya-konstkarriar/5314662"
+    }
   ]
 }
