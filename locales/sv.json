@@ -2,6 +2,7 @@
   "nav": {
     "home": "Hem",
     "shop": "Konst",
+    "crafts": "Hantverk",
     "exhibitions": "Utställningar",
     "classes": "Kurser",
     "about": "Om Oliver",
@@ -9,6 +10,18 @@
     "contact": "Kontakt",
     "cart": "Varukorg",
     "admin": "Admin"
+  },
+  "crafts": {
+    "title": "Hantverk",
+    "subtitle": "Läderrustningar, lajv-vapen, rekvisita och masker – handgjorda unika verk.",
+    "filterAll": "Alla",
+    "empty": "Inga hantverk att visa ännu.",
+    "backToCrafts": "Tillbaka till hantverk",
+    "materials": "Material",
+    "year": "År",
+    "madeFor": "Gjord för",
+    "commissionText": "Vill du beställa något liknande? Oliver tar emot beställningar på rustningar, vapen, rekvisita och masker.",
+    "commissionCta": "Kontakta för beställning"
   },
   "press": {
     "title": "Oliver i media",

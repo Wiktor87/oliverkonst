@@ -2494,3 +2494,41 @@ font-family: var(--font-display);
   font-size: 0.85rem;
   color: var(--primary);
 }
+
+/* ============================================
+   CRAFTS — portfolio of leatherwork, LARP gear, props
+   ============================================ */
+
+.craft-card-tag {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-label);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(44, 36, 32, 0.08);
+  color: var(--primary);
+  z-index: 1;
+}
+
+.craft-detail-tag {
+  background-color: rgba(44, 36, 32, 0.08);
+  color: var(--primary);
+}
+
+.craft-commission-box {
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+  background-color: var(--surface-high);
+  border: 1px solid var(--outline);
+}
+
+.craft-commission-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--secondary);
+  margin: 0 0 1rem;
+}

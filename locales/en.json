@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "shop": "Shop",
+    "crafts": "Crafts",
     "exhibitions": "Exhibitions",
     "classes": "Classes",
     "about": "About Oliver",
@@ -9,6 +10,18 @@
     "contact": "Contact",
     "cart": "Cart",
     "admin": "Admin"
+  },
+  "crafts": {
+    "title": "Crafts",
+    "subtitle": "Leather armor, LARP weapons, props and masks – handmade one-off pieces.",
+    "filterAll": "All",
+    "empty": "No crafts to show yet.",
+    "backToCrafts": "Back to crafts",
+    "materials": "Materials",
+    "year": "Year",
+    "madeFor": "Made for",
+    "commissionText": "Want something like this made? Oliver takes commissions for armor, weapons, props and masks.",
+    "commissionCta": "Get in touch about a commission"
   },
   "press": {
     "title": "Oliver in the media",

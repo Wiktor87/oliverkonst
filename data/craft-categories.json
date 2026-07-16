@@ -1,0 +1,37 @@
+[
+  {
+    "id": "leather-armor",
+    "name": {
+      "sv": "Läderrustningar",
+      "en": "Leather armor"
+    }
+  },
+  {
+    "id": "larp-weapons",
+    "name": {
+      "sv": "Lajv-vapen",
+      "en": "LARP weapons"
+    }
+  },
+  {
+    "id": "props",
+    "name": {
+      "sv": "Rekvisita",
+      "en": "Props"
+    }
+  },
+  {
+    "id": "masks",
+    "name": {
+      "sv": "Masker",
+      "en": "Masks"
+    }
+  },
+  {
+    "id": "other",
+    "name": {
+      "sv": "Övrigt hantverk",
+      "en": "Other crafts"
+    }
+  }
+]
