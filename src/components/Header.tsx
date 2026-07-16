@@ -71,7 +71,6 @@ export default function Header() {
           <nav className="site-nav">
             <Link href="/" prefetch={false} className="nav-link">{t.nav.home}</Link>
             <Link href="/shop" prefetch={false} className="nav-link">{t.nav.shop}</Link>
-            <Link href="/crafts" prefetch={false} className="nav-link">{t.nav.crafts}</Link>
             <Link href="/exhibitions" prefetch={false} className="nav-link">{t.nav.exhibitions}</Link>
             <Link href="/classes" prefetch={false} className="nav-link">{t.nav.classes}</Link>
             <Link href="/about" prefetch={false} className="nav-link">{t.nav.about}</Link>
@@ -133,7 +132,6 @@ export default function Header() {
         <nav className={`mobile-menu${menuOpen ? ' open' : ''}`}>
           <Link href="/" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.home}</Link>
           <Link href="/shop" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.shop}</Link>
-          <Link href="/crafts" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.crafts}</Link>
           <Link href="/exhibitions" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.exhibitions}</Link>
           <Link href="/classes" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.classes}</Link>
           <Link href="/about" prefetch={false} className="mobile-menu-link" onClick={() => setMenuOpen(false)}>{t.nav.about}</Link>
