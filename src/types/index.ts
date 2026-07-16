@@ -49,6 +49,26 @@ export interface Exhibition {
   createdAt: string;
 }
 
+export interface Craft {
+  /** URL slug, e.g. "lader-rustning" — used as /crafts/<id>/ */
+  id: string;
+  title: LocalizedString;
+  description: LocalizedString;
+  /** Category id from craft-categories.json */
+  category: string;
+  /** Materials/techniques used, e.g. "Vegetabiliskt garvat läder, mässing" */
+  materials: LocalizedString;
+  /** Year the piece was made, e.g. "2024" */
+  year?: string;
+  dimensions?: string;
+  /** Who it was made for, e.g. a LARP group or a film production */
+  madeFor?: string;
+  imageUrl: string;
+  images: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface FaqItem {
   question: LocalizedString;
   answer: LocalizedString;

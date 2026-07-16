@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Product, Category, Message, Order } from '@/types';
+import { Product, Category, Message, Order, Craft } from '@/types';
 import { useAdmin } from '@/components/AdminContext';
 import { readJsonFile } from '@/lib/github';
 
@@ -14,6 +14,7 @@ export default function AdminDashboard() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [crafts, setCrafts] = useState<Craft[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
@@ -28,12 +29,14 @@ export default function AdminDashboard() {
       readJsonFile<Category[]>(token, 'data/categories.json'),
       readJsonFile<Message[]>(token, 'data/messages.json'),
       readJsonFile<Order[]>(token, 'data/orders.json'),
+      readJsonFile<Craft[]>(token, 'data/crafts.json'),
     ])
-      .then(([p, c, m, o]) => {
+      .then(([p, c, m, o, cr]) => {
         setProducts(p.data);
         setCategories(c.data);
         setMessages(m.data);
         setOrders(o.data);
+        setCrafts(cr.data);
       })
       .catch(() => {})
       .finally(() => setDataLoading(false));
@@ -61,6 +64,7 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <StatCard title="Produkter" value={products.length} sub={`${availableProducts} tillgängliga`} href="/admin/products" color="amber" />
+        <StatCard title="Hantverk" value={crafts.length} sub="i portfolion" href="/admin/crafts" color="stone" />
         <StatCard title="Meddelanden" value={messages.length} sub={`${unreadMessages} olästa`} href="/admin/messages" color="blue" />
         <StatCard title="Beställningar" value={orders.length} sub="totalt" href="/admin/orders" color="green" />
         <StatCard title="Kategorier" value={categories.length} sub="se kategorier" href="/admin/categories" color="purple" />
@@ -93,6 +97,7 @@ export default function AdminDashboard() {
           <h2 className="font-medium text-stone-700 mb-4">Snabblänkar</h2>
           <div className="space-y-2">
             <Link href="/admin/products" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Lägg till ny produkt</Link>
+            <Link href="/admin/crafts" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Lägg till nytt hantverk</Link>
             <Link href="/admin/exhibitions" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Hantera utställningar</Link>
             <Link href="/admin/content" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Redigera biografi & citat</Link>
             <Link href="/admin/categories" className="block text-sm text-stone-600 hover:text-amber-700 py-1">→ Hantera kategorier</Link>
@@ -113,13 +118,14 @@ function StatCard({
   value: number;
   sub: string;
   href: string;
-  color: 'amber' | 'blue' | 'green' | 'purple';
+  color: 'amber' | 'blue' | 'green' | 'purple' | 'stone';
 }) {
   const colors = {
     amber: 'bg-amber-50 text-amber-800 border-amber-100',
     blue: 'bg-blue-50 text-blue-800 border-blue-100',
     green: 'bg-green-50 text-green-800 border-green-100',
     purple: 'bg-purple-50 text-purple-800 border-purple-100',
+    stone: 'bg-stone-100 text-stone-800 border-stone-200',
   };
   return (
     <Link href={href} className={`rounded-lg border p-5 block hover:shadow-sm transition-shadow ${colors[color]}`}>

@@ -11,6 +11,7 @@ const today = new Date().toISOString().split('T')[0];
 const staticPages = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/shop/', priority: '0.9', changefreq: 'weekly' },
+  { path: '/crafts/', priority: '0.8', changefreq: 'weekly' },
   { path: '/about/', priority: '0.8', changefreq: 'monthly' },
   { path: '/press/', priority: '0.7', changefreq: 'monthly' },
   { path: '/exhibitions/', priority: '0.7', changefreq: 'monthly' },
@@ -21,6 +22,10 @@ const staticPages = [
 
 const products = JSON.parse(
   fs.readFileSync(path.join(__dirname, '..', 'data', 'products.json'), 'utf-8')
+);
+
+const crafts = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '..', 'data', 'crafts.json'), 'utf-8')
 );
 
 const xmlEscape = (s) =>
@@ -39,9 +44,19 @@ const productPages = products.map((p) => ({
   changefreq: 'monthly',
   image: p.imageUrl ? absUrl(p.imageUrl) : null,
   imageTitle: p.title?.sv || null,
+  imageTitleSuffix: 'läderkonst av Oliver Skifs',
 }));
 
-const allPages = [...staticPages, ...productPages];
+const craftPages = crafts.map((c) => ({
+  path: `/crafts/${c.id}/`,
+  priority: '0.7',
+  changefreq: 'monthly',
+  image: c.imageUrl ? absUrl(c.imageUrl) : null,
+  imageTitle: c.title?.sv || null,
+  imageTitleSuffix: 'hantverk av Oliver Skifs',
+}));
+
+const allPages = [...staticPages, ...productPages, ...craftPages];
 
 const urls = allPages
   .map((page) => {
@@ -50,7 +65,7 @@ const urls = allPages
     <image:image>
       <image:loc>${xmlEscape(page.image)}</image:loc>${
           page.imageTitle
-            ? `\n      <image:title>${xmlEscape(page.imageTitle)} – läderkonst av Oliver Skifs</image:title>`
+            ? `\n      <image:title>${xmlEscape(page.imageTitle)} – ${xmlEscape(page.imageTitleSuffix)}</image:title>`
             : ''
         }
     </image:image>`
@@ -73,7 +88,9 @@ ${urls}
 
 const outPath = path.join(__dirname, '..', 'public', 'sitemap.xml');
 fs.writeFileSync(outPath, sitemap);
-console.log(`Sitemap generated with ${allPages.length} URLs (${products.length} products)`);
+console.log(
+  `Sitemap generated with ${allPages.length} URLs (${products.length} products, ${crafts.length} crafts)`
+);
 
 const robots = `User-agent: *
 Allow: /
