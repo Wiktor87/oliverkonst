@@ -26,6 +26,7 @@ type ProductFormData = {
   productType: 'physical' | 'digital';
   stripePaymentLink: string;
   shippingCost: string;
+  showShipping: boolean;
   skrymmande: boolean;
 };
 
@@ -37,7 +38,7 @@ const emptyForm: ProductFormData = {
   price: '', currency: 'SEK', category: '', dimensions: '',
   techniqueSv: '', techniqueEn: '', imageUrl: '/images/placeholder.svg',
   images: [], status: 'available', productType: 'physical',
-  stripePaymentLink: '', shippingCost: '0', skrymmande: false,
+  stripePaymentLink: '', shippingCost: '0', showShipping: false, skrymmande: false,
 };
 
 /** Convert a product title to a URL-safe slug */
@@ -117,6 +118,7 @@ export default function AdminProductsPage() {
       status: 'available',
       productType: p.productType,
       shippingCost: String(p.shippingCost || 0),
+      showShipping: p.showShipping || false,
       skrymmande: p.skrymmande || false,
     });
   };
@@ -131,6 +133,7 @@ export default function AdminProductsPage() {
       imageUrl: p.imageUrl, images: imgs, status: p.status, productType: p.productType,
       stripePaymentLink: p.stripePaymentLink || '',
       shippingCost: String(p.shippingCost || 0),
+      showShipping: p.showShipping || false,
       skrymmande: p.skrymmande || false,
     });
     setEditingId(p.id);
@@ -243,6 +246,7 @@ export default function AdminProductsPage() {
                 productType: form.productType,
                 stripePaymentLink: form.stripePaymentLink || undefined,
                 shippingCost: Number(form.shippingCost) || 0,
+                showShipping: form.showShipping || undefined,
                 skrymmande: form.skrymmande || undefined,
                 updatedAt: now,
               }
@@ -265,6 +269,7 @@ export default function AdminProductsPage() {
           productType: form.productType,
           stripePaymentLink: form.stripePaymentLink || undefined,
           shippingCost: Number(form.shippingCost) || 0,
+          showShipping: form.showShipping || undefined,
           skrymmande: form.skrymmande || undefined,
           createdAt: now,
           updatedAt: now,
@@ -359,6 +364,22 @@ export default function AdminProductsPage() {
                   <input className="input-field" value={form.dimensions} onChange={(e) => f('dimensions', e.target.value)} placeholder="60x80 cm" />
                 </div>
               </div>
+
+              {/* Visa fraktavgift */}
+              <div className="flex items-start gap-3 p-3 bg-stone-50 border border-stone-200 rounded-lg">
+                <input
+                  id="showShipping"
+                  type="checkbox"
+                  className="mt-0.5 h-4 w-4 accent-amber-600 cursor-pointer"
+                  checked={form.showShipping}
+                  onChange={(e) => setForm((prev) => ({ ...prev, showShipping: e.target.checked }))}
+                />
+                <label htmlFor="showShipping" className="text-sm cursor-pointer">
+                  <span className="font-medium text-stone-700">Visa fraktavgift</span>
+                  <p className="text-xs text-stone-400 mt-0.5">Visar fraktkostnaden intill priset i butiken och på produktsidan. Redigera beloppet i fältet &quot;Fraktkostnad (SEK)&quot; ovan (0 = fri frakt).</p>
+                </label>
+              </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-stone-700 mb-1">Teknik (SV)</label>

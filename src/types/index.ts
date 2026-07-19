@@ -26,6 +26,8 @@ export interface Product {
   stripePaymentLink?: string;
   /** Shipping cost in SEK (0 = free shipping) */
   shippingCost?: number;
+  /** If true, the shipping fee is shown next to the price on shop cards and the product page */
+  showShipping?: boolean;
   /** Optional list of accepted payment providers for this product (future use) */
   paymentMethods?: ('klarna' | 'stripe')[];
   /** If true, extra delivery/pickup info is shown on the product page */
