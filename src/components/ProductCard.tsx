@@ -43,6 +43,13 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const imageSrc = product.imageUrl.startsWith('http') ? product.imageUrl : publicUrl(product.imageUrl);
 
+  const shippingNote =
+    product.showShipping && product.status !== 'sold'
+      ? (product.shippingCost || 0) > 0
+        ? `+ ${(product.shippingCost || 0).toLocaleString('sv-SE')} ${t.common.currency} ${t.product.shipping}`
+        : t.product.freeShipping
+      : null;
+
   return (
     <Link href={`/shop/${product.id}`} className="product-card">
       <div className="product-card-mat">
@@ -84,8 +91,13 @@ export default function ProductCard({ product }: ProductCardProps) {
               <span className="sold-label">{t.product.sold}</span>
             </span>
           ) : (
-            <span className="product-card-price">
-              {product.price.toLocaleString('sv-SE')} {t.common.currency}
+            <span className="flex flex-col">
+              <span className="product-card-price">
+                {product.price.toLocaleString('sv-SE')} {t.common.currency}
+              </span>
+              {shippingNote && (
+                <span className="text-xs text-stone-400">{shippingNote}</span>
+              )}
             </span>
           )}
           {product.status === 'available' && (

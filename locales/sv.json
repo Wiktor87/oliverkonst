@@ -90,6 +90,8 @@
     "added": "Tillagd!",
     "category": "Kategori",
     "price": "Pris",
+    "shipping": "frakt",
+    "freeShipping": "Fri frakt",
     "backToShop": "Tillbaka till konsten"
   },
   "cart": {

@@ -251,9 +251,18 @@ export default function ProductDetailClient() {
               <span className="sold-label">{t.product.sold}</span>
             </p>
           ) : (
-            <p className="product-detail-price">
-              {product.price.toLocaleString('sv-SE')} {t.common.currency}
-            </p>
+            <>
+              <p className="product-detail-price">
+                {product.price.toLocaleString('sv-SE')} {t.common.currency}
+              </p>
+              {product.showShipping && (
+                <p className="text-sm text-stone-500 -mt-2 mb-2">
+                  {(product.shippingCost || 0) > 0
+                    ? `+ ${(product.shippingCost || 0).toLocaleString('sv-SE')} ${t.common.currency} ${t.product.shipping}`
+                    : t.product.freeShipping}
+                </p>
+              )}
+            </>
           )}
 
           {product.status === 'available' && (

@@ -90,6 +90,8 @@
     "added": "Added!",
     "category": "Category",
     "price": "Price",
+    "shipping": "shipping",
+    "freeShipping": "Free shipping",
     "backToShop": "Back to shop"
   },
   "cart": {
