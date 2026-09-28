@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Product, Category, Message, Order, Craft } from '@/types';
 import { useAdmin } from '@/components/AdminContext';
 import { readJsonFile } from '@/lib/github';
+import { fetchStripeOrders, getStoredStripeKey } from '@/lib/stripeOrders';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -15,6 +16,7 @@ export default function AdminDashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
   const [crafts, setCrafts] = useState<Craft[]>([]);
+  const [stripeOrderCount, setStripeOrderCount] = useState(0);
   const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
@@ -40,6 +42,13 @@ export default function AdminDashboard() {
       })
       .catch(() => {})
       .finally(() => setDataLoading(false));
+
+    const stripeKey = getStoredStripeKey();
+    if (stripeKey) {
+      fetchStripeOrders(stripeKey)
+        .then((o) => setStripeOrderCount(o.length))
+        .catch(() => {});
+    }
   }, [isAuthenticated, isLoading, token, router]);
 
   if (isLoading || dataLoading) {
@@ -66,7 +75,7 @@ export default function AdminDashboard() {
         <StatCard title="Produkter" value={products.length} sub={`${availableProducts} tillgängliga`} href="/admin/products" color="amber" />
         <StatCard title="Hantverk" value={crafts.length} sub="i portfolion" href="/admin/crafts" color="stone" />
         <StatCard title="Meddelanden" value={messages.length} sub={`${unreadMessages} olästa`} href="/admin/messages" color="blue" />
-        <StatCard title="Beställningar" value={orders.length} sub="totalt" href="/admin/orders" color="green" />
+        <StatCard title="Beställningar" value={orders.length + stripeOrderCount} sub="totalt" href="/admin/orders" color="green" />
         <StatCard title="Kategorier" value={categories.length} sub="se kategorier" href="/admin/categories" color="purple" />
       </div>
 
