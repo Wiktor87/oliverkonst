@@ -46,7 +46,7 @@ export default function AdminDashboard() {
     const stripeKey = getStoredStripeKey();
     if (stripeKey) {
       fetchStripeOrders(stripeKey)
-        .then((o) => setStripeOrderCount(o.length))
+        .then(({ orders: o }) => setStripeOrderCount(o.length))
         .catch(() => {});
     }
   }, [isAuthenticated, isLoading, token, router]);
